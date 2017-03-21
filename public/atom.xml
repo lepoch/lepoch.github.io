@@ -4,9 +4,9 @@
   
   <link href="/atom.xml" rel="self"/>
   
-  <link href="https://ll-xzx.github.io/"/>
+  <link href="https://lepoch.github.io/"/>
   <updated>2017-03-21T04:16:37.000Z</updated>
-  <id>https://ll-xzx.github.io/</id>
+  <id>https://lepoch.github.io/</id>
   
   <author>
     <name>战吧</name>
@@ -17,8 +17,8 @@
   
   <entry>
     <title>linux科学上网</title>
-    <link href="https://ll-xzx.github.io/linux%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91/"/>
-    <id>https://ll-xzx.github.io/linux科学上网/</id>
+    <link href="https://lepoch.github.io/linux%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91/"/>
+    <id>https://lepoch.github.io/linux科学上网/</id>
     <published>2017-03-20T09:00:00.000Z</published>
     <updated>2017-03-21T04:16:37.000Z</updated>
     
@@ -29,17 +29,17 @@
     
     </summary>
     
-      <category term="LINUX" scheme="https://ll-xzx.github.io/categories/LINUX/"/>
+      <category term="LINUX" scheme="https://lepoch.github.io/categories/LINUX/"/>
     
     
-      <category term="LINUX" scheme="https://ll-xzx.github.io/tags/LINUX/"/>
+      <category term="LINUX" scheme="https://lepoch.github.io/tags/LINUX/"/>
     
   </entry>
   
   <entry>
     <title>PHP代码审核之路</title>
-    <link href="https://ll-xzx.github.io/PHP%E4%BB%A3%E7%A0%81%E5%AE%A1%E6%A0%B8%E4%B9%8B%E8%B7%AF/"/>
-    <id>https://ll-xzx.github.io/PHP代码审核之路/</id>
+    <link href="https://lepoch.github.io/PHP%E4%BB%A3%E7%A0%81%E5%AE%A1%E6%A0%B8%E4%B9%8B%E8%B7%AF/"/>
+    <id>https://lepoch.github.io/PHP代码审核之路/</id>
     <published>2017-03-20T07:00:00.000Z</published>
     <updated>2017-03-21T04:16:37.000Z</updated>
     
@@ -49,19 +49,19 @@
     
     </summary>
     
-      <category term="PHP" scheme="https://ll-xzx.github.io/categories/PHP/"/>
+      <category term="PHP" scheme="https://lepoch.github.io/categories/PHP/"/>
     
     
-      <category term="新浪游戏" scheme="https://ll-xzx.github.io/tags/%E6%96%B0%E6%B5%AA%E6%B8%B8%E6%88%8F/"/>
+      <category term="新浪游戏" scheme="https://lepoch.github.io/tags/%E6%96%B0%E6%B5%AA%E6%B8%B8%E6%88%8F/"/>
     
-      <category term="PHP" scheme="https://ll-xzx.github.io/tags/PHP/"/>
+      <category term="PHP" scheme="https://lepoch.github.io/tags/PHP/"/>
     
   </entry>
   
   <entry>
     <title>代码review-20170317</title>
-    <link href="https://ll-xzx.github.io/%E4%BB%A3%E7%A0%81review-20170317/"/>
-    <id>https://ll-xzx.github.io/代码review-20170317/</id>
+    <link href="https://lepoch.github.io/%E4%BB%A3%E7%A0%81review-20170317/"/>
+    <id>https://lepoch.github.io/代码review-20170317/</id>
     <published>2017-03-17T07:00:00.000Z</published>
     <updated>2017-03-21T04:16:37.000Z</updated>
     
@@ -71,23 +71,23 @@
     
     </summary>
     
-      <category term="工作" scheme="https://ll-xzx.github.io/categories/%E5%B7%A5%E4%BD%9C/"/>
+      <category term="工作" scheme="https://lepoch.github.io/categories/%E5%B7%A5%E4%BD%9C/"/>
     
-      <category term="日常" scheme="https://ll-xzx.github.io/categories/%E5%B7%A5%E4%BD%9C/%E6%97%A5%E5%B8%B8/"/>
+      <category term="日常" scheme="https://lepoch.github.io/categories/%E5%B7%A5%E4%BD%9C/%E6%97%A5%E5%B8%B8/"/>
     
     
-      <category term="新浪游戏" scheme="https://ll-xzx.github.io/tags/%E6%96%B0%E6%B5%AA%E6%B8%B8%E6%88%8F/"/>
+      <category term="工作" scheme="https://lepoch.github.io/tags/%E5%B7%A5%E4%BD%9C/"/>
     
-      <category term="工作" scheme="https://ll-xzx.github.io/tags/%E5%B7%A5%E4%BD%9C/"/>
+      <category term="日常" scheme="https://lepoch.github.io/tags/%E6%97%A5%E5%B8%B8/"/>
     
-      <category term="日常" scheme="https://ll-xzx.github.io/tags/%E6%97%A5%E5%B8%B8/"/>
+      <category term="新浪游戏" scheme="https://lepoch.github.io/tags/%E6%96%B0%E6%B5%AA%E6%B8%B8%E6%88%8F/"/>
     
   </entry>
   
   <entry>
     <title>代码review-20170315</title>
-    <link href="https://ll-xzx.github.io/%E4%BB%A3%E7%A0%81review-20170315/"/>
-    <id>https://ll-xzx.github.io/代码review-20170315/</id>
+    <link href="https://lepoch.github.io/%E4%BB%A3%E7%A0%81review-20170315/"/>
+    <id>https://lepoch.github.io/代码review-20170315/</id>
     <published>2017-03-15T11:04:07.000Z</published>
     <updated>2017-03-21T04:16:37.000Z</updated>
     
@@ -97,23 +97,23 @@
     
     </summary>
     
-      <category term="工作" scheme="https://ll-xzx.github.io/categories/%E5%B7%A5%E4%BD%9C/"/>
+      <category term="工作" scheme="https://lepoch.github.io/categories/%E5%B7%A5%E4%BD%9C/"/>
     
-      <category term="日常" scheme="https://ll-xzx.github.io/categories/%E5%B7%A5%E4%BD%9C/%E6%97%A5%E5%B8%B8/"/>
+      <category term="日常" scheme="https://lepoch.github.io/categories/%E5%B7%A5%E4%BD%9C/%E6%97%A5%E5%B8%B8/"/>
     
     
-      <category term="新浪游戏" scheme="https://ll-xzx.github.io/tags/%E6%96%B0%E6%B5%AA%E6%B8%B8%E6%88%8F/"/>
+      <category term="工作" scheme="https://lepoch.github.io/tags/%E5%B7%A5%E4%BD%9C/"/>
     
-      <category term="工作" scheme="https://ll-xzx.github.io/tags/%E5%B7%A5%E4%BD%9C/"/>
+      <category term="日常" scheme="https://lepoch.github.io/tags/%E6%97%A5%E5%B8%B8/"/>
     
-      <category term="日常" scheme="https://ll-xzx.github.io/tags/%E6%97%A5%E5%B8%B8/"/>
+      <category term="新浪游戏" scheme="https://lepoch.github.io/tags/%E6%96%B0%E6%B5%AA%E6%B8%B8%E6%88%8F/"/>
     
   </entry>
   
   <entry>
     <title>laravel-queue</title>
-    <link href="https://ll-xzx.github.io/laravel-queue/"/>
-    <id>https://ll-xzx.github.io/laravel-queue/</id>
+    <link href="https://lepoch.github.io/laravel-queue/"/>
+    <id>https://lepoch.github.io/laravel-queue/</id>
     <published>2017-03-15T11:04:07.000Z</published>
     <updated>2017-03-21T04:16:37.000Z</updated>
     
@@ -124,18 +124,18 @@
     
     </summary>
     
-      <category term="php" scheme="https://ll-xzx.github.io/categories/php/"/>
+      <category term="php" scheme="https://lepoch.github.io/categories/php/"/>
     
-      <category term="laravel" scheme="https://ll-xzx.github.io/categories/php/laravel/"/>
+      <category term="laravel" scheme="https://lepoch.github.io/categories/php/laravel/"/>
     
     
-      <category term="queue" scheme="https://ll-xzx.github.io/tags/queue/"/>
+      <category term="queue" scheme="https://lepoch.github.io/tags/queue/"/>
     
-      <category term="laravel" scheme="https://ll-xzx.github.io/tags/laravel/"/>
+      <category term="laravel" scheme="https://lepoch.github.io/tags/laravel/"/>
     
-      <category term="php" scheme="https://ll-xzx.github.io/tags/php/"/>
+      <category term="php" scheme="https://lepoch.github.io/tags/php/"/>
     
-      <category term="supervisor" scheme="https://ll-xzx.github.io/tags/supervisor/"/>
+      <category term="supervisor" scheme="https://lepoch.github.io/tags/supervisor/"/>
     
   </entry>
   
