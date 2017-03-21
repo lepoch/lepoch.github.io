@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  
+    
+    <entry>
+      <title><![CDATA[linux科学上网]]></title>
+      <url>%2Flinux%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91%2F</url>
+      <content type="text"><![CDATA[在搭建Rietveld时，碰到需要科学上网的情况。 这里使用 ss-redir + iptables透明代理 环境LINUX 虚拟机CentOS 7 shadowsocks-libev安装1234567891011121314151617181920212223242526272829303132333435363738yum install epel-release -yyum install gcc gettext autoconf libtool automake make pcre-devel asciidoc xmlto udns-devel libev-devel -y#添加repo， 这里遇到$basearch是CPU指令集， 使用arch命令查看( cat &lt;&lt;EOF[librehat-shadowsocks]name=Copr repo for shadowsocks owned by librehatbaseurl=https://copr-be.cloud.fedoraproject.org/results/librehat/shadowsocks/epel-7-`arch`/type=rpm-mdskip_if_unavailable=Truegpgcheck=1gpgkey=https://copr-be.cloud.fedoraproject.org/results/librehat/shadowsocks/pubkey.gpgrepo_gpgcheck=0enabled=1enabled_metadata=1EOF) &gt; /etc/yum.repos.d/shadowsocks.repoyum updateyum install -y shadowsocks-libev# 配置( cat &lt;&lt;EOF&#123; &quot;server&quot;:&quot;IP地址&quot; `arch`, &quot;server_port&quot;:端口, &quot;local_address&quot;:&quot;127.0.0.1&quot;, &quot;local_port&quot;:1080, &quot;password&quot;:&quot;密码&quot;, &quot;timeout&quot;:300, &quot;method&quot;:&quot;加密方式&quot;, &quot;fast_open&quot;:false&#125;EOF) &gt; /etc/shadowsocks.json# 启动sslocal -c /etc/shadowsocks.json 问题然而报错 Exception: libsodium not found，发现是系统没有我指定的加密算法chacha20，所需 libsodium 12345678910111213yum install m2crypto gcc -ywget -N --no-check-certificate https://download.libsodium.org/libsodium/releases/libsodium-1.0.10.tar.gztar zfvx libsodium-1.0.10.tar.gzcd libsodium-1.0.10./configuremake &amp;&amp; make install(cat &lt;&lt;EOF/lib/usr/lib64/usr/local/libEOF) &gt;&gt; /etc/ld.so.confldconfig iptables@TODO]]></content>
+    </entry>
+
+    
+    <entry>
+      <title><![CDATA[PHP代码审核之路]]></title>
+      <url>%2FPHP%E4%BB%A3%E7%A0%81%E5%AE%A1%E6%A0%B8%E4%B9%8B%E8%B7%AF%2F</url>
+      <content type="text"><![CDATA[上周审核了几个同事的代码，发现代码规范用处太小。使用工具进行代码的审核势在必行。 寻觅Rietveld谷歌出品工具，很犀利，免费开源。PYTHON + Django， 使用Google App Engine。 Gerrit免费开源，网页管理界面，GIT管理。 CrucibleAtlassian公司出品，收费。暂时不考虑。 初见LINUX 虚拟机CentOS7 Rietveld搭建 首先就得科学上网，见另一篇 《linux科学上网》]]></content>
+    </entry>
+
+    
+    <entry>
+      <title><![CDATA[代码review-20170317]]></title>
+      <url>%2F%E4%BB%A3%E7%A0%81review-20170317%2F</url>
+      <content type="text"><![CDATA[games 5.2 庆禄方法注释规范化， 例如：12345678/** * [newsListType description] * @param [type] $channel_id [description] * @param string $cate [description] * @return [type] [description] * @date 2017-03-17 * @author liule1 */ 缺少缓存 news_model.searchGameListByKeyword search_model.searchGame news_model.getCardListByKeyword … 具体代码news_model 命名规范 searchGameListByKeyword， 游戏联想怎么能用search 清理无效注释 格式化代码 page_array 减少 global news 命名规范 searchGame 游戏联想 rss 命名规范 common_search 闹呢，这命名]]></content>
+    </entry>
+
+    
+    <entry>
+      <title><![CDATA[代码review-20170315]]></title>
+      <url>%2F%E4%BB%A3%E7%A0%81review-20170315%2F</url>
+      <content type="text"><![CDATA[promoter 江峰很多无用的注释1234567891011121314151617181920public function show(Request $request )&#123; $id = intval($request-&gt;input(&apos;id&apos;)); $keyword = trim($request-&gt;input(&apos;search_key&apos;)); $limit = intval($request-&gt;input(&apos;limit&apos;))?intval($request-&gt;input(&apos;limit&apos;)):10; #$id = intval($id); if( $id )&#123; #$retcode = $this -&gt; cr -&gt; getOrderList( $id , $limit); #$limit = 9; $data = App::make(&apos;CompanyRepository&apos;)-&gt;getOrderList( $id , $keyword ,$limit); if($data)&#123; return Helper::JsonResponse( 200 , &quot;请求成功&quot; , $data, $request-&gt;input(&apos;callback&apos;) ); &#125;else&#123; return Helper::JsonResponse( 2001 , &quot;没有数据&quot; ,&apos;&apos;, $request-&gt;input(&apos;callback&apos;) ); &#125; #return $data-&gt;toarray(); &#125; return Helper::JsonResponse( 1001 , &quot;缺少参数&quot; , &apos;&apos;, $request-&gt;input(&apos;callback&apos;) ); #return response()-&gt;json( $array )-&gt;setCallback($request-&gt;input(&apos;callback&apos;));&#125; 大量缺少缓存 orderIsPromoter … cli和http在repository层上没法区分代码乱具体代码CompanyRepository 代码复用性问题 getFeeByOrderid、getInfo、getInfoPlus、getProStatus等存在可直接复用关联 命名规范 getInfoPlus：是什么鬼 getInfoByCmsid：check方法使用get关键字 获取Info返回个多维数组，之后还得使用[0]这种下标 checkCompanyInfo 直接使用Request，无复用性、扩展性 createOrderId 生成订单SN逻辑混乱，目测是先插入，再根据自增id生成订单号 getOrderList limit 类型没指定 orderOffline 代码直接echo 、exit sendEmail sleep ? 容易异常代码块没有 try catch ComsettlementRepository 命名规范 check 返回 count 代码复用 getTotalSettle、getTotalByCompanyid等 getFeeCurrentMonthByCompanyid、getTotalFeeByCompanyid、getTotalFeeFromSettle等 getList 传入 array， 除非先看一遍代码，不然天知道该怎么传 _getCompanyPerFee 逻辑只是CompanyRepository的， 为什么放这 getOrderInfo 同上 CstatisticalRepository insert extract 太不友好 命名规范 check 返回 count PromoterRepository 代码复用 isPromoter、getPromoterStatus、checkPromoter等 命名规范 check 返回 info changeLockStatus 应该是 private 吧 UsersettleRepository 命名规范问题， 同上 将来 加入action层，处理业务逻辑，可同时调用多个repository，减少各个repository、MODEL 的耦合性]]></content>
+    </entry>
+
+    
+    <entry>
+      <title><![CDATA[laravel-queue]]></title>
+      <url>%2Flaravel-queue%2F</url>
+      <content type="text"><![CDATA[testxxxx]]></content>
+    </entry>
+
+    
+  
+  
+</search>
