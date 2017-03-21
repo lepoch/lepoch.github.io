@@ -12,37 +12,29 @@ categories:
 
 在搭建Rietveld时，碰到需要科学上网的情况。
 
-这里使用 [ss-redir](https://github.com/madeye/shadowsocks-libev) + iptables透明代理
+这里使用 shadowsocks + privoxy
 
 <!-- MORE -->
 # 环境
 LINUX 虚拟机
 CentOS 7
 
-# shadowsocks-libev
-
-## 安装
+# 方法1，使用宿主机的代理
 ```
-yum install epel-release -y
-yum install gcc gettext autoconf libtool automake make pcre-devel asciidoc xmlto udns-devel libev-devel -y
+export http_proxy=宿主机IP:1080
+export https_proxy=宿主机IP:1080
+export ftp_proxy=宿主机IP:1080
+```
 
-#添加repo， 这里遇到$basearch是CPU指令集， 使用arch命令查看
-( cat <<EOF
-[librehat-shadowsocks]
-name=Copr repo for shadowsocks owned by librehat
-baseurl=https://copr-be.cloud.fedoraproject.org/results/librehat/shadowsocks/epel-7-`arch`/
-type=rpm-md
-skip_if_unavailable=True
-gpgcheck=1
-gpgkey=https://copr-be.cloud.fedoraproject.org/results/librehat/shadowsocks/pubkey.gpg
-repo_gpgcheck=0
-enabled=1
-enabled_metadata=1
-EOF
-) > /etc/yum.repos.d/shadowsocks.repo
 
-yum update
-yum install -y shadowsocks-libev
+# 方法2，独立安装代理
+## shadowsocks python版本
+
+### shadowsocks
+
+```
+yum install python-pip
+pip install shadowsocks
 
 # 配置
 ( cat <<EOF
@@ -60,10 +52,11 @@ EOF
 ) > /etc/shadowsocks.json
 
 # 启动
-sslocal -c /etc/shadowsocks.json
+sslocal -c /etc/shadowsocks.json -d
 ```
-## 问题
-然而报错 Exception: libsodium not found，发现是系统没有我指定的加密算法chacha20，所需 [libsodium](https://download.libsodium.org/doc/installation/)
+
+### 问题
+1. 然而报错 Exception: libsodium not found，发现是系统没有我指定的加密算法chacha20，所需 [libsodium](https://download.libsodium.org/doc/installation/)
 
 ```
 yum install m2crypto gcc -y
@@ -81,5 +74,20 @@ EOF
 ldconfig
 ```
 
-# iptables
-@TODO
+
+## privoxy
+```
+yum install privoxy
+echo "forward-socks5t   /               127.0.0.1:1080 ." >> /etc/privoxy/config
+# 启动
+pip install shadowsocks
+# 设置代理
+export http_proxy=http://127.0.0.1:8118
+export https_proxy=http://127.0.0.1:8118
+export ftp_proxy=http://127.0.0.1:8118
+```
+
+# 成功
+```
+curl https://google.com
+```
