@@ -68,9 +68,9 @@ theme: next
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
-  type: git
-  repo: https://github.com/lepoch/lepoch.github.io.git
-  branch: master
+  type : git
+  repo : https://github.com/lepoch/lepoch.github.io.git
+  branch : master
 
 
 # plugins
