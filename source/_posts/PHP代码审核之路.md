@@ -1,12 +1,12 @@
 ---
-title: PHP代码审核之路
+title: php代码审核之路
 date: 2017-03-20 15:00:00
 tags:
  - 新浪游戏
- - PHP
+ - php
 
 categories:
- - PHP
+ - php
 
 
 ---
@@ -33,4 +33,5 @@ CentOS7
 ## Rietveld
 
 ### 搭建
-1. 首先就得科学上网，见另一篇 《[linux科学上网](/linux科学上网/)》
+1. 首先就得科学上网，见另一篇 《[Linux科学上网](/Linux科学上网/)》
+2. CentOS 自带的python版本低，需要升级，见另一篇《[升级python](/升级python/)》

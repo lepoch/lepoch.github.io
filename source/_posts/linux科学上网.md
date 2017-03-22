@@ -52,7 +52,7 @@ EOF
 ) > /etc/shadowsocks.json
 
 # 启动
-sslocal -c /etc/shadowsocks.json -d
+sslocal -c /etc/shadowsocks.json -d start
 ```
 
 ### 问题
@@ -76,12 +76,20 @@ ldconfig
 
 
 ## privoxy
+
 ```
 yum install privoxy
+
 echo "forward-socks5t   /               127.0.0.1:1080 ." >> /etc/privoxy/config
 # 启动
-pip install shadowsocks
-# 设置代理
+privoxy /etc/privoxy/config
+
+```
+
+
+## 设置代理
+
+```
 export http_proxy=http://127.0.0.1:8118
 export https_proxy=http://127.0.0.1:8118
 export ftp_proxy=http://127.0.0.1:8118
