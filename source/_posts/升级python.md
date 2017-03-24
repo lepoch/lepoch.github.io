@@ -1,6 +1,6 @@
 ---
 title: 升级python
-date: 2017-03-23 17:00:00
+date: 2017-03-24 17:00:00
 tags:
  - Linux
  - CentOS
