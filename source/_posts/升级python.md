@@ -22,7 +22,7 @@ CentOS 7
 
 ```
 # 先装 zlib
-yum install -y zlib1g-dev zlib zlib-devel
+yum install -y zlib1g-dev zlib zlib-devel openssl-devel
 
 wget https://www.python.org/ftp/python/2.7.11/Python-2.7.11.tgz
 tar -zxf Python-2.7.11.tgz
@@ -36,7 +36,7 @@ mkdir /usr/local/python-2.7.11
 
 # moudle @TODO
 sed -i '/#zlib zlibmodule.c/s/.//' Modules/Setup
-sed -i '/#_ssl _ssl.c \\/s/.//' Modules/Setup
+sed -i '/#_ssl _ssl.c/,+2{s/#//}' Modules/Setup
 
 
 make && make install
@@ -52,14 +52,16 @@ ln -s /usr/local/python-2.7.11/bin/python2.7 /bin/python
 ln -s /usr/local/python-2.7.11/bin/python2.7 /usr/bin/python
 ```
 
-## 重装pip
+## 重装pip，已知所需module：zlib, ssl
 ```
 wget https://bootstrap.pypa.io/get-pip.py
 python get-pip.py
 ```
 
-## 修改 yum
+## yum 修复
+### 第一种，指向yum到原来的python
 ```
 sed -i '1s/$/&_old/' /usr/bin/yum
 sed -i '1s/$/&_old/' /usr/libexec/urlgrabber-ext-down
 ```
+### 第二种，[重装yum](http://jingyan.baidu.com/article/ed2a5d1f5a9fbe09f6be17ea.html)
