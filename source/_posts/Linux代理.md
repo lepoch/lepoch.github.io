@@ -1,11 +1,11 @@
 ---
-title: linux科学上网
+title: Linux代理
 date: 2017-03-20 17:00:00
 tags:
- - LINUX
+ - Linux
 
 categories:
- - LINUX
+ - Linux
 
 
 ---

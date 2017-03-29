@@ -42,11 +42,17 @@ sed -i '/#_ssl _ssl.c/,+2{s/#//}' Modules/Setup
 make && make install
 ```
 
+# 扩展
+## _sqlite
+`yum install sqlite-devel -y`
+重新编译安装
+
+
 # 替换默认的 python 命令  __慎重__
 因新装的python module会导致yum等系统命令问题。
 ```
-mv /bin/python /bin/python_old
-mv /usr/bin/python /usr/bin/python_old
+mv /bin/python /bin/python_old  
+mv /usr/bin/python /usr/bin/python_old  
 
 ln -s /usr/local/python-2.7.11/bin/python2.7 /bin/python
 ln -s /usr/local/python-2.7.11/bin/python2.7 /usr/bin/python
@@ -59,7 +65,7 @@ python get-pip.py
 ```
 
 ## yum 修复
-### 第一种，指向yum到原来的python
+### 第一种，指向yum到原来的python， 这种简单些
 ```
 sed -i '1s/$/&_old/' /usr/bin/yum
 sed -i '1s/$/&_old/' /usr/libexec/urlgrabber-ext-down
