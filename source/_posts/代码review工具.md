@@ -44,6 +44,8 @@ facebook出品。基于LAMP。<br>
 
 ## yum 安装
 
+这种会出现 [proc_open 调用系统命令权限问题](#proc问题)
+
 ### 安装环境
 
 ```
@@ -76,7 +78,8 @@ yum install -y gd php-gd gd-devel php-xml php-common php-mbstring php-ldap php-p
 
 ### [Arcanist](https://secure.phabricator.com/book/phabricator/article/arcanist_quick_start/)
 
-先安装这个，这命令是核心。<br>
+安装这个可以使用lint等，进行代码检测。  
+
 依赖
 
 - Install PHP.
@@ -97,13 +100,17 @@ git clone https://github.com/phacility/arcanist.git
 export PATH="$PATH:/somewhere/arcanist/bin/"
 ```
 
+####
+
+### [Diffusion](https://secure.phabricator.com/book/phabricator/article/diffusion/)
+
+这是绑定SVN、GIT等版本控制软件的工具。
+
 ### [提交后的审查audit](https://secure.phabricator.com/book/phabricator/article/audit/)
 
 Post-commit code review and auditing. Audits you are assigned to will appear here.
 
-- 创建账户
-
-`yum install -y svn`
+这里有一节《Audits in Small Teams》，中有[Herald rule](https://secure.phabricator.com/book/phabricator/article/herald/)，在More Applications菜单中能找到。
 
 ## 问题
 
@@ -112,6 +119,26 @@ Post-commit code review and auditing. Audits you are assigned to will appear her
 > This Phabricator install is not configured with any enabled authentication providers which can be used to log in. If you have accidentally locked yourself out by disabling all providers, you can use `phabricator/bin/auth recover <username>` to recover access to an administrative account.
 
 这是管理员被锁上了，使用提示中的命令恢复下就好。
+
+### proc问题{#proc问题}
+
+查看diffusion，报错如下：
+
+> Command failed with error #128! COMMAND git for-each-ref --sort='-creatordate' --format='%(objectname)%01%(objecttype)%01%(refname)%01%(_objectname)%01%(_objecttype)%01%(subject)%01%(creator)' -- 'refs/' STDOUT (empty) STDERR fatal: Not a git repository (or any of the parent directories): .git
+
+还有svn --non-interactive --no-auth-cache --username什么什么的错误。
+
+跟踪代码发现，都是proc执行系统命令出现的权限错误。<br>
+而直接用 php cli 模式执行那些命令，则正常。。<br>
+因时间原因，我直接换了 lnmp 。
+
+### ini_set include_path不生效
+
+> Unable to load libphutil. Put libphutil/ next to phabricator/, or update your PHP 'include_path' to include the parent directory of libphutil/.
+
+发现是在fpm配置中写的，删除之后就行。
+
+> php_admin_value[include_path] = .:/usr/local/sinasrv2/lib/php
 
 # 参考资料
 
