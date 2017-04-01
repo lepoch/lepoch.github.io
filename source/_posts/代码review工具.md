@@ -120,7 +120,7 @@ Post-commit code review and auditing. Audits you are assigned to will appear her
 
 这是管理员被锁上了，使用提示中的命令恢复下就好。
 
-### proc问题{#proc问题}
+### proc问题
 
 查看diffusion，报错如下：
 
