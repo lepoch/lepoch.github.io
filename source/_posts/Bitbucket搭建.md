@@ -10,6 +10,6 @@ categories:
 ---
 
 
-版本控制软件 Bitbucket
+版本控制软件 [Bitbucket](https://bitbucket.org/)
 
 <!-- MORE -->

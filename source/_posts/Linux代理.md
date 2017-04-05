@@ -24,6 +24,7 @@ CentOS 7
 export http_proxy=宿主机IP:1080
 export https_proxy=宿主机IP:1080
 export ftp_proxy=宿主机IP:1080
+export no_proxy="127.0.0.1, localhost"
 ```
 
 

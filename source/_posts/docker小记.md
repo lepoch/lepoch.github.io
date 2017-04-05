@@ -1,6 +1,6 @@
 ---
 title: docker小记
-date: 2017-03-31T18:48:00.000Z
+date: 2017-04-5T04:05:00.000Z
 tags:
   - docker
   - 笔记
@@ -33,10 +33,20 @@ ouruser/sinatra:v2 镜像id:tag
 
 ## Dockerfile
 
-可见领一篇 [worker-dockerfile](/worker-dockerfile)
+源码见 [worker-dockerfile](/worker-dockerfile)  
 
-# 删除所有非运行的容器
+```
+docker build -t lepoch/worker:0.01 .
+```
+
+
+# 删除所有非运行的容器， rm -f 为强制删除
 
 ```
 docker rm `docker ps -aq`
+```
+
+# 挂载宿主机目录，并授权
+```
+docker run -d -p 8001:80 -v /worker/www/:/usr/local/nginx/html --privileged=true lepoch/worker:0.01
 ```
