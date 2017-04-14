@@ -1,6 +1,6 @@
 ---
 title: 代码review工具
-date: 2017-03-20T15:00:00.000Z
+date: 2017-04-14T15:00:00.000Z
 tags:
   - 新浪游戏
   - php
@@ -78,7 +78,7 @@ yum install -y gd php-gd gd-devel php-xml php-common php-mbstring php-ldap php-p
 
 ### [Arcanist](https://secure.phabricator.com/book/phabricator/article/arcanist_quick_start/)
 
-安装这个可以使用lint等，进行代码检测。  
+安装这个可以使用lint等，进行代码检测。
 
 依赖
 
@@ -139,6 +139,90 @@ Post-commit code review and auditing. Audits you are assigned to will appear her
 发现是在fpm配置中写的，删除之后就行。
 
 > php_admin_value[include_path] = .:/usr/local/sinasrv2/lib/php
+
+
+# [SonarQube](http://www.sonarqube.org/)
+用于检测代码质量的开源平台，通过插件可对PHP,Java,C/C++,JavaScript等20多种语言进行多纬度质量检测。
+
+## 依赖
+- Java
+
+## 安装
+官方手册：<https://docs.sonarqube.org/display/SONARQUBE56/Documentation/ >
+本次安装的是5.6.6 LTS，
+P.S. 6.3 我这连MySQL失败
+
+### SonarQube server
+web可视化管理工具， 去<http://www.sonarsource.org/downloads/ >下载，unzip 解压。
+
+```
+wget https://sonarsource.bintray.com/Distribution/sonarqube/sonarqube-5.6.6.zip
+unzip sonarqube-5.6.6.zip
+mv sonarqube-5.6.6 /etc/sonarqube
+/etc/sonarqube/bin/[OS]/sonar.sh console
+```
+
+国内得修改谷歌字体，不然很卡
+```
+sed -i 's/\(@import url(https:\/\/fonts.googleapis.com\/css\)/\/\/\1/g' /etc/sonarqube/web/js/*
+```
+
+配置MySQL数据库，因为是虚拟机，就直接[yum安装MySQL](/yum安装MySQL)l了。
+```
+CREATE DATABASE sonar CHARACTER SET utf8 COLLATE utf8_general_ci;
+CREATE USER 'sonar' IDENTIFIED BY 'sonar';
+GRANT ALL ON sonar.* TO 'sonar'@'%' IDENTIFIED BY 'sonar';
+GRANT ALL ON sonar.* TO 'sonar'@'localhost' IDENTIFIED BY 'sonar';
+FLUSH PRIVILEGES;
+```
+配置MySQL
+```
+[root@localhost bin]# cat /etc/my.cnf
+[mysqld]
+max_allowed_packet=10M
+datadir=/var/lib/mysql
+socket=/var/lib/mysql/mysql.sock
+user=mysql
+# Disabling symbolic-links is recommended to prevent assorted security risks
+symbolic-links=0
+# 修改默认的存储引擎为InnoDB
+default-storage-engine=InnoDB
+# 这个参数主要作用是缓存innodb表的索引，数据，插入数据时的缓冲
+innodb_buffer_pool_size = 256M
+# 配置查询缓存的大小
+query_cache_size=128M
+# 启动mysql高速缓存
+query_cache_type=1
+
+[mysqld_safe]
+log-error=/var/log/mysqld.log
+pid-file=/var/run/mysqld/mysqld.pid
+```
+
+修改配置
+vim /etc/sonarqube/conf/sonar.properties
+```
+sonar.jdbc.username=sonar
+sonar.jdbc.password=sonar
+sonar.jdbc.url=jdbc:mysql://localhost:3306/sonar?useUnicode=true&characterEncoding=utf8&rewriteBatchedStatements=true&useConfigs=maxPerformance
+```
+
+### [SonarQube Scanner](https://docs.sonarqube.org/display/SCAN/Analyzing+with+SonarQube+Scanner)
+检测工具
+```
+wget https://sonarsource.bintray.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-3.0.1.733-linux.zip
+unzip sonar-scanner-cli-3.0.1.733-linux.zip
+mv sonar-scanner-3.0.1.733-linux /etc/sonar-scanner
+
+ln -s /etc/sonar-scanner/bin/sonar-scanner /bin/sonar-scanner
+
+```
+
+### 安装插件 [SonarPHP](https://docs.sonarqube.org/display/PLUG/SonarPHP)
+
+https://sonarsource.bintray.com/Distribution/sonar-php-plugin/sonar-php-plugin-2.10.0.2087.jar
+
+
 
 # 参考资料
 

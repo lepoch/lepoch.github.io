@@ -34,13 +34,16 @@ export no_proxy="127.0.0.1, localhost"
 ### shadowsocks
 
 ```
-yum install python-pip
+yum -y install epel-release
+yum install python-pip -y
+pip install --upgrade pip
+
 pip install shadowsocks
 
 # 配置
 ( cat <<EOF
 {
-    "server":"IP地址" `arch`,
+    "server":"IP地址",
     "server_port":端口,
     "local_address":"127.0.0.1",
     "local_port":1080,
@@ -60,6 +63,7 @@ sslocal -c /etc/shadowsocks.json -d start
 1. 然而报错 Exception: libsodium not found，发现是系统没有我指定的加密算法chacha20，所需 [libsodium](https://download.libsodium.org/doc/installation/)
 
 ```
+yum install wget -y
 yum install m2crypto gcc -y
 wget -N --no-check-certificate  https://download.libsodium.org/libsodium/releases/libsodium-1.0.10.tar.gz
 tar zfvx libsodium-1.0.10.tar.gz
@@ -79,7 +83,7 @@ ldconfig
 ## privoxy
 
 ```
-yum install privoxy
+yum install privoxy -y
 
 echo "forward-socks5t   /               127.0.0.1:1080 ." >> /etc/privoxy/config
 # 启动
@@ -94,6 +98,7 @@ privoxy /etc/privoxy/config
 export http_proxy=http://127.0.0.1:8118
 export https_proxy=http://127.0.0.1:8118
 export ftp_proxy=http://127.0.0.1:8118
+export no_proxy="127.0.0.1, localhost"
 ```
 
 # 成功
