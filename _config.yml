@@ -73,7 +73,7 @@ theme: next
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
-  type : shell
+  type : git
   repo : https://github.com/lepoch/lepoch.github.io.git
   branch : master
 
