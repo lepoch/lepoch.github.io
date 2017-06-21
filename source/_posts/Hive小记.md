@@ -86,11 +86,10 @@ bin/schematool -dbType mysql -initSchema
 
 # 使用
 ```
-CREATE EXTERNAL TABLE MYTEST6 (d STRING) 
-STORED AS TEXTFILE
-LOCATION '/flume/events/17-06-14';
+CREATE EXTERNAL TABLE t1 (type TINYINT, mark STRING, act TINYINT, uid INT, time DATE) 
+ROW FORMAT SERDE 'org.apache.hive.hcatalog.data.JsonSerDe'  
+LOCATION '/flume/events/';
 
-LOAD DATA INPATH '/flume/events/y/*' INTO TABLE MYTEST;
 
 ```
 
@@ -98,6 +97,16 @@ LOAD DATA INPATH '/flume/events/y/*' INTO TABLE MYTEST;
 ```
 set hive.mapred.supports.subdirectories=true;
 set mapreduce.input.fileinputformat.input.dir.recursive=true;
+```
+
+## 问题：format Json
+
+> FAILED: Execution Error, return code 1 from org.apache.hadoop.hive.ql.exec.DDLTask. Cannot validate serde: org.apache.hive.hcatalog.data.JsonSerDe
+
+HCatalog
+```
+export CLASSPATH=$HIVE_HOME/hcatalog/share/hcatalog:$CLASSPATH
+ADD JAR /usr/local/apache-hive-2.1.1-bin/hcatalog/share/hcatalog/hive-hcatalog-core-2.1.1.jar;
 ```
 
 # 参考

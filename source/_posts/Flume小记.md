@@ -32,40 +32,43 @@ mkdir etc
 ## 配置
 ### client使用exec source 
 
+vim config/client.conf
 ```
 # Name the components on this agent
-agent_foo.sinks = k1
-agent_foo.sources = r1
-agent_foo.channels = c1
+client.sinks = k1
+client.sources = r1
+client.channels = c1
 
 
 
 # Use a channel which buffers events in memory
-agent_foo.channels.c1.type = memory
-agent_foo.channels.c1.capacity = 1000
-agent_foo.channels.c1.transactionCapacity = 100
+client.channels.c1.type = memory
+client.channels.c1.capacity = 1000
+client.channels.c1.transactionCapacity = 100
 
 
 
-agent_foo.sources.r1.type = TAILDIR
-agent_foo.sources.r1.channels = c1
-agent_foo.sources.r1.positionFile = /tmp/var/log/flume/taildir_position.json
-agent_foo.sources.r1.filegroups = f1 f2
-agent_foo.sources.r1.filegroups.f1 = /tmp/var/log/test1/example.log
-agent_foo.sources.r1.headers.f1.headerKey1 = value1
-agent_foo.sources.r1.filegroups.f2 = /tmp/var/log/test2/.*log.*
-agent_foo.sources.r1.headers.f2.headerKey1 = value2
-agent_foo.sources.r1.headers.f2.headerKey2 = value2-2
-agent_foo.sources.r1.fileHeader = true
+client.sources.r1.type = TAILDIR
+client.sources.r1.channels = c1
+client.sources.r1.positionFile = /data/www/flume/taildir_position.json
+client.sources.r1.filegroups = f1
+client.sources.r1.filegroups.f1 = /data/www/htdocs/v3.maozhuar.com/storage/maozhua/testing/weight/log-.*
+client.sources.r1.headers.f1.headerKey1 = value1
+client.sources.r1.fileHeader = true
 
 
 
 # Describe the sink
-agent_foo.sinks.k1.type = avro
-agent_foo.sinks.k1.channel = c1
-agent_foo.sinks.k1.hostname = hadoop.maozhuar.com
-agent_foo.sinks.k1.port = 4141
+client.sinks.k1.type = avro
+client.sinks.k1.channel = c1
+client.sinks.k1.hostname = hadoop.maozhuar.com
+client.sinks.k1.port = 4141
 
+```
+
+运行
+```
+bin/flume-ng agent --conf conf --conf-file conf/client_testing_dev.conf --name client -Dflume.root.logger=INFO,console
 ```
 
 ### 接收端使用  
@@ -87,16 +90,25 @@ a1.sources.r1.port = 4141
 
 a1.sinks.k1.type = hdfs
 a1.sinks.k1.channel = c1
-a1.sinks.k1.hdfs.path = hdfs://hadoop.maozhuar.com:9000//flume/events/%y-%m-%d-%S
-a1.sinks.k1.hdfs.fileType = DataStream
-a1.sinks.k1.hdfs.round = true
-a1.sinks.k1.hdfs.roundValue = 10
-a1.sinks.k1.hdfs.roundUnit = minute
+a1.sinks.k1.hdfs.path = hdfs://hadoop.maozhuar.com:9000/flume/events/%y-%m-%d/
 a1.sinks.k1.hdfs.useLocalTimeStamp = true
+
+a1.sinks.k1.hdfs.filePrefix=maozhua
+a1.sinks.k1.hdfs.minBlockReplicas=1
+a1.sinks.k1.hdfs.fileType=DataStream
+a1.sinks.k1.hdfs.writeFormat=Text
+a1.sinks.k1.hdfs.rollInterval=600
+a1.sinks.k1.hdfs.rollSize=0
+a1.sinks.k1.hdfs.rollCount=0
+a1.sinks.k1.hdfs.idleTimeout=0
 
 a1.channels.c1.type = memory
 a1.channels.c1.capacity = 1000
 a1.channels.c1.transactionCapacity = 100
+```
+运行
+```
+bin/flume-ng agent --conf conf --conf-file conf/.conf --name a1 -Dflume.root.logger=INFO,console
 ```
 
 #### 问题：hdfs文件乱码
@@ -112,3 +124,24 @@ a1.sinks.k1.hdfs.fileType=DataStream
 ```
 a1.sinks.k1.hdfs.useLocalTimeStamp = true
 ```
+
+#### 问题：没秒钟产生一个hdfs文件
+解决
+```
+a1.sinks.k1.type = hdfs
+a1.sinks.k1.channel = c1
+a1.sinks.k1.hdfs.path = hdfs://hadoop.maozhuar.com:9000/flume/events/%y-%m-%d/
+a1.sinks.k1.hdfs.useLocalTimeStamp = true
+
+a1.sinks.k1.hdfs.filePrefix=maozhua
+a1.sinks.k1.hdfs.minBlockReplicas=1
+a1.sinks.k1.hdfs.fileType=DataStream
+a1.sinks.k1.hdfs.writeFormat=Text
+a1.sinks.k1.hdfs.rollInterval=600
+a1.sinks.k1.hdfs.rollSize=0
+a1.sinks.k1.hdfs.rollCount=0
+a1.sinks.k1.hdfs.idleTimeout=0
+```
+
+# 参考
+[【Flume】【源码分析】flume中sink到hdfs，文件系统频繁产生文件，文件滚动配置不起作用？](http://blog.csdn.net/simonchi/article/details/43231891)
