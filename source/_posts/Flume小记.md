@@ -8,7 +8,6 @@ categories:
     - Hadoop
     - 小记
 ---
-
 Flume小记
 <!-- MORE -->
 环境：腾讯云CentOS 7 x64  
