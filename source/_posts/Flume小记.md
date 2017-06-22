@@ -9,9 +9,8 @@ categories:
     - 小记
 ---
 
-
-
 Flume小记
+
 <!-- MORE -->
 环境：腾讯云CentOS 7 x64  
 目标：安装Flume 1.7
