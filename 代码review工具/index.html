@@ -1,0 +1,986 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="新浪游戏,php," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="战吧" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="上周审核了几个同事的代码，发现代码规范用处太小。使用工具进行代码的审核势在必行。">
+<meta name="keywords" content="新浪游戏,php">
+<meta property="og:type" content="article">
+<meta property="og:title" content="代码review工具">
+<meta property="og:url" content="https://lepoch.github.io/代码review工具/index.html">
+<meta property="og:site_name" content="战吧">
+<meta property="og:description" content="上周审核了几个同事的代码，发现代码规范用处太小。使用工具进行代码的审核势在必行。">
+<meta property="og:updated_time" content="2017-05-19T17:05:37.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="代码review工具">
+<meta name="twitter:description" content="上周审核了几个同事的代码，发现代码规范用处太小。使用工具进行代码的审核势在必行。">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 'undefined',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://lepoch.github.io/代码review工具/"/>
+
+
+
+
+
+  <title> 代码review工具 | 战吧 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?ca19cf17ab7c9320d3430902d1c7b4c0";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">战吧</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocapitalize="off" autocomplete="off" autocorrect="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="https://lepoch.github.io/代码review工具/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="战吧">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="战吧">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                代码review工具
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-04-14T15:00:00+08:00">
+                2017-04-14
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/php/" itemprop="url" rel="index">
+                    <span itemprop="name">php</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a class="cloud-tie-join-count" href="/代码review工具/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count join-count" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>上周审核了几个同事的代码，发现代码规范用处太小。使用工具进行代码的审核势在必行。</p>
+<a id="more"></a>
+<h1 id="环境"><a href="#环境" class="headerlink" title="环境"></a>环境</h1><p>LINUX 虚拟机 CentOS7</p>
+<h1 id="命令行代理，见另一篇-《Linux代理》"><a href="#命令行代理，见另一篇-《Linux代理》" class="headerlink" title="命令行代理，见另一篇 《Linux代理》"></a>命令行代理，见另一篇 《<a href="/Linux代理/">Linux代理</a>》</h1><h1 id="Rietveld"><a href="#Rietveld" class="headerlink" title="Rietveld"></a><a href="http://code.google.com/p/rietveld/" target="_blank" rel="external">Rietveld</a></h1><p>谷歌出品工具，很犀利，免费开源。PYTHON + Django， 使用Google App Engine。</p>
+<ul>
+<li><a href="https://github.com/rietveld-codereview/rietveld" target="_blank" rel="external">git</a></li>
+<li><a href="https://cloud.google.com/sdk/docs/" target="_blank" rel="external">Google Cloud SDK</a></li>
+</ul>
+<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">wget https://storage.googleapis.com/appengine-sdks/featured/google_appengine_1.9.50.zip</div></pre></td></tr></table></figure>
+<h1 id="Phabricator"><a href="#Phabricator" class="headerlink" title="Phabricator"></a><a href="https://www.phacility.com/phabricator/" target="_blank" rel="external">Phabricator</a></h1><p>facebook出品。基于LAMP。<br><br><a href="https://secure.phabricator.com/book/phabricator/article/installation_guide/" target="_blank" rel="external">官方安装手册</a></p>
+<h2 id="环境依赖"><a href="#环境依赖" class="headerlink" title="环境依赖"></a>环境依赖</h2><ul>
+<li><a href="https://httpd.apache.org/download.cgi" target="_blank" rel="external">Apache</a></li>
+<li><a href="https://www.mysql.com/downloads/" target="_blank" rel="external">MySQL</a></li>
+<li><a href="http://php.net/downloads.php" target="_blank" rel="external">PHP</a></li>
+</ul>
+<h2 id="yum-安装"><a href="#yum-安装" class="headerlink" title="yum 安装"></a>yum 安装</h2><p>这种会出现 <a href="#proc问题">proc_open 调用系统命令权限问题</a></p>
+<h3 id="安装环境"><a href="#安装环境" class="headerlink" title="安装环境"></a>安装环境</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">yum install -y httpd</div><div class="line">yum install -y httpd-manual mod_ssl mod_perl mod_auth_mysql</div><div class="line"></div><div class="line"></div><div class="line">wget http://dev.mysql.com/get/mysql-community-release-el7-5.noarch.rpm</div><div class="line">rpm -ivh mysql-community-release-el7-5.noarch.rpm</div><div class="line">yum install -y mysql-community-server</div><div class="line">yum install -y mysql mysql-devel</div><div class="line"></div><div class="line">yum install -y php php-mysql</div><div class="line">yum install -y gd php-gd gd-devel php-xml php-common php-mbstring php-ldap php-pear php-xmlrpc php-imap</div></pre></td></tr></table></figure>
+<h3 id="安装组件"><a href="#安装组件" class="headerlink" title="安装组件"></a>安装组件</h3><p>复制下来直接执行，执行路径即安装路径 <a href="https://secure.phabricator.com/source/phabricator/browse/master/scripts/install/install_rhel-derivs.sh" target="_blank" rel="external">.sh脚本</a></p>
+<h2 id="配置，Configration-Guide"><a href="#配置，Configration-Guide" class="headerlink" title="配置，Configration Guide"></a>配置，<a href="https://secure.phabricator.com/book/phabricator/article/configuration_guide/" target="_blank" rel="external">Configration Guide</a></h2><ul>
+<li>Apache</li>
+<li>MySQL</li>
+</ul>
+<h2 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><ul>
+<li>打开页面，创建管理员帐号</li>
+<li>左上角的 Setup Issues，一个一个解决</li>
+</ul>
+<h3 id="Arcanist"><a href="#Arcanist" class="headerlink" title="Arcanist"></a><a href="https://secure.phabricator.com/book/phabricator/article/arcanist_quick_start/" target="_blank" rel="external">Arcanist</a></h3><p>安装这个可以使用lint等，进行代码检测。</p>
+<p>依赖</p>
+<ul>
+<li>Install PHP.</li>
+<li>Install Git.</li>
+</ul>
+<p>安装</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">mkdir somewhere/</div><div class="line">cd somewhere/</div><div class="line">git clone https://github.com/phacility/libphutil.git</div><div class="line">git clone https://github.com/phacility/arcanist.git</div></pre></td></tr></table></figure>
+<p>添加到PATH</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">export PATH=&quot;$PATH:/somewhere/arcanist/bin/&quot;</div></pre></td></tr></table></figure>
+<p>####</p>
+<h3 id="Diffusion"><a href="#Diffusion" class="headerlink" title="Diffusion"></a><a href="https://secure.phabricator.com/book/phabricator/article/diffusion/" target="_blank" rel="external">Diffusion</a></h3><p>这是绑定SVN、GIT等版本控制软件的工具。</p>
+<h3 id="提交后的审查audit"><a href="#提交后的审查audit" class="headerlink" title="提交后的审查audit"></a><a href="https://secure.phabricator.com/book/phabricator/article/audit/" target="_blank" rel="external">提交后的审查audit</a></h3><p>Post-commit code review and auditing. Audits you are assigned to will appear here.</p>
+<p>这里有一节《Audits in Small Teams》，中有<a href="https://secure.phabricator.com/book/phabricator/article/herald/" target="_blank" rel="external">Herald rule</a>，在More Applications菜单中能找到。</p>
+<h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><h3 id="Authentication-Failure"><a href="#Authentication-Failure" class="headerlink" title="Authentication Failure"></a>Authentication Failure</h3><blockquote>
+<p>This Phabricator install is not configured with any enabled authentication providers which can be used to log in. If you have accidentally locked yourself out by disabling all providers, you can use <code>phabricator/bin/auth recover &lt;username&gt;</code> to recover access to an administrative account.</p>
+</blockquote>
+<p>这是管理员被锁上了，使用提示中的命令恢复下就好。</p>
+<h3 id="proc问题"><a href="#proc问题" class="headerlink" title="proc问题"></a>proc问题</h3><p>查看diffusion，报错如下：</p>
+<blockquote>
+<p>Command failed with error #128! COMMAND git for-each-ref –sort=’-creatordate’ –format=’%(objectname)%01%(objecttype)%01%(refname)%01%(_objectname)%01%(_objecttype)%01%(subject)%01%(creator)’ – ‘refs/‘ STDOUT (empty) STDERR fatal: Not a git repository (or any of the parent directories): .git</p>
+</blockquote>
+<p>还有svn –non-interactive –no-auth-cache –username什么什么的错误。</p>
+<p>跟踪代码发现，都是proc执行系统命令出现的权限错误。<br><br>而直接用 php cli 模式执行那些命令，则正常。。<br><br>因时间原因，我直接换了 lnmp 。</p>
+<h3 id="ini-set-include-path不生效"><a href="#ini-set-include-path不生效" class="headerlink" title="ini_set include_path不生效"></a>ini_set include_path不生效</h3><blockquote>
+<p>Unable to load libphutil. Put libphutil/ next to phabricator/, or update your PHP ‘include_path’ to include the parent directory of libphutil/.</p>
+</blockquote>
+<p>发现是在fpm配置中写的，删除之后就行。</p>
+<blockquote>
+<p>php_admin_value[include_path] = .:/usr/local/sinasrv2/lib/php</p>
+</blockquote>
+<h1 id="SonarQube"><a href="#SonarQube" class="headerlink" title="SonarQube"></a><a href="http://www.sonarqube.org/" target="_blank" rel="external">SonarQube</a></h1><p>用于检测代码质量的开源平台，通过插件可对PHP,Java,C/C++,JavaScript等20多种语言进行多纬度质量检测。</p>
+<h2 id="依赖"><a href="#依赖" class="headerlink" title="依赖"></a>依赖</h2><ul>
+<li>Java</li>
+</ul>
+<h2 id="安装-1"><a href="#安装-1" class="headerlink" title="安装"></a>安装</h2><p>官方手册：<https: docs.sonarqube.org="" display="" sonarqube56="" documentation=""><br>本次安装的是5.6.6 LTS，<br>P.S. 6.3 我这连MySQL失败</https:></p>
+<h3 id="SonarQube-server"><a href="#SonarQube-server" class="headerlink" title="SonarQube server"></a>SonarQube server</h3><p>web可视化管理工具， 去<http: www.sonarsource.org="" downloads="">下载，unzip 解压。</http:></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">wget https://sonarsource.bintray.com/Distribution/sonarqube/sonarqube-5.6.6.zip</div><div class="line">unzip sonarqube-5.6.6.zip</div><div class="line">mv sonarqube-5.6.6 /etc/sonarqube</div><div class="line">/etc/sonarqube/bin/[OS]/sonar.sh console</div></pre></td></tr></table></figure>
+<p>国内得修改谷歌字体，不然很卡<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sed -i &apos;s/\(@import url(https:\/\/fonts.googleapis.com\/css\)/\/\/\1/g&apos; /etc/sonarqube/web/js/*</div></pre></td></tr></table></figure></p>
+<p>配置MySQL数据库，因为是虚拟机，就直接<a href="/yum安装MySQL">yum安装MySQL</a>l了。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">CREATE DATABASE sonar CHARACTER SET utf8 COLLATE utf8_general_ci;</div><div class="line">CREATE USER &apos;sonar&apos; IDENTIFIED BY &apos;sonar&apos;;</div><div class="line">GRANT ALL ON sonar.* TO &apos;sonar&apos;@&apos;%&apos; IDENTIFIED BY &apos;sonar&apos;;</div><div class="line">GRANT ALL ON sonar.* TO &apos;sonar&apos;@&apos;localhost&apos; IDENTIFIED BY &apos;sonar&apos;;</div><div class="line">FLUSH PRIVILEGES;</div></pre></td></tr></table></figure></p>
+<p>配置MySQL<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">[root@localhost bin]# cat /etc/my.cnf</div><div class="line">[mysqld]</div><div class="line">max_allowed_packet=10M</div><div class="line">datadir=/var/lib/mysql</div><div class="line">socket=/var/lib/mysql/mysql.sock</div><div class="line">user=mysql</div><div class="line"># Disabling symbolic-links is recommend to prevent assorted security risks</div><div class="line">symbolic-links=0</div><div class="line"># 修改默认的存储引擎为InnoDB</div><div class="line">default-storage-engine=InnoDB</div><div class="line"># 这个参数主要作用是缓存innodb表的索引，数据，插入数据时的缓冲</div><div class="line">innodb_buffer_pool_size = 256M</div><div class="line"># 配置查询缓存的大小</div><div class="line">query_cache_size=128M</div><div class="line"># 启动mysql高速缓存</div><div class="line">query_cache_type=1</div><div class="line"></div><div class="line">[mysqld_safe]</div><div class="line">log-error=/var/log/mysqld.log</div><div class="line">pid-file=/var/run/mysqld/mysqld.pid</div></pre></td></tr></table></figure></p>
+<p>修改配置<br>vim /etc/sonarqube/conf/sonar.properties<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">sonar.jdbc.username=sonar</div><div class="line">sonar.jdbc.password=sonar</div><div class="line">sonar.jdbc.url=jdbc:mysql://localhost:3306/sonar?useUnicode=true&amp;characterEncoding=utf8&amp;rewriteBatchedStatements=true&amp;useConfigs=maxPerformance</div></pre></td></tr></table></figure></p>
+<h3 id="SonarQube-Scanner"><a href="#SonarQube-Scanner" class="headerlink" title="SonarQube Scanner"></a><a href="https://docs.sonarqube.org/display/SCAN/Analyzing+with+SonarQube+Scanner" target="_blank" rel="external">SonarQube Scanner</a></h3><p>检测工具<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">wget https://sonarsource.bintray.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-3.0.1.733-linux.zip</div><div class="line">unzip sonar-scanner-cli-3.0.1.733-linux.zip</div><div class="line">mv sonar-scanner-3.0.1.733-linux /etc/sonar-scanner</div><div class="line"></div><div class="line">ln -s /etc/sonar-scanner/bin/sonar-scanner /bin/sonar-scanner</div></pre></td></tr></table></figure></p>
+<h3 id="安装插件-SonarPHP"><a href="#安装插件-SonarPHP" class="headerlink" title="安装插件 SonarPHP"></a>安装插件 <a href="https://docs.sonarqube.org/display/PLUG/SonarPHP" target="_blank" rel="external">SonarPHP</a></h3><p><a href="https://sonarsource.bintray.com/Distribution/sonar-php-plugin/sonar-php-plugin-2.10.0.2087.jar" target="_blank" rel="external">https://sonarsource.bintray.com/Distribution/sonar-php-plugin/sonar-php-plugin-2.10.0.2087.jar</a></p>
+<h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ul>
+<li><p><a href="https://secure.phabricator.com/book/phabricator/article/installation_guide/" target="_blank" rel="external">https://secure.phabricator.com/book/phabricator/article/installation_guide/</a></p>
+</li>
+<li><p><a href="https://www.oschina.net/news/53172/phabricator-manual-cn" target="_blank" rel="external">https://www.oschina.net/news/53172/phabricator-manual-cn</a></p>
+</li>
+</ul>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/新浪游戏/" rel="tag"># 新浪游戏</a>
+          
+            <a href="/tags/php/" rel="tag"># php</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/Git托管/" rel="next" title="Git托管">
+                <i class="fa fa-chevron-left"></i> Git托管
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/Mac使用/" rel="prev" title="Mac使用">
+                Mac使用 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+          
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="战吧" />
+          <p class="site-author-name" itemprop="name">战吧</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">21</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">9</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">21</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#环境"><span class="nav-number">1.</span> <span class="nav-text">环境</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#命令行代理，见另一篇-《Linux代理》"><span class="nav-number">2.</span> <span class="nav-text">命令行代理，见另一篇 《Linux代理》</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Rietveld"><span class="nav-number">3.</span> <span class="nav-text">Rietveld</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#安装"><span class="nav-number">3.1.</span> <span class="nav-text">安装</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Phabricator"><span class="nav-number">4.</span> <span class="nav-text">Phabricator</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#环境依赖"><span class="nav-number">4.1.</span> <span class="nav-text">环境依赖</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#yum-安装"><span class="nav-number">4.2.</span> <span class="nav-text">yum 安装</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#安装环境"><span class="nav-number">4.2.1.</span> <span class="nav-text">安装环境</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安装组件"><span class="nav-number">4.2.2.</span> <span class="nav-text">安装组件</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#配置，Configration-Guide"><span class="nav-number">4.3.</span> <span class="nav-text">配置，Configration Guide</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用"><span class="nav-number">4.4.</span> <span class="nav-text">使用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Arcanist"><span class="nav-number">4.4.1.</span> <span class="nav-text">Arcanist</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Diffusion"><span class="nav-number">4.4.2.</span> <span class="nav-text">Diffusion</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#提交后的审查audit"><span class="nav-number">4.4.3.</span> <span class="nav-text">提交后的审查audit</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#问题"><span class="nav-number">4.5.</span> <span class="nav-text">问题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Authentication-Failure"><span class="nav-number">4.5.1.</span> <span class="nav-text">Authentication Failure</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#proc问题"><span class="nav-number">4.5.2.</span> <span class="nav-text">proc问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ini-set-include-path不生效"><span class="nav-number">4.5.3.</span> <span class="nav-text">ini_set include_path不生效</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#SonarQube"><span class="nav-number">5.</span> <span class="nav-text">SonarQube</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#依赖"><span class="nav-number">5.1.</span> <span class="nav-text">依赖</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装-1"><span class="nav-number">5.2.</span> <span class="nav-text">安装</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#SonarQube-server"><span class="nav-number">5.2.1.</span> <span class="nav-text">SonarQube server</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SonarQube-Scanner"><span class="nav-number">5.2.2.</span> <span class="nav-text">SonarQube Scanner</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安装插件-SonarPHP"><span class="nav-number">5.2.3.</span> <span class="nav-text">安装插件 SonarPHP</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考资料"><span class="nav-number">6.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">战吧</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+<div class="busuanzi-count">
+
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv"><i class="fa fa-user"></i><span class="busuanzi-value" id="busuanzi_value_site_uv"></span></span>
+  
+
+  
+    <span class="site-pv"><i class="fa fa-eye"></i><span class="busuanzi-value" id="busuanzi_value_site_pv"></span></span>
+  
+  
+</div>
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+    
+    <script>
+      var cloudTieConfig = {
+        url: document.location.href, 
+        sourceId: "",
+        productKey: "28bf2376ac15458a8cf25d92f8fab958",
+        target: "cloud-tie-wrapper"
+      };
+    </script>
+    <script src="https://img1.ws.126.net/f2e/tie/yun/sdk/loader.js"></script>
+  
+
+
+
+
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+      search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.popup').toggle();
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+      $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = $( "entry", xmlResponse ).map(function() {
+            return {
+              title: $( "title", this ).text(),
+              content: $("content",this).text(),
+              url: $( "url" , this).text()
+            };
+          }).get();
+          var $input = document.getElementById(search_id);
+          var $resultContent = document.getElementById(content_id);
+          $input.addEventListener('input', function(){
+            var matchcounts = 0;
+            var str='<ul class=\"search-result-list\">';
+            var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+            $resultContent.innerHTML = "";
+            if (this.value.trim().length > 1) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var content_index = [];
+                var data_title = data.title.trim().toLowerCase();
+                var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                var data_url = decodeURIComponent(data.url);
+                var index_title = -1;
+                var index_content = -1;
+                var first_occur = -1;
+                // only match artiles with not empty titles and contents
+                if(data_title != '') {
+                  keywords.forEach(function(keyword, i) {
+                    index_title = data_title.indexOf(keyword);
+                    index_content = data_content.indexOf(keyword);
+                    if( index_title >= 0 || index_content >= 0 ){
+                      isMatch = true;
+                      if (i == 0) {
+                        first_occur = index_content;
+                      }
+                    }
+
+                  });
+                }
+                // show search results
+                if (isMatch) {
+                  matchcounts += 1;
+                  str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                  var content = data.content.trim().replace(/<[^>]+>/g,"");
+                  if (first_occur >= 0) {
+                    // cut out 100 characters
+                    var start = first_occur - 20;
+                    var end = first_occur + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if(start == 0){
+                      end = 50;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    var match_content = content.substring(start, end);
+                    // highlight all keywords
+                    keywords.forEach(function(keyword){
+                      var regS = new RegExp(keyword, "gi");
+                      match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                    });
+
+                    str += "<p class=\"search-result\">" + match_content +"...</p>"
+                  }
+                  str += "</li>";
+                }
+              })};
+            str += "</ul>";
+            if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+            if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+            $resultContent.innerHTML = str;
+          });
+          proceedsearch();
+        }
+      });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+</body>
+</html>
