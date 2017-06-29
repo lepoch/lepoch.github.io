@@ -86,11 +86,14 @@ bin/schematool -dbType mysql -initSchema
 
 # 使用
 ```
-CREATE EXTERNAL TABLE t1 (type TINYINT, mark STRING, act TINYINT, uid INT, time DATE) 
+CREATE EXTERNAL TABLE IF NOT EXISTS maozhua_weight_production (type TINYINT, mark STRING, act TINYINT, uid INT, time DATE) 
 ROW FORMAT SERDE 'org.apache.hive.hcatalog.data.JsonSerDe'  
-LOCATION '/flume/events/';
+LOCATION '/maozhua/production/weight/';
 
 
+CREATE EXTERNAL TABLE IF NOT EXISTS maozhua_weight_testing (type TINYINT, mark STRING, act TINYINT, uid INT, time DATE) 
+ROW FORMAT SERDE 'org.apache.hive.hcatalog.data.JsonSerDe'  
+LOCATION '/maozhua/testing/weight/';
 ```
 
 ## 问题：递归

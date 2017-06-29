@@ -28,12 +28,11 @@ tar -xzf apache-flume-1.7.0-bin.tar.gz
 mv apache-flume-1.7.0-bin /usr/local/
 
 cd /usr/local/apache-flume-1.7.0-bin
-mkdir etc
 ```
 ## 配置
 ### client使用exec source 
 
-vim config/client.conf
+vim conf/client.conf
 ```
 # Name the components on this agent
 client.sinks = k1
@@ -53,7 +52,7 @@ client.sources.r1.type = TAILDIR
 client.sources.r1.channels = c1
 client.sources.r1.positionFile = /data/www/flume/taildir_position.json
 client.sources.r1.filegroups = f1
-client.sources.r1.filegroups.f1 = /data/www/htdocs/v3.maozhuar.com/storage/maozhua/testing/weight/log-.*
+client.sources.r1.filegroups.f1 = /data/www/htdocs/v3.maozhuar.com/storage/maozhua/production/weight/log-.*
 client.sources.r1.headers.f1.headerKey1 = value1
 client.sources.r1.fileHeader = true
 
@@ -63,13 +62,13 @@ client.sources.r1.fileHeader = true
 client.sinks.k1.type = avro
 client.sinks.k1.channel = c1
 client.sinks.k1.hostname = hadoop.maozhuar.com
-client.sinks.k1.port = 4141
+client.sinks.k1.port = 4100
 
 ```
 
 运行
 ```
-bin/flume-ng agent --conf conf --conf-file conf/client_testing_dev.conf --name client -Dflume.root.logger=INFO,console
+nohup /usr/local/apache-flume-1.7.0-bin/bin/flume-ng agent --conf conf --conf-file /usr/local/apache-flume-1.7.0-bin/conf/client.conf --name client > 2 >&1 &
 ```
 
 ### 接收端使用  

@@ -65,3 +65,7 @@ sed 使用笔记
 使用 /匹配字符串/,+2， 表示取得匹配字符串和之后的两行  
 {代码块}  
 `sed '/#_ssl _ssl.c/,+2{s/#//}' file`
+
+## game_app.sql
+sed -i '/character_set_client/s/.*//' game_app.sql
+sed -i '/DEFAULT CHARSET=utf8/s/DEFAULT CHARSET=utf8/DEFAULT CHARSET=utf8mb4/' game_app.sql
