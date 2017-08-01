@@ -68,4 +68,5 @@ sed 使用笔记
 
 ## game_app.sql
 sed -i '/character_set_client/s/.*//' game_app.sql
-sed -i '/DEFAULT CHARSET=utf8/s/DEFAULT CHARSET=utf8/DEFAULT CHARSET=utf8mb4/' game_app.sql
+sed -i '/DEFAULT CHARSET=utf8/s/DEFAULT CHARSET=utf8 /DEFAULT CHARSET=utf8mb4 /' game_app.sql
+sed -i '/DEFAULT CHARSET=utf8/s/DEFAULT CHARSET=utf8;/DEFAULT CHARSET=utf8mb4;/' game_app.sql

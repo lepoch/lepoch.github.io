@@ -20,20 +20,21 @@ Haddop小记
 修改 vim /etc/profile
 
 ```
-wget http://10.210.0.8/server-jre-8u131-linux-x64.tar
+sudo su
+cd ~
+
+wget http://58.87.87.210/server-jre-8u131-linux-x64.tar
 
 tar -xf server-jre-8u131-linux-x64.tar
 cp -r jdk1.8.0_131 /usr/local/
-```
 
-修改/etc/profile
-```
+#修改/etc/profile
 ( cat <<EOF
 
 export JAVA_HOME=/usr/local/jdk1.8.0_131
-export JRE_HOME=$JAVA_HOME/jre
+export JRE_HOME=\$JAVA_HOME/jre
 export CLASSPATH=.:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar:$JRE_HOME/lib:$CLASSPATH
-export PATH=$JAVA_HOME/bin:$PATH
+export PATH=\$JAVA_HOME/bin:\$PATH
 EOF
 ) >> /etc/profile
 
