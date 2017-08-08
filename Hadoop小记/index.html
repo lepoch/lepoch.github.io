@@ -70,7 +70,7 @@
 <meta property="og:url" content="https://lepoch.github.io/Hadoop小记/index.html">
 <meta property="og:site_name" content="战吧">
 <meta property="og:description" content="Haddop小记">
-<meta property="og:updated_time" content="2017-06-14T17:03:50.000Z">
+<meta property="og:updated_time" content="2017-07-24T12:30:37.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Haddop小记">
 <meta name="twitter:description" content="Haddop小记">
@@ -412,8 +412,7 @@
       
         <p>Haddop小记<br><a id="more"></a><br>环境：腾讯云CentOS 7 x64<br>目标：安装Hadoop 2.8.0</p>
 <h1 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h1><h2 id="安装-OpenJDK-8"><a href="#安装-OpenJDK-8" class="headerlink" title="安装 OpenJDK 8"></a>安装 OpenJDK 8</h2><p>下载地址：[<a href="http://www.oracle.com/technetwork/java/javase/downloads/index.html" target="_blank" rel="external">http://www.oracle.com/technetwork/java/javase/downloads/index.html</a>]<br>修改 vim /etc/profile</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">wget http://10.210.0.8/server-jre-8u131-linux-x64.tar</div><div class="line"></div><div class="line">tar -xf server-jre-8u131-linux-x64.tar</div><div class="line">cp -r jdk1.8.0_131 /usr/local/</div></pre></td></tr></table></figure>
-<p>修改/etc/profile<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">( cat &lt;&lt;EOF</div><div class="line"></div><div class="line">export JAVA_HOME=/usr/local/jdk1.8.0_131</div><div class="line">export JRE_HOME=$JAVA_HOME/jre</div><div class="line">export CLASSPATH=.:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar:$JRE_HOME/lib:$CLASSPATH</div><div class="line">export PATH=$JAVA_HOME/bin:$PATH</div><div class="line">EOF</div><div class="line">) &gt;&gt; /etc/profile</div><div class="line"></div><div class="line">source /etc/profile</div></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">sudo su</div><div class="line">cd ~</div><div class="line"></div><div class="line">wget http://58.87.87.210/server-jre-8u131-linux-x64.tar</div><div class="line"></div><div class="line">tar -xf server-jre-8u131-linux-x64.tar</div><div class="line">cp -r jdk1.8.0_131 /usr/local/</div><div class="line"></div><div class="line">#修改/etc/profile</div><div class="line">( cat &lt;&lt;EOF</div><div class="line"></div><div class="line">export JAVA_HOME=/usr/local/jdk1.8.0_131</div><div class="line">export JRE_HOME=\$JAVA_HOME/jre</div><div class="line">export CLASSPATH=.:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar:$JRE_HOME/lib:$CLASSPATH</div><div class="line">export PATH=\$JAVA_HOME/bin:\$PATH</div><div class="line">EOF</div><div class="line">) &gt;&gt; /etc/profile</div><div class="line"></div><div class="line">source /etc/profile</div></pre></td></tr></table></figure>
 <h2 id="依赖"><a href="#依赖" class="headerlink" title="依赖"></a>依赖</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">yum install -y ssh rsync</div></pre></td></tr></table></figure>
 <h2 id="安装hadoop-2-8-0"><a href="#安装hadoop-2-8-0" class="headerlink" title="安装hadoop 2.8.0"></a>安装hadoop 2.8.0</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">wget https://mirrors.tuna.tsinghua.edu.cn/apache/hadoop/common/hadoop-2.8.0/hadoop-2.8.0.tar.gz</div><div class="line">tar -zxf hadoop-2.8.0.tar.gz</div><div class="line">mv hadoop-2.8.0 /usr/local/</div><div class="line"></div><div class="line">mkdir input</div><div class="line">cp etc/hadoop/*.xml input</div><div class="line">bin/hadoop jar share/hadoop/mapreduce/hadoop-mapreduce-examples-2.8.0.jar grep input output &apos;dfs[a-z.]+&apos;</div><div class="line">cat output/*</div></pre></td></tr></table></figure>
 <h2 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><h3 id="伪分布式的hdfs目录"><a href="#伪分布式的hdfs目录" class="headerlink" title="伪分布式的hdfs目录"></a>伪分布式的hdfs目录</h3><p>修改 etc/hadoop/core-site.xml，加入<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&lt;property&gt;  </div><div class="line">        &lt;name&gt;hadoop.tmp.dir&lt;/name&gt;  </div><div class="line">        &lt;value&gt;/data/hadoop/data&lt;/value&gt;  </div><div class="line">        &lt;description&gt;A base for other temporary directories.&lt;/description&gt;  </div><div class="line">&lt;/property&gt;</div></pre></td></tr></table></figure></p>
@@ -549,7 +548,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">21</span>
+                <span class="site-state-item-count">22</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -571,7 +570,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">21</span>
+                <span class="site-state-item-count">23</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

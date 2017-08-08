@@ -70,7 +70,7 @@
 <meta property="og:url" content="https://lepoch.github.io/游戏推4.0/index.html">
 <meta property="og:site_name" content="战吧">
 <meta property="og:description" content="游戏推4.0">
-<meta property="og:updated_time" content="2017-05-19T17:05:37.000Z">
+<meta property="og:updated_time" content="2017-08-08T09:31:33.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="游戏推4.0">
 <meta name="twitter:description" content="游戏推4.0">
@@ -379,189 +379,56 @@
       
         <p>游戏推4.0</p>
 <a id="more"></a>
-<h1 id="游戏库"><a href="#游戏库" class="headerlink" title="游戏库"></a>游戏库</h1><ul>
-<li>视频，抓取到服务器</li>
-<li><strong>游戏标签</strong></li>
-<li><strong>热度</strong></li>
-<li>方案待定</li>
-</ul>
-<h1 id="游戏厂商库"><a href="#游戏厂商库" class="headerlink" title="游戏厂商库"></a>游戏厂商库</h1><ul>
-<li>方案待定</li>
-</ul>
-<h1 id="用户体系"><a href="#用户体系" class="headerlink" title="用户体系"></a>用户体系</h1><ul>
-<li>炫耀党用户体系接入 - 不接入</li>
-</ul>
-<h1 id="评价"><a href="#评价" class="headerlink" title="评价"></a>评价</h1><ul>
-<li>投诉</li>
-<li><strong>热度</strong></li>
-</ul>
-<h1 id="消息通知"><a href="#消息通知" class="headerlink" title="消息通知"></a>消息通知</h1><ul>
-<li>踩</li>
-</ul>
-<h1 id="邀请"><a href="#邀请" class="headerlink" title="邀请"></a>邀请</h1><ul>
-<li>认识的人，调用微博内部接口 ？</li>
-</ul>
-<h1 id="排期-28-10-17-29-10-6"><a href="#排期-28-10-17-29-10-6" class="headerlink" title="排期        28 + 10 + 17 + 29 + 10 + 6"></a>排期        28 + 10 + 17 + 29 + 10 + 6</h1><h2 id="项目线"><a href="#项目线" class="headerlink" title="项目线"></a>项目线</h2><h3 id="厂商、游戏库-28"><a href="#厂商、游戏库-28" class="headerlink" title="厂商、游戏库                      28"></a>厂商、游戏库                      28</h3><ul>
-<li>数据库结构设计             2</li>
-<li>ios抓取                    1</li>
-<li>安卓抓取                   14<ul>
-<li>数据抓取</li>
-<li>下载apk</li>
-<li>存放视频</li>
-<li>突破google限制</li>
+<h2 id="总"><a href="#总" class="headerlink" title="总"></a>总</h2><h3 id="Request-接受参数"><a href="#Request-接受参数" class="headerlink" title="Request 接受参数"></a>Request 接受参数</h3><ul>
+<li>`$request-&gt;input()<ul>
+<li>使用 request()</li>
 </ul>
 </li>
-<li>数据合并                   2</li>
-<li>排行榜                     2</li>
-<li><p>厂商库合并逻辑             1</p>
-</li>
-<li><p>游戏库后台                 4</p>
-</li>
-<li>厂商库后台                 2 </li>
-</ul>
-<h3 id="对象（游戏、评价）热度计算-10"><a href="#对象（游戏、评价）热度计算-10" class="headerlink" title="对象（游戏、评价）热度计算       10"></a>对象（游戏、评价）热度计算       10</h3><ul>
-<li>腾讯云大数据处理套件TBDS   5</li>
-<li>写入接口修改                   2</li>
-<li>调用方法                   3</li>
-</ul>
-<h3 id="消息、推送-17"><a href="#消息、推送-17" class="headerlink" title="消息、推送                        17"></a>消息、推送                        17</h3><ul>
-<li>通用消息模块               2</li>
-<li>推送                       5<ul>
-<li>重写推送数据存储       2</li>
-<li>推送脚本               3</li>
+<li>intval($request-&gt;input(‘page’)) ? intval($request-&gt;input(‘page’)) : 1;<ul>
+<li>使用 request(‘page’, 1);<h3 id="调用libs方法"><a href="#调用libs方法" class="headerlink" title="调用libs方法"></a>调用libs方法</h3></li>
 </ul>
 </li>
-<li>各业务中生成消息、推送     2</li>
-<li>未读消息数量               2</li>
-<li>账号通知合并               1</li>
-<li>我的消息                   1<ul>
-<li>回复</li>
-<li>通知</li>
-<li>表态</li>
-<li>关注</li>
-</ul>
-</li>
-</ul>
-<h3 id="客户端接口支持-29"><a href="#客户端接口支持-29" class="headerlink" title="客户端接口支持                     29"></a>客户端接口支持                     29</h3><ul>
-<li>用户体系                    2<ul>
-<li>新增登陆渠道<ul>
-<li>qq</li>
-<li>微信</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>评分                        1<ul>
-<li>游戏</li>
-<li>评价</li>
-</ul>
-</li>
-<li>分享落地页                  待定</li>
-<li>性能优化、可维护性优化      3<ul>
-<li>公用游戏列表使用yar获取详情</li>
-</ul>
-</li>
-<li>首页                        9.5<ul>
-<li>首页接口                1<ul>
-<li>精彩合集</li>
-<li>推荐游戏列表   前后台</li>
-</ul>
-</li>
-<li>游戏详情  （数据多而杂，建议多接口获取）<ul>
-<li>详情                1</li>
-<li>评价                3<ul>
-<li>回复</li>
-<li>投诉</li>
-<li>赞、踩</li>
-</ul>
-</li>
-<li>细节<ul>
-<li>投诉            1</li>
-<li>试玩                </li>
-<li>关注</li>
-</ul>
-</li>
-<li>厂商游戏列表        0.5</li>
-</ul>
-</li>
-<li>搜索  （yar 多进程获取数据）   3<ul>
-<li>合集搜索</li>
-<li>标签搜索</li>
-<li>用户搜索</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>排行榜                      1</li>
-<li><p>分类                        2</p>
-<ul>
-<li>游戏类型列表</li>
-</ul>
-</li>
-<li><p>发现                        5</p>
-<ul>
-<li>今日力荐    前后台        1.5</li>
-<li>推荐玩家    前后台        2.5<ul>
-<li>用户主页                  <ul>
-<li>粉丝</li>
-<li>关注</li>
-<li>推广</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>最新游戏列表              1<ul>
-<li>上架</li>
-<li>更新</li>
-<li>预约</li>
-<li>测试</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>我的                        5.5<ul>
-<li>编辑资料                  1</li>
-<li>粉丝                      0.5</li>
-<li>关注的人<ul>
-<li>邀请好友 </li>
-<li>认识的人   换成开放平台   1</li>
-</ul>
-</li>
-<li>我的游戏                  2</li>
-<li>我的评论                  1</li>
-</ul>
-</li>
-</ul>
-<h3 id="服务器环境-10"><a href="#服务器环境-10" class="headerlink" title="服务器环境                         10"></a>服务器环境                         10</h3><ul>
-<li>环境搭建：生产环境、Redis、MySQL等      3</li>
-<li>存储对象                                2</li>
-<li>视频对象                                2</li>
-<li>推送服务                                2</li>
-</ul>
-<h3 id="CPA迁移-6"><a href="#CPA迁移-6" class="headerlink" title="CPA迁移                             6"></a>CPA迁移                             6</h3><ul>
-<li>游戏id迁移    2</li>
-<li>消息、推送迁移   2</li>
-<li>其他             2<ul>
-<li>提现账号使用腾讯云对象服务</li>
-<li>编辑推荐</li>
-<li>等</li>
-</ul>
-</li>
-<li>旧数据<ul>
-<li>建议清空<ul>
-<li>游戏id对应不上</li>
-</ul>
+<li>一律使用静态调用，例如 CombineAlbum::getWonderfulCombineAlbumList()<h3 id="传参"><a href="#传参" class="headerlink" title="传参"></a>传参</h3></li>
+<li>尽量使用严格模式<ul>
+<li><figure class="highlight plain"><figcaption><span>ttt(int $a)``` 表示$a为int</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line">- 创建、搜索等方法，不要出现$data等其他地方没法使用传参</div><div class="line">    - 简单的修改成直接传多个参数</div><div class="line">    - 复杂的创建 entity 类，传入实例</div><div class="line">### 函数返回</div><div class="line">- 返回值尽量用严格模式</div><div class="line">    - function ttt() : string 表示返回值是string</div><div class="line">- 有异常的传参，可直接抛出异常</div><div class="line">### phpstorm 提示</div><div class="line">- 全部 warning级提示，都须按照提示修改</div><div class="line">- 格式化代码</div><div class="line">### 注释</div><div class="line">- 类注释位置，别放最上</div><div class="line">- 函数注释使用 /** **/，须注明时间、作者</div><div class="line">- 删除无用注释</div><div class="line">### 缓存</div><div class="line">- get, set 使用laravel写法，参见Comment::getInfo</div><div class="line">### Model</div><div class="line">- 一个model一张表</div><div class="line">- 使用 self:: 代替 DB::，除非特别复杂的sql</div><div class="line"></div><div class="line"></div><div class="line">## Controller</div><div class="line">### CombineAlbumController - ql</div><div class="line">### CommentController - jl</div><div class="line">- 出现多次的相同代码块</div></pre></td></tr></table></figure>
 </li>
 </ul>
 </li>
 </ul>
-<p>3.用户管理<br>3.评价管理<br>4.服务器迁移</p>
-<ul>
-<li>合集</li>
-<li>后台</li>
+<p>$mark_type = [ ‘game’=&gt;Comment::TYPE_GAME,’collection’=&gt;Comment::TYPE_COLLECTION,’comment’=&gt;Comment::TYPE_COMMENT ];<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">- </div><div class="line">#### addComment</div><div class="line">- $data[&apos;extra&apos;] = \GuzzleHttp\json_encode($extra);</div><div class="line">    - 直接用json_encode</div><div class="line">#### CommentFollowStatus</div><div class="line">- explode(&apos;,&apos;, $ids)</div><div class="line">    - 使用 Comment::getId</div><div class="line"></div><div class="line">### ComplainController - jl</div><div class="line">#### submsg</div><div class="line">- app(&apos;Complain&apos;)-&gt;addComplain($data)</div><div class="line"></div><div class="line">### FindController  - hl</div><div class="line">### FollowController - ql</div><div class="line">### GameController - ql</div><div class="line">### PushController - hl</div><div class="line">### RankController - hl</div><div class="line">### SearchController - hl</div><div class="line">- searchCombine</div><div class="line">    - line 117 ，使用 imgUrl()</div><div class="line">### UserController  - ql</div><div class="line">- 成段的相同代码</div></pre></td></tr></table></figure></p>
+<p>$userInfo[$k][‘absId’] = @$userInfoFlag[‘id’];<br>$userInfo[$k][‘abstitle’] = @$userInfoFlag[‘sina_weibo_name’];<br>$userInfo[$k][‘absImage’] = @$userInfoFlag[‘sina_weibo_photo’];<br>$userInfo[$k][‘introduction’] = @$userInfoFlag[‘introduction’];<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">## Libs</div><div class="line">### 各种Util - zm</div><div class="line">### ChineseRateCheck, IosTopGames, GooglePlayScraper, IosTopUrl等</div><div class="line">- 类注释</div><div class="line">- 方法注释，作者、时间</div><div class="line"></div><div class="line">### CategoryTags - ql</div><div class="line">### CombineAlbum - ql</div><div class="line">#### getRedisWonderfulCombineAlbumList </div><div class="line">    - 这种封装是什么鬼</div><div class="line">    - 参考 《总.缓存》</div><div class="line">### Comment - jl</div><div class="line">- 各种explode absId</div><div class="line">    - 如果之后要改变加一个逻辑，那得改多少地方。</div><div class="line">    - 修改成$this-&gt;getId(), $this-&gt;getType(), $this-&gt;getAbsId() 等</div><div class="line">- \GuzzleHttp\json_encode</div><div class="line">#### getCommentByWhere</div><div class="line">#### getCommentListOfUser</div><div class="line">- game info 的并发获取</div><div class="line"></div><div class="line">### Find - hl</div><div class="line">- 缓存</div><div class="line">- 总体挺好</div><div class="line"></div><div class="line">### Follow</div><div class="line">- _follow， follow </div><div class="line">    - 这命名什么鬼</div><div class="line">- 相同代码块</div></pre></td></tr></table></figure></p>
+<p>if($lists){<br>    foreach($lists as $k=&gt;$v){<br>        $list[$k] = $v[‘mark’];//转换给不需要详细信息的接口 return;<br>    }<br>}<br>```</p>
+<pre><code>- 可封装，传入数组，和key，直接获取yarData数组
+- 
+</code></pre><p>####deleteFollowRelationshipOneCache</p>
+<pre><code>- 健壮性太差，一旦其他地方有变动，这地方就得错
+- 建议使用hash，或者用类似 getXXXChacheKey() 获取缓存key
+</code></pre><h3 id="Game-ql"><a href="#Game-ql" class="headerlink" title="Game    - ql"></a>Game    - ql</h3><ul>
+<li>相同代码块<ul>
+<li>同 Follow.相同代码块</li>
 </ul>
-<h1 id="志苗-2-1-14-2-19"><a href="#志苗-2-1-14-2-19" class="headerlink" title="志苗 2 + 1 + 14 + 2 = 19"></a>志苗 2 + 1 + 14 + 2 = 19</h1><p>1      2<br>2      3<br>3      4<br>4      1<br>5      2</p>
-<p>8.8</p>
+</li>
+<li>缓存的get,set封装<ul>
+<li>可封装getCacheKey</li>
+<li>不必要封装get数据，set数据，其他地方也用不到<h4 id="获取详情"><a href="#获取详情" class="headerlink" title="获取详情"></a><strong>获取详情</strong></h4></li>
+</ul>
+</li>
+<li>getInfo，存储后端用的元数据</li>
+<li>getFrontInfo，存储前端格式化的数据</li>
+<li>其他地方用不到的不需要再加缓存，如 <ul>
+<li>getGameApkStoreInfo</li>
+<li>getPlatformGameInfo<h4 id="getFilterGameList"><a href="#getFilterGameList" class="headerlink" title="getFilterGameList"></a>getFilterGameList</h4></li>
+</ul>
+</li>
+<li>可使用 remember </li>
+</ul>
+<h3 id="Push-hl"><a href="#Push-hl" class="headerlink" title="Push    - hl"></a>Push    - hl</h3><h3 id="PushMessage-hl"><a href="#PushMessage-hl" class="headerlink" title="PushMessage - hl"></a>PushMessage - hl</h3><h3 id="Rank-hl"><a href="#Rank-hl" class="headerlink" title="Rank - hl"></a>Rank - hl</h3><h3 id="Search-hl"><a href="#Search-hl" class="headerlink" title="Search  - hl"></a>Search  - hl</h3><h3 id="Rank-hl-1"><a href="#Rank-hl-1" class="headerlink" title="Rank    - hl"></a>Rank    - hl</h3><h3 id="Setting-jl"><a href="#Setting-jl" class="headerlink" title="Setting - jl"></a>Setting - jl</h3><h3 id="User-ql"><a href="#User-ql" class="headerlink" title="User    - ql"></a>User    - ql</h3><ul>
+<li>都没有level，怎么还有代码</li>
+<li>也有跟Game同样的缓存使用问题<h3 id="UserMessage-hl"><a href="#UserMessage-hl" class="headerlink" title="UserMessage - hl"></a>UserMessage - hl</h3></li>
+</ul>
+<h2 id="Model"><a href="#Model" class="headerlink" title="Model"></a>Model</h2><h3 id="FindModel-hl"><a href="#FindModel-hl" class="headerlink" title="FindModel   - hl"></a>FindModel   - hl</h3><h3 id="FollowModel-ql"><a href="#FollowModel-ql" class="headerlink" title="FollowModel - ql"></a>FollowModel - ql</h3><h3 id="GameModel-ql"><a href="#GameModel-ql" class="headerlink" title="GameModel   - ql"></a>GameModel   - ql</h3><h3 id="PushModel-hl"><a href="#PushModel-hl" class="headerlink" title="PushModel   - hl"></a>PushModel   - hl</h3><h3 id="RecommendModel-hl"><a href="#RecommendModel-hl" class="headerlink" title="RecommendModel - hl"></a>RecommendModel - hl</h3><h4 id="getModelKeyWordCombineAlbumList"><a href="#getModelKeyWordCombineAlbumList" class="headerlink" title="getModelKeyWordCombineAlbumList"></a>getModelKeyWordCombineAlbumList</h4><ul>
+<li>拆分<h3 id="TagsInfoModel-ql"><a href="#TagsInfoModel-ql" class="headerlink" title="TagsInfoModel - ql"></a>TagsInfoModel - ql</h3><h3 id="UserModel-ql"><a href="#UserModel-ql" class="headerlink" title="UserModel   - ql"></a>UserModel   - ql</h3></li>
+</ul>
 
       
     </div>
@@ -604,8 +471,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/Mac使用/" rel="next" title="Mac使用">
-                <i class="fa fa-chevron-left"></i> Mac使用
+              <a href="/代码review工具/" rel="next" title="代码review工具">
+                <i class="fa fa-chevron-left"></i> 代码review工具
               </a>
             
           </div>
@@ -614,8 +481,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/游戏推开发环境搭建/" rel="prev" title="游戏推开发环境搭建">
-                游戏推开发环境搭建 <i class="fa fa-chevron-right"></i>
+              <a href="/Mac使用/" rel="prev" title="Mac使用">
+                Mac使用 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -690,7 +557,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">21</span>
+                <span class="site-state-item-count">22</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -712,7 +579,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">21</span>
+                <span class="site-state-item-count">23</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -754,7 +621,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#游戏库"><span class="nav-number">1.</span> <span class="nav-text">游戏库</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#游戏厂商库"><span class="nav-number">2.</span> <span class="nav-text">游戏厂商库</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#用户体系"><span class="nav-number">3.</span> <span class="nav-text">用户体系</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#评价"><span class="nav-number">4.</span> <span class="nav-text">评价</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#消息通知"><span class="nav-number">5.</span> <span class="nav-text">消息通知</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#邀请"><span class="nav-number">6.</span> <span class="nav-text">邀请</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#排期-28-10-17-29-10-6"><span class="nav-number">7.</span> <span class="nav-text">排期        28 + 10 + 17 + 29 + 10 + 6</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#项目线"><span class="nav-number">7.1.</span> <span class="nav-text">项目线</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#厂商、游戏库-28"><span class="nav-number">7.1.1.</span> <span class="nav-text">厂商、游戏库                      28</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#对象（游戏、评价）热度计算-10"><span class="nav-number">7.1.2.</span> <span class="nav-text">对象（游戏、评价）热度计算       10</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#消息、推送-17"><span class="nav-number">7.1.3.</span> <span class="nav-text">消息、推送                        17</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#客户端接口支持-29"><span class="nav-number">7.1.4.</span> <span class="nav-text">客户端接口支持                     29</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#服务器环境-10"><span class="nav-number">7.1.5.</span> <span class="nav-text">服务器环境                         10</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CPA迁移-6"><span class="nav-number">7.1.6.</span> <span class="nav-text">CPA迁移                             6</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#志苗-2-1-14-2-19"><span class="nav-number">8.</span> <span class="nav-text">志苗 2 + 1 + 14 + 2 = 19</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#总"><span class="nav-number">1.</span> <span class="nav-text">总</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Request-接受参数"><span class="nav-number">1.1.</span> <span class="nav-text">Request 接受参数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#调用libs方法"><span class="nav-number">1.2.</span> <span class="nav-text">调用libs方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#传参"><span class="nav-number">1.3.</span> <span class="nav-text">传参</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Game-ql"><span class="nav-number">1.4.</span> <span class="nav-text">Game    - ql</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#获取详情"><span class="nav-number">1.4.1.</span> <span class="nav-text">获取详情</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#getFilterGameList"><span class="nav-number">1.4.2.</span> <span class="nav-text">getFilterGameList</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Push-hl"><span class="nav-number">1.5.</span> <span class="nav-text">Push    - hl</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#PushMessage-hl"><span class="nav-number">1.6.</span> <span class="nav-text">PushMessage - hl</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Rank-hl"><span class="nav-number">1.7.</span> <span class="nav-text">Rank - hl</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Search-hl"><span class="nav-number">1.8.</span> <span class="nav-text">Search  - hl</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Rank-hl-1"><span class="nav-number">1.9.</span> <span class="nav-text">Rank    - hl</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Setting-jl"><span class="nav-number">1.10.</span> <span class="nav-text">Setting - jl</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#User-ql"><span class="nav-number">1.11.</span> <span class="nav-text">User    - ql</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#UserMessage-hl"><span class="nav-number">1.12.</span> <span class="nav-text">UserMessage - hl</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Model"><span class="nav-number">2.</span> <span class="nav-text">Model</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#FindModel-hl"><span class="nav-number">2.1.</span> <span class="nav-text">FindModel   - hl</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#FollowModel-ql"><span class="nav-number">2.2.</span> <span class="nav-text">FollowModel - ql</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#GameModel-ql"><span class="nav-number">2.3.</span> <span class="nav-text">GameModel   - ql</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#PushModel-hl"><span class="nav-number">2.4.</span> <span class="nav-text">PushModel   - hl</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#RecommendModel-hl"><span class="nav-number">2.5.</span> <span class="nav-text">RecommendModel - hl</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#getModelKeyWordCombineAlbumList"><span class="nav-number">2.5.1.</span> <span class="nav-text">getModelKeyWordCombineAlbumList</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#TagsInfoModel-ql"><span class="nav-number">2.6.</span> <span class="nav-text">TagsInfoModel - ql</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#UserModel-ql"><span class="nav-number">2.7.</span> <span class="nav-text">UserModel   - ql</span></a></li></ol></li></ol></div>
             
 
           </div>

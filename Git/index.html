@@ -45,7 +45,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="笔记,GitLab," />
+  <meta name="keywords" content="笔记,Git," />
 
 
 
@@ -63,17 +63,17 @@
 
 
 
-<meta name="description" content="GitLab">
-<meta name="keywords" content="笔记,GitLab">
+<meta name="description" content="Git">
+<meta name="keywords" content="笔记,Git">
 <meta property="og:type" content="article">
-<meta property="og:title" content="GitLab">
-<meta property="og:url" content="https://lepoch.github.io/GitLab/index.html">
+<meta property="og:title" content="Git">
+<meta property="og:url" content="https://lepoch.github.io/Git/index.html">
 <meta property="og:site_name" content="战吧">
-<meta property="og:description" content="GitLab">
-<meta property="og:updated_time" content="2017-05-24T08:00:58.000Z">
+<meta property="og:description" content="Git">
+<meta property="og:updated_time" content="2017-07-07T09:41:03.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="GitLab">
-<meta name="twitter:description" content="GitLab">
+<meta name="twitter:title" content="Git">
+<meta name="twitter:description" content="Git">
 
 
 
@@ -101,13 +101,13 @@
 
 
 
-  <link rel="canonical" href="https://lepoch.github.io/GitLab/"/>
+  <link rel="canonical" href="https://lepoch.github.io/Git/"/>
 
 
 
 
 
-  <title> GitLab | 战吧 </title>
+  <title> Git | 战吧 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -290,7 +290,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="https://lepoch.github.io/GitLab/">
+    <link itemprop="mainEntityOfPage" href="https://lepoch.github.io/Git/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="战吧">
@@ -311,7 +311,7 @@
             
             
               
-                GitLab
+                Git
               
             
           </h1>
@@ -345,7 +345,7 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a class="cloud-tie-join-count" href="/GitLab/#comments" itemprop="discussionUrl">
+                <a class="cloud-tie-join-count" href="/Git/#comments" itemprop="discussionUrl">
                   <span class="post-comments-count join-count" itemprop="commentCount"></span>
                 </a>
               </span>
@@ -377,9 +377,10 @@
       
 
       
-        <p>GitLab</p>
+        <p>Git</p>
 <a id="more"></a>
-<h1 id="wiki-markdown-的目录-TOC"><a href="#wiki-markdown-的目录-TOC" class="headerlink" title="wiki markdown 的目录, TOC"></a>wiki markdown 的目录, TOC</h1>
+<h1 id="彻底删除某文件及历史"><a href="#彻底删除某文件及历史" class="headerlink" title="彻底删除某文件及历史"></a>彻底删除某文件及历史</h1><p>git filter-branch –force –index-filter ‘git rm –cached –ignore-unmatch “doc/base.sql” ‘ –prune-empty –tag-name-filter cat – –all<br>git push origin –force –all<br>git push origin –force –tags<br>git for-each-ref –format=’delete %(refname)’ refs/original | git update-ref –stdin<br>git reflog expire –expire=now –all<br>git gc –prune=now<br>git count-objects -v</p>
+
       
     </div>
 
@@ -410,7 +411,7 @@
           
             <a href="/tags/笔记/" rel="tag"># 笔记</a>
           
-            <a href="/tags/GitLab/" rel="tag"># GitLab</a>
+            <a href="/tags/Git/" rel="tag"># Git</a>
           
         </div>
       
@@ -433,8 +434,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/laravel/" rel="prev" title="laravel">
-                laravel <i class="fa fa-chevron-right"></i>
+              <a href="/Swoole初识/" rel="prev" title="Swoole初识">
+                Swoole初识 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -509,7 +510,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">21</span>
+                <span class="site-state-item-count">22</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -531,7 +532,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">21</span>
+                <span class="site-state-item-count">23</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -573,7 +574,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#wiki-markdown-的目录-TOC"><span class="nav-number">1.</span> <span class="nav-text">wiki markdown 的目录, TOC</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#彻底删除某文件及历史"><span class="nav-number">1.</span> <span class="nav-text">彻底删除某文件及历史</span></a></li></ol></div>
             
 
           </div>

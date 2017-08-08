@@ -70,7 +70,7 @@
 <meta property="og:url" content="https://lepoch.github.io/sed/index.html">
 <meta property="og:site_name" content="战吧">
 <meta property="og:description" content="sed 使用笔记">
-<meta property="og:updated_time" content="2017-06-29T09:32:12.000Z">
+<meta property="og:updated_time" content="2017-07-03T06:22:02.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="sed">
 <meta name="twitter:description" content="sed 使用笔记">
@@ -411,7 +411,7 @@
 <h1 id="栗子"><a href="#栗子" class="headerlink" title="栗子"></a>栗子</h1><h2 id="首行尾添加字符，直接修改文件"><a href="#首行尾添加字符，直接修改文件" class="headerlink" title="首行尾添加字符，直接修改文件"></a>首行尾添加字符，直接修改文件</h2><p>使用 -i 选项， s命令<br><code>sed -i &#39;1s/$/&amp;123&#39; file</code></p>
 <h2 id="去除指定字符串””-zlib-zlibmodule-c”-的首个字符"><a href="#去除指定字符串””-zlib-zlibmodule-c”-的首个字符" class="headerlink" title="去除指定字符串””#zlib zlibmodule.c” 的首个字符"></a>去除指定字符串””#zlib zlibmodule.c” 的首个字符</h2><p>使用s命令，sed ‘/匹配字符串/s/替换源字符串/替换目标字符串/g’<br><code>sed &#39;/#zlib zlibmodule.c/s/.//&#39; file</code></p>
 <h2 id="去除指定字符串-“-ssl-ssl-c”-所在行与之后的2行的特定字符-“-”"><a href="#去除指定字符串-“-ssl-ssl-c”-所在行与之后的2行的特定字符-“-”" class="headerlink" title="去除指定字符串 “#_ssl _ssl.c” 所在行与之后的2行的特定字符 “#”"></a>去除指定字符串 “#_ssl _ssl.c” 所在行与之后的2行的特定字符 “#”</h2><p>使用 /匹配字符串/,+2， 表示取得匹配字符串和之后的两行<br>{代码块}<br><code>sed &#39;/#_ssl _ssl.c/,+2{s/#//}&#39; file</code></p>
-<h2 id="game-app-sql"><a href="#game-app-sql" class="headerlink" title="game_app.sql"></a>game_app.sql</h2><p>sed -i ‘/character_set_client/s/.*//‘ game_app.sql<br>sed -i ‘/DEFAULT CHARSET=utf8/s/DEFAULT CHARSET=utf8/DEFAULT CHARSET=utf8mb4/‘ game_app.sql</p>
+<h2 id="game-app-sql"><a href="#game-app-sql" class="headerlink" title="game_app.sql"></a>game_app.sql</h2><p>sed -i ‘/character_set_client/s/.*//‘ game_app.sql<br>sed -i ‘/DEFAULT CHARSET=utf8/s/DEFAULT CHARSET=utf8 /DEFAULT CHARSET=utf8mb4 /‘ game_app.sql<br>sed -i ‘/DEFAULT CHARSET=utf8/s/DEFAULT CHARSET=utf8;/DEFAULT CHARSET=utf8mb4;/‘ game_app.sql</p>
 
       
     </div>
@@ -542,7 +542,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">21</span>
+                <span class="site-state-item-count">22</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -564,7 +564,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">21</span>
+                <span class="site-state-item-count">23</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
