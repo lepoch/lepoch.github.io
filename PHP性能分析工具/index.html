@@ -70,7 +70,7 @@
 <meta property="og:url" content="https://lepoch.github.io/PHP性能分析工具/index.html">
 <meta property="og:site_name" content="战吧">
 <meta property="og:description" content="PHP性能分析工具tideways：xhgui：用于显示xhprof数据的图形界面。">
-<meta property="og:updated_time" content="2017-06-29T12:32:07.000Z">
+<meta property="og:updated_time" content="2017-12-25T14:43:00.930Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="PHP性能分析工具">
 <meta name="twitter:description" content="PHP性能分析工具tideways：xhgui：用于显示xhprof数据的图形界面。">
@@ -403,7 +403,7 @@
 <h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><h3 id="mongodb"><a href="#mongodb" class="headerlink" title="mongodb"></a>mongodb</h3><p>vi /etc/yum.repos.d/mongodb-org-3.2.repo<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">[mongodb-org-3.2]</div><div class="line">name=MongoDB Repository</div><div class="line">baseurl=https://repo.mongodb.org/yum/redhat/$releasever/mongodb-org/3.2/x86_64/</div><div class="line">gpgcheck=1</div><div class="line">enabled=1</div><div class="line">gpgkey=https://www.mongodb.org/static/pgp/server-3.2.asc</div></pre></td></tr></table></figure></p>
 <p>安装<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">yum -y install mongodb-org</div></pre></td></tr></table></figure></p>
 <p>启动<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">mkdir -p /data/mongodb/db</div><div class="line">mongod --dbpath=/data/mongodb/db --fork --logpath=/data/mongodb/mongodb.log</div></pre></td></tr></table></figure></p>
-<h3 id="xhgui"><a href="#xhgui" class="headerlink" title="xhgui"></a>xhgui</h3><h4 id="前置：mongodb扩展"><a href="#前置：mongodb扩展" class="headerlink" title="前置：mongodb扩展"></a>前置：mongodb扩展</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"># yum install libssl libssl-dev  -y</div><div class="line"># ln -s /usr/lib/x86_64-linux-gnu/libssl.so  /usr/lib</div><div class="line"># pecl install mongodb</div><div class="line"></div><div class="line"></div><div class="line">git clone https://github.com/mongodb/mongo-php-driver.git</div><div class="line">cd mongo-php-driver</div><div class="line">git submodule sync &amp;&amp; git submodule update --init</div><div class="line">phpize</div><div class="line">./configure</div><div class="line">make all -j 5</div><div class="line">make install</div></pre></td></tr></table></figure>
+<h3 id="xhgui"><a href="#xhgui" class="headerlink" title="xhgui"></a>xhgui</h3><h4 id="前置：mongodb扩展"><a href="#前置：mongodb扩展" class="headerlink" title="前置：mongodb扩展"></a>前置：mongodb扩展</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"># ubuntu</div><div class="line"># yum install libssl openssl-devel  -y</div><div class="line"># ln -s /usr/lib/x86_64-linux-gnu/libssl.so  /usr/lib</div><div class="line"># pecl install mongodb</div><div class="line"></div><div class="line"></div><div class="line">git clone https://github.com/mongodb/mongo-php-driver.git</div><div class="line">cd mongo-php-driver</div><div class="line">git submodule sync &amp;&amp; git submodule update --init</div><div class="line">phpize</div><div class="line">./configure</div><div class="line">make all -j 5</div><div class="line">make install</div></pre></td></tr></table></figure>
 <p>在 fpm/php.ini和cli/php.ini里打开扩展，如<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">echo &quot;extension=mongodb.so&quot; &gt;&gt; /usr/local/serv/php/etc/php.ini</div><div class="line">echo &quot;extension=mongodb.so&quot; &gt;&gt; /usr/local/serv/php/lib/php.ini</div></pre></td></tr></table></figure></p>
 <h4 id="php-install-php"><a href="#php-install-php" class="headerlink" title="php install.php"></a>php install.php</h4><p>php7.1没有mcrypt扩展，php install.php执行时会可能会出现问题，其引用的require修改成“&gt;”版本即可</p>
 <blockquote>
@@ -479,8 +479,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/游戏推4.0/" rel="prev" title="游戏推4.0">
-                游戏推4.0 <i class="fa fa-chevron-right"></i>
+              <a href="/Go小记/" rel="prev" title="Go小记-初识">
+                Go小记-初识 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -566,7 +566,7 @@
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
-                <span class="site-state-item-count">9</span>
+                <span class="site-state-item-count">11</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -577,7 +577,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">23</span>
+                <span class="site-state-item-count">25</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -642,7 +642,7 @@
         <div class="copyright" >
   
   &copy; 
-  <span itemprop="copyrightYear">2017</span>
+  <span itemprop="copyrightYear">2018</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
