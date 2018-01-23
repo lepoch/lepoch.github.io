@@ -42,7 +42,8 @@ mongod --dbpath=/data/mongodb/db --fork --logpath=/data/mongodb/mongodb.log
 ### xhgui
 #### 前置：mongodb扩展
 ```
-# yum install libssl libssl-dev  -y
+# ubuntu
+# yum install libssl openssl-devel  -y
 # ln -s /usr/lib/x86_64-linux-gnu/libssl.so  /usr/lib
 # pecl install mongodb
 
