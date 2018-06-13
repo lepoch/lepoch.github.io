@@ -70,6 +70,7 @@
 <meta property="og:url" content="https://lepoch.github.io/升级python/index.html">
 <meta property="og:site_name" content="战吧">
 <meta property="og:description" content="升级CentOS 自带的 python 2.7.5 到 2.7.11">
+<meta property="og:locale" content="zh-Hans">
 <meta property="og:updated_time" content="2017-05-19T17:05:37.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="升级python">
@@ -402,12 +403,12 @@
         <p>升级CentOS 自带的 python 2.7.5 到 2.7.11</p>
 <a id="more"></a>
 <h1 id="环境"><a href="#环境" class="headerlink" title="环境"></a>环境</h1><p>LINUX 虚拟机<br>CentOS 7</p>
-<h1 id="升级-python"><a href="#升级-python" class="headerlink" title="升级 python"></a>升级 <a href="https://www.python.org/" target="_blank" rel="external">python</a></h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"># 先装 zlib</div><div class="line">yum install -y zlib1g-dev zlib zlib-devel openssl-devel</div><div class="line"></div><div class="line">wget https://www.python.org/ftp/python/2.7.11/Python-2.7.11.tgz</div><div class="line">tar -zxf Python-2.7.11.tgz</div><div class="line">cd Python-2.7.11</div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line"># 安装</div><div class="line">mkdir /usr/local/python-2.7.11</div><div class="line">./configure --prefix=/usr/local/python-2.7.11</div><div class="line"></div><div class="line"># moudle @TODO</div><div class="line">sed -i &apos;/#zlib zlibmodule.c/s/.//&apos; Modules/Setup</div><div class="line">sed -i &apos;/#_ssl _ssl.c/,+2&#123;s/#//&#125;&apos; Modules/Setup</div><div class="line"></div><div class="line"></div><div class="line">make &amp;&amp; make install</div></pre></td></tr></table></figure>
+<h1 id="升级-python"><a href="#升级-python" class="headerlink" title="升级 python"></a>升级 <a href="https://www.python.org/" target="_blank" rel="noopener">python</a></h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"># 先装 zlib</span><br><span class="line">yum install -y zlib1g-dev zlib zlib-devel openssl-devel</span><br><span class="line"></span><br><span class="line">wget https://www.python.org/ftp/python/2.7.11/Python-2.7.11.tgz</span><br><span class="line">tar -zxf Python-2.7.11.tgz</span><br><span class="line">cd Python-2.7.11</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"># 安装</span><br><span class="line">mkdir /usr/local/python-2.7.11</span><br><span class="line">./configure --prefix=/usr/local/python-2.7.11</span><br><span class="line"></span><br><span class="line"># moudle @TODO</span><br><span class="line">sed -i &apos;/#zlib zlibmodule.c/s/.//&apos; Modules/Setup</span><br><span class="line">sed -i &apos;/#_ssl _ssl.c/,+2&#123;s/#//&#125;&apos; Modules/Setup</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">make &amp;&amp; make install</span><br></pre></td></tr></table></figure>
 <h1 id="扩展"><a href="#扩展" class="headerlink" title="扩展"></a>扩展</h1><h2 id="sqlite"><a href="#sqlite" class="headerlink" title="_sqlite"></a>_sqlite</h2><p><code>yum install sqlite-devel -y</code><br>重新编译安装</p>
-<h1 id="替换默认的-python-命令-慎重"><a href="#替换默认的-python-命令-慎重" class="headerlink" title="替换默认的 python 命令  慎重"></a>替换默认的 python 命令  <strong>慎重</strong></h1><p>因新装的python module会导致yum等系统命令问题。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">mv /bin/python /bin/python_old  </div><div class="line">mv /usr/bin/python /usr/bin/python_old  </div><div class="line"></div><div class="line">ln -s /usr/local/python-2.7.11/bin/python2.7 /bin/python</div><div class="line">ln -s /usr/local/python-2.7.11/bin/python2.7 /usr/bin/python</div></pre></td></tr></table></figure></p>
-<h2 id="重装pip，已知所需module：zlib-ssl"><a href="#重装pip，已知所需module：zlib-ssl" class="headerlink" title="重装pip，已知所需module：zlib, ssl"></a>重装pip，已知所需module：zlib, ssl</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">wget https://bootstrap.pypa.io/get-pip.py</div><div class="line">python get-pip.py</div></pre></td></tr></table></figure>
-<h2 id="yum-修复"><a href="#yum-修复" class="headerlink" title="yum 修复"></a>yum 修复</h2><h3 id="第一种，指向yum到原来的python，-这种简单些"><a href="#第一种，指向yum到原来的python，-这种简单些" class="headerlink" title="第一种，指向yum到原来的python， 这种简单些"></a>第一种，指向yum到原来的python， 这种简单些</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">sed -i &apos;1s/$/&amp;_old/&apos; /usr/bin/yum</div><div class="line">sed -i &apos;1s/$/&amp;_old/&apos; /usr/libexec/urlgrabber-ext-down</div></pre></td></tr></table></figure>
-<h3 id="第二种，重装yum"><a href="#第二种，重装yum" class="headerlink" title="第二种，重装yum"></a>第二种，<a href="http://jingyan.baidu.com/article/ed2a5d1f5a9fbe09f6be17ea.html" target="_blank" rel="external">重装yum</a></h3>
+<h1 id="替换默认的-python-命令-慎重"><a href="#替换默认的-python-命令-慎重" class="headerlink" title="替换默认的 python 命令  慎重"></a>替换默认的 python 命令  <strong>慎重</strong></h1><p>因新装的python module会导致yum等系统命令问题。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">mv /bin/python /bin/python_old  </span><br><span class="line">mv /usr/bin/python /usr/bin/python_old  </span><br><span class="line"></span><br><span class="line">ln -s /usr/local/python-2.7.11/bin/python2.7 /bin/python</span><br><span class="line">ln -s /usr/local/python-2.7.11/bin/python2.7 /usr/bin/python</span><br></pre></td></tr></table></figure></p>
+<h2 id="重装pip，已知所需module：zlib-ssl"><a href="#重装pip，已知所需module：zlib-ssl" class="headerlink" title="重装pip，已知所需module：zlib, ssl"></a>重装pip，已知所需module：zlib, ssl</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">wget https://bootstrap.pypa.io/get-pip.py</span><br><span class="line">python get-pip.py</span><br></pre></td></tr></table></figure>
+<h2 id="yum-修复"><a href="#yum-修复" class="headerlink" title="yum 修复"></a>yum 修复</h2><h3 id="第一种，指向yum到原来的python，-这种简单些"><a href="#第一种，指向yum到原来的python，-这种简单些" class="headerlink" title="第一种，指向yum到原来的python， 这种简单些"></a>第一种，指向yum到原来的python， 这种简单些</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sed -i &apos;1s/$/&amp;_old/&apos; /usr/bin/yum</span><br><span class="line">sed -i &apos;1s/$/&amp;_old/&apos; /usr/libexec/urlgrabber-ext-down</span><br></pre></td></tr></table></figure>
+<h3 id="第二种，重装yum"><a href="#第二种，重装yum" class="headerlink" title="第二种，重装yum"></a>第二种，<a href="http://jingyan.baidu.com/article/ed2a5d1f5a9fbe09f6be17ea.html" target="_blank" rel="noopener">重装yum</a></h3>
       
     </div>
 
@@ -447,26 +448,6 @@
         
       
 
-      
-        <div class="post-nav">
-          <div class="post-nav-next post-nav-item">
-            
-              <a href="/sed/" rel="next" title="sed">
-                <i class="fa fa-chevron-left"></i> sed
-              </a>
-            
-          </div>
-
-          <span class="post-nav-divider"></span>
-
-          <div class="post-nav-prev post-nav-item">
-            
-              <a href="/Vue小记-初识/" rel="prev" title="Vue小记-初识">
-                Vue小记-初识 <i class="fa fa-chevron-right"></i>
-              </a>
-            
-          </div>
-        </div>
       
 
       
@@ -537,7 +518,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">23</span>
+                <span class="site-state-item-count">1</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -548,7 +529,7 @@
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
-                <span class="site-state-item-count">11</span>
+                <span class="site-state-item-count">15</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -559,7 +540,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">25</span>
+                <span class="site-state-item-count">35</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
