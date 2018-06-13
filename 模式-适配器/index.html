@@ -45,7 +45,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="模式,笔记," />
+  <meta name="keywords" content="笔记,模式," />
 
 
 
@@ -64,19 +64,19 @@
 
 
 <meta name="description" content="设计模式之适配器模式">
-<meta name="keywords" content="模式,笔记">
+<meta name="keywords" content="笔记,模式">
 <meta property="og:type" content="article">
 <meta property="og:title" content="模式-适配器">
 <meta property="og:url" content="https://lepoch.github.io/模式-适配器/index.html">
 <meta property="og:site_name" content="战吧">
 <meta property="og:description" content="设计模式之适配器模式">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://www.plantuml.com/plantuml/png/SoWkIImgAStDuGh9BCb9LL1wsT3qihNtwSmLprOiVBgdN-7vnjrFP-zJuk9ApaaiBbPmpibCpIlXoimhIIrAIqnELGX9B4fFBL6evb9Gq0vABInDBIxHqEIgXIftJ4ai0Ah4AviAbWqkI4tEJCjCHbR51R5DLzSEOWiNr3XTtHeC4JkeOLmEgNafGFy00000">
-<meta property="og:updated_time" content="2018-06-13T07:02:22.113Z">
+<meta property="og:image" content="http://www.plantuml.com/plantuml/png/SoWkIImgAStDuGh9BCb9LL1wsT3qihNtwSmLprOiVBgdN-7vnjrFP-zJuk9ApaaiBbPmpibCpIlXoimhIIrAIqnELGX9B4fFBL6evb9Gq0vABInDBIxHqEIgvShBBqbLICelASdFjL9ulhlZ-UhrppeRNivfUB6iyVdyfIyR9p-VrVAiR-dJ_iKminrJ4Wk0nc8tAYSrhSHAuMdhzYTxGJhXpaJLd0hM75oGcfoPbfcCmn288o0c08q2-f2B2-8lNLqxg7-i55viQ7u-PGKNr56wkZLGAOI87THEe6A8OLmEgNafmB040000">
+<meta property="og:updated_time" content="2018-06-13T08:25:48.120Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="模式-适配器">
 <meta name="twitter:description" content="设计模式之适配器模式">
-<meta name="twitter:image" content="http://www.plantuml.com/plantuml/png/SoWkIImgAStDuGh9BCb9LL1wsT3qihNtwSmLprOiVBgdN-7vnjrFP-zJuk9ApaaiBbPmpibCpIlXoimhIIrAIqnELGX9B4fFBL6evb9Gq0vABInDBIxHqEIgXIftJ4ai0Ah4AviAbWqkI4tEJCjCHbR51R5DLzSEOWiNr3XTtHeC4JkeOLmEgNafGFy00000">
+<meta name="twitter:image" content="http://www.plantuml.com/plantuml/png/SoWkIImgAStDuGh9BCb9LL1wsT3qihNtwSmLprOiVBgdN-7vnjrFP-zJuk9ApaaiBbPmpibCpIlXoimhIIrAIqnELGX9B4fFBL6evb9Gq0vABInDBIxHqEIgvShBBqbLICelASdFjL9ulhlZ-UhrppeRNivfUB6iyVdyfIyR9p-VrVAiR-dJ_iKminrJ4Wk0nc8tAYSrhSHAuMdhzYTxGJhXpaJLd0hM75oGcfoPbfcCmn288o0c08q2-f2B2-8lNLqxg7-i55viQ7u-PGKNr56wkZLGAOI87THEe6A8OLmEgNafmB040000">
 
 
 
@@ -410,8 +410,8 @@
 <li>其方法 与 需求有些不符</li>
 <li>通过加工处理可以完成 需求</li>
 </ul>
-<h2 id="类图"><a href="#类图" class="headerlink" title="类图"></a>类图</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">@startuml</span><br><span class="line">Title &quot;适配器模式 类图&quot;</span><br><span class="line"></span><br><span class="line">class Client</span><br><span class="line">interface Target &#123;</span><br><span class="line">  +Request()</span><br><span class="line">&#125;</span><br><span class="line">class Adapter&#123;</span><br><span class="line">  +Request()</span><br><span class="line">&#125;</span><br><span class="line">class Adaptee&#123;</span><br><span class="line">  +SpecificRequest()</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Client--&gt;Target</span><br><span class="line">Adapter--|&gt;Target</span><br><span class="line">Adapter--&gt;Adaptee</span><br><span class="line"></span><br><span class="line">@enduml</span><br></pre></td></tr></table></figure>
-<p><img src="http://www.plantuml.com/plantuml/png/SoWkIImgAStDuGh9BCb9LL1wsT3qihNtwSmLprOiVBgdN-7vnjrFP-zJuk9ApaaiBbPmpibCpIlXoimhIIrAIqnELGX9B4fFBL6evb9Gq0vABInDBIxHqEIgXIftJ4ai0Ah4AviAbWqkI4tEJCjCHbR51R5DLzSEOWiNr3XTtHeC4JkeOLmEgNafGFy00000" alt=""></p>
+<h2 id="类图"><a href="#类图" class="headerlink" title="类图"></a>类图</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">@startuml</span><br><span class="line">Title &quot;适配器模式 类图&quot;</span><br><span class="line"></span><br><span class="line">class Client</span><br><span class="line">interface Target &#123;</span><br><span class="line">  +Request()</span><br><span class="line">&#125;</span><br><span class="line">note bottom: 终端所需要知道的接口</span><br><span class="line"></span><br><span class="line">class Adapter&#123;</span><br><span class="line">  +Request()</span><br><span class="line">&#125;</span><br><span class="line">note left: 具体的适配器</span><br><span class="line"></span><br><span class="line">class Adaptee&#123;</span><br><span class="line">  +SpecificRequest()</span><br><span class="line">&#125;</span><br><span class="line">note left: 需要适配的类</span><br><span class="line"></span><br><span class="line">Client--&gt;Target : 调用</span><br><span class="line">Adapter--|&gt;Target</span><br><span class="line">Adapter--&gt;Adaptee : 适配</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">@enduml</span><br></pre></td></tr></table></figure>
+<p><img src="http://www.plantuml.com/plantuml/png/SoWkIImgAStDuGh9BCb9LL1wsT3qihNtwSmLprOiVBgdN-7vnjrFP-zJuk9ApaaiBbPmpibCpIlXoimhIIrAIqnELGX9B4fFBL6evb9Gq0vABInDBIxHqEIgvShBBqbLICelASdFjL9ulhlZ-UhrppeRNivfUB6iyVdyfIyR9p-VrVAiR-dJ_iKminrJ4Wk0nc8tAYSrhSHAuMdhzYTxGJhXpaJLd0hM75oGcfoPbfcCmn288o0c08q2-f2B2-8lNLqxg7-i55viQ7u-PGKNr56wkZLGAOI87THEe6A8OLmEgNafmB040000" alt=""></p>
 <h2 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h2><h3 id="PHP"><a href="#PHP" class="headerlink" title="PHP"></a>PHP</h3><ul>
 <li><p>终端所需知道的</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">interface Target&#123;</span><br><span class="line">    public function Request();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -455,9 +455,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/模式/" rel="tag"># 模式</a>
-          
             <a href="/tags/笔记/" rel="tag"># 笔记</a>
+          
+            <a href="/tags/模式/" rel="tag"># 模式</a>
           
         </div>
       
@@ -574,7 +574,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">35</span>
+                <span class="site-state-item-count">34</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
