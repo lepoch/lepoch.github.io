@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title><![CDATA[升级python]]></title>
-    <url>%2F%E5%8D%87%E7%BA%A7python%2F</url>
-    <content type="text"><![CDATA[升级CentOS 自带的 python 2.7.5 到 2.7.11 环境LINUX 虚拟机CentOS 7 升级 python12345678910111213141516171819# 先装 zlibyum install -y zlib1g-dev zlib zlib-devel openssl-develwget https://www.python.org/ftp/python/2.7.11/Python-2.7.11.tgztar -zxf Python-2.7.11.tgzcd Python-2.7.11# 安装mkdir /usr/local/python-2.7.11./configure --prefix=/usr/local/python-2.7.11# moudle @TODOsed -i &apos;/#zlib zlibmodule.c/s/.//&apos; Modules/Setupsed -i &apos;/#_ssl _ssl.c/,+2&#123;s/#//&#125;&apos; Modules/Setupmake &amp;&amp; make install 扩展_sqliteyum install sqlite-devel -y重新编译安装 替换默认的 python 命令 慎重因新装的python module会导致yum等系统命令问题。12345mv /bin/python /bin/python_old mv /usr/bin/python /usr/bin/python_old ln -s /usr/local/python-2.7.11/bin/python2.7 /bin/pythonln -s /usr/local/python-2.7.11/bin/python2.7 /usr/bin/python 重装pip，已知所需module：zlib, ssl12wget https://bootstrap.pypa.io/get-pip.pypython get-pip.py yum 修复第一种，指向yum到原来的python， 这种简单些12sed -i &apos;1s/$/&amp;_old/&apos; /usr/bin/yumsed -i &apos;1s/$/&amp;_old/&apos; /usr/libexec/urlgrabber-ext-down 第二种，重装yum]]></content>
+    <title><![CDATA[模式-适配器]]></title>
+    <url>%2F%E6%A8%A1%E5%BC%8F-%E9%80%82%E9%85%8D%E5%99%A8%2F</url>
+    <content type="text"><![CDATA[设计模式之适配器模式 简介将一个类的接口转换成客户希望的另外一个接口。 使用条件 一般是已存在的类 其方法 与 需求有些不符 通过加工处理可以完成 需求 类图12345678910111213141516171819@startumlTitle &quot;适配器模式 类图&quot;class Clientinterface Target &#123; +Request()&#125;class Adapter&#123; +Request()&#125;class Adaptee&#123; +SpecificRequest()&#125;Client--&gt;TargetAdapter--|&gt;TargetAdapter--&gt;Adaptee@enduml 实现PHP 终端所需知道的 123interface Target&#123; public function Request();&#125; 具体适配器 12345678910111213141516/** * Class 适配器 * @package App\Maozhua\Libs */class Adapter implements Target &#123; private $adaptee; public function __construct() &#123; $this-&gt;adaptee = new Adaptee(); &#125; public function Request() &#123; $this-&gt;adaptee-&gt;SpecificRequest(); &#125;&#125; 适配的对象 123456789/** * Class 适配的对象 * @package App\Maozhua\Libs */class Adaptee &#123; public function SpecificRequest() &#123; &#125;&#125; 使用 12$target = new Adapter();$target-&gt;Request();]]></content>
       <categories>
-        <category>Linux</category>
+        <category>模式</category>
       </categories>
       <tags>
-        <tag>Linux</tag>
-        <tag>CentOS</tag>
+        <tag>模式</tag>
+        <tag>笔记</tag>
       </tags>
   </entry>
 </search>

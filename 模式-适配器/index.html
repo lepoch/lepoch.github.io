@@ -45,7 +45,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Linux,CentOS," />
+  <meta name="keywords" content="模式,笔记," />
 
 
 
@@ -63,18 +63,20 @@
 
 
 
-<meta name="description" content="升级CentOS 自带的 python 2.7.5 到 2.7.11">
-<meta name="keywords" content="Linux,CentOS">
+<meta name="description" content="设计模式之适配器模式">
+<meta name="keywords" content="模式,笔记">
 <meta property="og:type" content="article">
-<meta property="og:title" content="升级python">
-<meta property="og:url" content="https://lepoch.github.io/升级python/index.html">
+<meta property="og:title" content="模式-适配器">
+<meta property="og:url" content="https://lepoch.github.io/模式-适配器/index.html">
 <meta property="og:site_name" content="战吧">
-<meta property="og:description" content="升级CentOS 自带的 python 2.7.5 到 2.7.11">
+<meta property="og:description" content="设计模式之适配器模式">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-05-19T17:05:37.000Z">
+<meta property="og:image" content="http://www.plantuml.com/plantuml/png/SoWkIImgAStDuGh9BCb9LL1wsT3qihNtwSmLprOiVBgdN-7vnjrFP-zJuk9ApaaiBbPmpibCpIlXoimhIIrAIqnELGX9B4fFBL6evb9Gq0vABInDBIxHqEIgXIftJ4ai0Ah4AviAbWqkI4tEJCjCHbR51R5DLzSEOWiNr3XTtHeC4JkeOLmEgNafGFy00000">
+<meta property="og:updated_time" content="2018-06-13T07:02:22.113Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="升级python">
-<meta name="twitter:description" content="升级CentOS 自带的 python 2.7.5 到 2.7.11">
+<meta name="twitter:title" content="模式-适配器">
+<meta name="twitter:description" content="设计模式之适配器模式">
+<meta name="twitter:image" content="http://www.plantuml.com/plantuml/png/SoWkIImgAStDuGh9BCb9LL1wsT3qihNtwSmLprOiVBgdN-7vnjrFP-zJuk9ApaaiBbPmpibCpIlXoimhIIrAIqnELGX9B4fFBL6evb9Gq0vABInDBIxHqEIgXIftJ4ai0Ah4AviAbWqkI4tEJCjCHbR51R5DLzSEOWiNr3XTtHeC4JkeOLmEgNafGFy00000">
 
 
 
@@ -102,13 +104,13 @@
 
 
 
-  <link rel="canonical" href="https://lepoch.github.io/升级python/"/>
+  <link rel="canonical" href="https://lepoch.github.io/模式-适配器/"/>
 
 
 
 
 
-  <title> 升级python | 战吧 </title>
+  <title> 模式-适配器 | 战吧 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -291,7 +293,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="https://lepoch.github.io/升级python/">
+    <link itemprop="mainEntityOfPage" href="https://lepoch.github.io/模式-适配器/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="战吧">
@@ -312,7 +314,7 @@
             
             
               
-                升级python
+                模式-适配器
               
             
           </h1>
@@ -327,8 +329,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-24T17:00:00+08:00">
-                2017-03-24
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-06-12T16:35:00+08:00">
+                2018-06-12
               </time>
             
 
@@ -350,8 +352,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Linux/" itemprop="url" rel="index">
-                    <span itemprop="name">Linux</span>
+                  <a href="/categories/模式/" itemprop="url" rel="index">
+                    <span itemprop="name">模式</span>
                   </a>
                 </span>
 
@@ -368,7 +370,7 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a class="cloud-tie-join-count" href="/升级python/#comments" itemprop="discussionUrl">
+                <a class="cloud-tie-join-count" href="/模式-适配器/#comments" itemprop="discussionUrl">
                   <span class="post-comments-count join-count" itemprop="commentCount"></span>
                 </a>
               </span>
@@ -400,15 +402,31 @@
       
 
       
-        <p>升级CentOS 自带的 python 2.7.5 到 2.7.11</p>
+        <p>设计模式之适配器模式</p>
 <a id="more"></a>
-<h1 id="环境"><a href="#环境" class="headerlink" title="环境"></a>环境</h1><p>LINUX 虚拟机<br>CentOS 7</p>
-<h1 id="升级-python"><a href="#升级-python" class="headerlink" title="升级 python"></a>升级 <a href="https://www.python.org/" target="_blank" rel="noopener">python</a></h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"># 先装 zlib</span><br><span class="line">yum install -y zlib1g-dev zlib zlib-devel openssl-devel</span><br><span class="line"></span><br><span class="line">wget https://www.python.org/ftp/python/2.7.11/Python-2.7.11.tgz</span><br><span class="line">tar -zxf Python-2.7.11.tgz</span><br><span class="line">cd Python-2.7.11</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"># 安装</span><br><span class="line">mkdir /usr/local/python-2.7.11</span><br><span class="line">./configure --prefix=/usr/local/python-2.7.11</span><br><span class="line"></span><br><span class="line"># moudle @TODO</span><br><span class="line">sed -i &apos;/#zlib zlibmodule.c/s/.//&apos; Modules/Setup</span><br><span class="line">sed -i &apos;/#_ssl _ssl.c/,+2&#123;s/#//&#125;&apos; Modules/Setup</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">make &amp;&amp; make install</span><br></pre></td></tr></table></figure>
-<h1 id="扩展"><a href="#扩展" class="headerlink" title="扩展"></a>扩展</h1><h2 id="sqlite"><a href="#sqlite" class="headerlink" title="_sqlite"></a>_sqlite</h2><p><code>yum install sqlite-devel -y</code><br>重新编译安装</p>
-<h1 id="替换默认的-python-命令-慎重"><a href="#替换默认的-python-命令-慎重" class="headerlink" title="替换默认的 python 命令  慎重"></a>替换默认的 python 命令  <strong>慎重</strong></h1><p>因新装的python module会导致yum等系统命令问题。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">mv /bin/python /bin/python_old  </span><br><span class="line">mv /usr/bin/python /usr/bin/python_old  </span><br><span class="line"></span><br><span class="line">ln -s /usr/local/python-2.7.11/bin/python2.7 /bin/python</span><br><span class="line">ln -s /usr/local/python-2.7.11/bin/python2.7 /usr/bin/python</span><br></pre></td></tr></table></figure></p>
-<h2 id="重装pip，已知所需module：zlib-ssl"><a href="#重装pip，已知所需module：zlib-ssl" class="headerlink" title="重装pip，已知所需module：zlib, ssl"></a>重装pip，已知所需module：zlib, ssl</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">wget https://bootstrap.pypa.io/get-pip.py</span><br><span class="line">python get-pip.py</span><br></pre></td></tr></table></figure>
-<h2 id="yum-修复"><a href="#yum-修复" class="headerlink" title="yum 修复"></a>yum 修复</h2><h3 id="第一种，指向yum到原来的python，-这种简单些"><a href="#第一种，指向yum到原来的python，-这种简单些" class="headerlink" title="第一种，指向yum到原来的python， 这种简单些"></a>第一种，指向yum到原来的python， 这种简单些</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sed -i &apos;1s/$/&amp;_old/&apos; /usr/bin/yum</span><br><span class="line">sed -i &apos;1s/$/&amp;_old/&apos; /usr/libexec/urlgrabber-ext-down</span><br></pre></td></tr></table></figure>
-<h3 id="第二种，重装yum"><a href="#第二种，重装yum" class="headerlink" title="第二种，重装yum"></a>第二种，<a href="http://jingyan.baidu.com/article/ed2a5d1f5a9fbe09f6be17ea.html" target="_blank" rel="noopener">重装yum</a></h3>
+<h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>将一个类的接口转换成客户希望的另外一个接口。</p>
+<h2 id="使用条件"><a href="#使用条件" class="headerlink" title="使用条件"></a>使用条件</h2><ul>
+<li>一般是已存在的类</li>
+<li>其方法 与 需求有些不符</li>
+<li>通过加工处理可以完成 需求</li>
+</ul>
+<h2 id="类图"><a href="#类图" class="headerlink" title="类图"></a>类图</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">@startuml</span><br><span class="line">Title &quot;适配器模式 类图&quot;</span><br><span class="line"></span><br><span class="line">class Client</span><br><span class="line">interface Target &#123;</span><br><span class="line">  +Request()</span><br><span class="line">&#125;</span><br><span class="line">class Adapter&#123;</span><br><span class="line">  +Request()</span><br><span class="line">&#125;</span><br><span class="line">class Adaptee&#123;</span><br><span class="line">  +SpecificRequest()</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Client--&gt;Target</span><br><span class="line">Adapter--|&gt;Target</span><br><span class="line">Adapter--&gt;Adaptee</span><br><span class="line"></span><br><span class="line">@enduml</span><br></pre></td></tr></table></figure>
+<p><img src="http://www.plantuml.com/plantuml/png/SoWkIImgAStDuGh9BCb9LL1wsT3qihNtwSmLprOiVBgdN-7vnjrFP-zJuk9ApaaiBbPmpibCpIlXoimhIIrAIqnELGX9B4fFBL6evb9Gq0vABInDBIxHqEIgXIftJ4ai0Ah4AviAbWqkI4tEJCjCHbR51R5DLzSEOWiNr3XTtHeC4JkeOLmEgNafGFy00000" alt=""></p>
+<h2 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h2><h3 id="PHP"><a href="#PHP" class="headerlink" title="PHP"></a>PHP</h3><ul>
+<li><p>终端所需知道的</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">interface Target&#123;</span><br><span class="line">    public function Request();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>具体适配器</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * Class 适配器</span><br><span class="line"> * @package App\Maozhua\Libs</span><br><span class="line"> */</span><br><span class="line">class Adapter implements Target &#123;</span><br><span class="line"></span><br><span class="line">    private $adaptee;</span><br><span class="line">    public function __construct() &#123;</span><br><span class="line">        $this-&gt;adaptee = new Adaptee();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public function Request()</span><br><span class="line">    &#123;</span><br><span class="line">        $this-&gt;adaptee-&gt;SpecificRequest();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>适配的对象</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * Class 适配的对象</span><br><span class="line"> * @package App\Maozhua\Libs</span><br><span class="line"> */</span><br><span class="line">class Adaptee &#123;</span><br><span class="line">    public function SpecificRequest() &#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>使用</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$target = new Adapter();</span><br><span class="line">$target-&gt;Request();</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+
       
     </div>
 
@@ -437,9 +455,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Linux/" rel="tag"># Linux</a>
+            <a href="/tags/模式/" rel="tag"># 模式</a>
           
-            <a href="/tags/CentOS/" rel="tag"># CentOS</a>
+            <a href="/tags/笔记/" rel="tag"># 笔记</a>
           
         </div>
       
@@ -529,7 +547,7 @@
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
-                <span class="site-state-item-count">15</span>
+                <span class="site-state-item-count">1</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -540,7 +558,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">35</span>
+                <span class="site-state-item-count">2</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -582,7 +600,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#环境"><span class="nav-number">1.</span> <span class="nav-text">环境</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#升级-python"><span class="nav-number">2.</span> <span class="nav-text">升级 python</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#扩展"><span class="nav-number">3.</span> <span class="nav-text">扩展</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#sqlite"><span class="nav-number">3.1.</span> <span class="nav-text">_sqlite</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#替换默认的-python-命令-慎重"><span class="nav-number">4.</span> <span class="nav-text">替换默认的 python 命令  慎重</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#重装pip，已知所需module：zlib-ssl"><span class="nav-number">4.1.</span> <span class="nav-text">重装pip，已知所需module：zlib, ssl</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#yum-修复"><span class="nav-number">4.2.</span> <span class="nav-text">yum 修复</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#第一种，指向yum到原来的python，-这种简单些"><span class="nav-number">4.2.1.</span> <span class="nav-text">第一种，指向yum到原来的python， 这种简单些</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第二种，重装yum"><span class="nav-number">4.2.2.</span> <span class="nav-text">第二种，重装yum</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#简介"><span class="nav-number">1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用条件"><span class="nav-number">2.</span> <span class="nav-text">使用条件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#类图"><span class="nav-number">3.</span> <span class="nav-text">类图</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实现"><span class="nav-number">4.</span> <span class="nav-text">实现</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#PHP"><span class="nav-number">4.1.</span> <span class="nav-text">PHP</span></a></li></ol></li></ol></div>
             
 
           </div>
