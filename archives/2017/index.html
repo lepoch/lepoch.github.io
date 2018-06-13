@@ -63,17 +63,13 @@
 
 
 
-<meta name="description" content="游戏推合并">
 <meta property="og:type" content="website">
-<meta property="og:title" content="游戏推合并test">
-<meta property="og:url" content="https://lepoch.github.io/pri/游戏推合并.html">
+<meta property="og:title" content="战吧">
+<meta property="og:url" content="https://lepoch.github.io/archives/2017/index.html">
 <meta property="og:site_name" content="战吧">
-<meta property="og:description" content="游戏推合并">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-06-22T11:01:40.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="游戏推合并test">
-<meta name="twitter:description" content="游戏推合并">
+<meta name="twitter:title" content="战吧">
 
 
 
@@ -101,19 +97,13 @@
 
 
 
-  <link rel="canonical" href="https://lepoch.github.io/pri/游戏推合并.html"/>
+  <link rel="canonical" href="https://lepoch.github.io/archives/2017/"/>
 
 
 
 
 
-  <title>
-  
-
-  
-    游戏推合并test | 战吧
-  
-</title>
+  <title> 归档 | 战吧 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -148,7 +138,7 @@
     
   
 
-  <div class="container one-collumn sidebar-position-left  ">
+  <div class="container one-collumn sidebar-position-left  page-archive  ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -286,494 +276,66 @@
           <div id="content" class="content">
             
 
-  <div id="posts" class="posts-expand">
-  <header class="post-header">
+  <section id="posts" class="posts-collapse">
+    <span class="archive-move-on"></span>
 
-	<h1 class="post-title" itemprop="name headline">游戏推合并test</h1>
-
-
-
-</header>
-
-    
-    
-      <p>游戏推合并</p>
-<a id="more"></a>
-<h1 id="公共参数配置"><a href="#公共参数配置" class="headerlink" title="公共参数配置"></a>公共参数配置</h1><h2 id="公共请求参数"><a href="#公共请求参数" class="headerlink" title="公共请求参数"></a>公共请求参数</h2><table>
-<thead>
-<tr>
-<th>参数名称</th>
-<th>类型</th>
-<th style="text-align:center">是否必须</th>
-<th>说明</th>
-<th>样例</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>channel</td>
-<td>string</td>
-<td style="text-align:center">yes</td>
-<td>给游戏推分配的渠道</td>
-<td>97973</td>
-</tr>
-</tbody>
-</table>
-<h2 id="公共响应参数"><a href="#公共响应参数" class="headerlink" title="公共响应参数"></a>公共响应参数</h2><table>
-<thead>
-<tr>
-<th>参数名称</th>
-<th>类型</th>
-<th style="text-align:center">是否必须</th>
-<th>说明</th>
-<th>样例</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>code</td>
-<td>string</td>
-<td style="text-align:center">yes</td>
-<td>响应状态码</td>
-<td>见下说明</td>
-</tr>
-<tr>
-<td>msg</td>
-<td>string</td>
-<td style="text-align:center">yes</td>
-<td>附加消息</td>
-<td>请求成功</td>
-</tr>
-<tr>
-<td>data</td>
-<td>json</td>
-<td style="text-align:center">yes</td>
-<td>响应数据</td>
-<td>见各个接口详细说明</td>
-</tr>
-</tbody>
-</table>
-<h2 id="状态码说明"><a href="#状态码说明" class="headerlink" title="状态码说明"></a>状态码说明</h2><table>
-<thead>
-<tr>
-<th>code</th>
-<th>intro</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>200</td>
-<td>操作成功</td>
-</tr>
-<tr>
-<td>1000</td>
-<td>操作失败</td>
-</tr>
-</tbody>
-</table>
-<h1 id="帐号合并"><a href="#帐号合并" class="headerlink" title="帐号合并"></a>帐号合并</h1><p>使用炫耀党帐号体系</p>
-<h2 id="根据游戏推登录状态，获取炫耀党用户信息"><a href="#根据游戏推登录状态，获取炫耀党用户信息" class="headerlink" title="根据游戏推登录状态，获取炫耀党用户信息"></a>根据游戏推登录状态，获取炫耀党用户信息</h2><h3 id="请求方式："><a href="#请求方式：" class="headerlink" title="请求方式："></a>请求方式：</h3><h3 id="请求地址："><a href="#请求地址：" class="headerlink" title="请求地址："></a>请求地址：</h3><h3 id="请求参数说明"><a href="#请求参数说明" class="headerlink" title="请求参数说明"></a>请求参数说明</h3><table>
-<thead>
-<tr>
-<th>参数名称</th>
-<th>类型</th>
-<th style="text-align:center">是否必须</th>
-<th>说明</th>
-<th>样例</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>user_type</td>
-<td>string</td>
-<td style="text-align:center">yes</td>
-<td>用户登录类型</td>
-<td>WEIBO</td>
-</tr>
-<tr>
-<td>identity</td>
-<td>string</td>
-<td style="text-align:center">yes</td>
-<td>对应用户登录类型的id</td>
-<td>12345</td>
-</tr>
-<tr>
-<td>user_token</td>
-<td>string</td>
-<td style="text-align:center">yes</td>
-<td>对应identity的token</td>
-<td>sajlfjdlasjkldfjlkfsakflkjl</td>
-</tr>
-</tbody>
-</table>
-<h3 id="返回data参数说明"><a href="#返回data参数说明" class="headerlink" title="返回data参数说明"></a>返回data参数说明</h3><table>
-<thead>
-<tr>
-<th>参数名称</th>
-<th>类型</th>
-<th style="text-align:center">是否必须</th>
-<th>说明</th>
-<th>样例</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>uid</td>
-<td>string</td>
-<td style="text-align:center">yes</td>
-<td>炫耀党uid</td>
-<td></td>
-</tr>
-<tr>
-<td>name</td>
-<td>string</td>
-<td style="text-align:center">yes</td>
-<td>用户名</td>
-<td>张三</td>
-</tr>
-<tr>
-<td>avatar</td>
-<td>string</td>
-<td style="text-align:center">yes</td>
-<td>头像</td>
-<td><a href="http://test.com/test.jpg" target="_blank" rel="noopener">http://test.com/test.jpg</a></td>
-</tr>
-</tbody>
-</table>
-<h1 id="游戏库合并"><a href="#游戏库合并" class="headerlink" title="游戏库合并"></a>游戏库合并</h1><p>使用cms游戏库数据。</p>
-<h2 id="推送游戏信息"><a href="#推送游戏信息" class="headerlink" title="推送游戏信息"></a>推送游戏信息</h2><p>cms在保存《手机游戏产品库》时，进行切面推送。 数据结构同cms的 《手机游戏产品库》 文档模型一样。</p>
-<h3 id="请求方式：-1"><a href="#请求方式：-1" class="headerlink" title="请求方式："></a>请求方式：</h3><h3 id="请求地址：-1"><a href="#请求地址：-1" class="headerlink" title="请求地址："></a>请求地址：</h3><h3 id="请求参数说明-1"><a href="#请求参数说明-1" class="headerlink" title="请求参数说明"></a>请求参数说明</h3><table>
-<thead>
-<tr>
-<th>参数名称</th>
-<th>类型</th>
-<th style="text-align:center">是否必须</th>
-<th>说明</th>
-<th>样例</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>_id</td>
-<td>string</td>
-<td style="text-align:center">yes</td>
-<td>cms文档id</td>
-<td>fycwyns4899000</td>
-</tr>
-<tr>
-<td>title</td>
-<td>string</td>
-<td style="text-align:center">yes</td>
-<td>产品名称</td>
-<td>王者荣耀</td>
-</tr>
-<tr>
-<td>platform</td>
-<td>string</td>
-<td style="text-align:center">yes</td>
-<td>平台</td>
-<td>android<br>ios<br>空字符串</td>
-</tr>
-<tr>
-<td>otherplat</td>
-<td>string</td>
-<td style="text-align:center">yes</td>
-<td>对应平台的cms_id</td>
-<td>fyecezv2392214</td>
-</tr>
-<tr>
-<td>gameIntro</td>
-<td>string</td>
-<td style="text-align:center">yes</td>
-<td>游戏简介</td>
-<td>变形金刚又回到地球！世界各地的指挥官必须选择一个方你支持哪一方呢？</td>
-</tr>
-<tr>
-<td>buyUrl</td>
-<td>string</td>
-<td style="text-align:center">yes</td>
-<td>购买地址</td>
-<td></td>
-</tr>
-</tbody>
-</table>
-<p>…</p>
-<h3 id="返回data参数说明-1"><a href="#返回data参数说明-1" class="headerlink" title="返回data参数说明"></a>返回data参数说明</h3><table>
-<thead>
-<tr>
-<th>参数名称</th>
-<th>类型</th>
-<th style="text-align:center">是否必须</th>
-<th>说明</th>
-<th>样例</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td></td>
-</tr>
-</tbody>
-</table>
-<h1 id="用户关系"><a href="#用户关系" class="headerlink" title="用户关系"></a>用户关系</h1><p>以炫耀党为准</p>
-<h2 id="获取两个用户的关系"><a href="#获取两个用户的关系" class="headerlink" title="获取两个用户的关系"></a>获取两个用户的关系</h2><h3 id="请求方式：-2"><a href="#请求方式：-2" class="headerlink" title="请求方式："></a>请求方式：</h3><h3 id="请求地址：-2"><a href="#请求地址：-2" class="headerlink" title="请求地址："></a>请求地址：</h3><h3 id="请求参数说明-2"><a href="#请求参数说明-2" class="headerlink" title="请求参数说明"></a>请求参数说明</h3><table>
-<thead>
-<tr>
-<th>参数名称</th>
-<th>类型</th>
-<th style="text-align:center">是否必须</th>
-<th>说明</th>
-<th>样例</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>uid</td>
-<td>string</td>
-<td style="text-align:center">yes</td>
-<td>炫耀党uid</td>
-<td></td>
-</tr>
-<tr>
-<td>to_uid</td>
-<td>string</td>
-<td style="text-align:center">yes</td>
-<td>炫耀党uid</td>
-<td></td>
-</tr>
-</tbody>
-</table>
-<h3 id="返回data参数说明-2"><a href="#返回data参数说明-2" class="headerlink" title="返回data参数说明"></a>返回data参数说明</h3><table>
-<thead>
-<tr>
-<th>参数名称</th>
-<th>类型</th>
-<th style="text-align:center">是否必须</th>
-<th>说明</th>
-<th>样例</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>type</td>
-<td>string</td>
-<td style="text-align:center">yes</td>
-<td>cms文档id</td>
-<td>0 未关注 <br> 1 已关注 <br> 3 双向关注</td>
-</tr>
-</tbody>
-</table>
-<h2 id="获取用户的关注列表"><a href="#获取用户的关注列表" class="headerlink" title="获取用户的关注列表"></a>获取用户的关注列表</h2><h3 id="请求方式：-3"><a href="#请求方式：-3" class="headerlink" title="请求方式："></a>请求方式：</h3><h3 id="请求地址：-3"><a href="#请求地址：-3" class="headerlink" title="请求地址："></a>请求地址：</h3><h3 id="请求参数说明-3"><a href="#请求参数说明-3" class="headerlink" title="请求参数说明"></a>请求参数说明</h3><table>
-<thead>
-<tr>
-<th>参数名称</th>
-<th>类型</th>
-<th style="text-align:center">是否必须</th>
-<th>说明</th>
-<th>样例</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>uid</td>
-<td>string</td>
-<td style="text-align:center">yes</td>
-<td>炫耀党uid</td>
-<td></td>
-</tr>
-<tr>
-<td>page</td>
-<td>int</td>
-<td style="text-align:center">yes</td>
-<td>页数</td>
-<td>从1开始</td>
-</tr>
-<tr>
-<td>page_size</td>
-<td>int</td>
-<td style="text-align:center">yes</td>
-<td>每页个数</td>
-<td>10</td>
-</tr>
-</tbody>
-</table>
-<h3 id="返回data参数说明-3"><a href="#返回data参数说明-3" class="headerlink" title="返回data参数说明"></a>返回data参数说明</h3><table>
-<thead>
-<tr>
-<th>参数名称</th>
-<th>类型</th>
-<th style="text-align:center">是否必须</th>
-<th>说明</th>
-<th>样例</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>total</td>
-<td>int</td>
-<td style="text-align:center">yes</td>
-<td>总数</td>
-<td>100</td>
-</tr>
-<tr>
-<td>users</td>
-<td>json</td>
-<td style="text-align:center">yes</td>
-<td>关注的用户信息</td>
-<td>见下</td>
-</tr>
-</tbody>
-</table>
-<h3 id="users-json-array说明"><a href="#users-json-array说明" class="headerlink" title="users json array说明"></a>users json array说明</h3><table>
-<thead>
-<tr>
-<th>参数名称</th>
-<th>类型</th>
-<th style="text-align:center">是否必须</th>
-<th>说明</th>
-<th>样例</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>uid</td>
-<td>string</td>
-<td style="text-align:center">yes</td>
-<td>炫耀党uid</td>
-<td></td>
-</tr>
-<tr>
-<td>name</td>
-<td>string</td>
-<td style="text-align:center">yes</td>
-<td>用户名</td>
-<td>张三</td>
-</tr>
-<tr>
-<td>avatar</td>
-<td>string</td>
-<td style="text-align:center">yes</td>
-<td>头像</td>
-<td><a href="http://test.com/test.jpg" target="_blank" rel="noopener">http://test.com/test.jpg</a></td>
-</tr>
-</tbody>
-</table>
-<h2 id="获取用户对游戏是否关注"><a href="#获取用户对游戏是否关注" class="headerlink" title="获取用户对游戏是否关注"></a>获取用户对游戏是否关注</h2><h3 id="请求方式：-4"><a href="#请求方式：-4" class="headerlink" title="请求方式："></a>请求方式：</h3><h3 id="请求地址：-4"><a href="#请求地址：-4" class="headerlink" title="请求地址："></a>请求地址：</h3><h3 id="请求参数说明-4"><a href="#请求参数说明-4" class="headerlink" title="请求参数说明"></a>请求参数说明</h3><table>
-<thead>
-<tr>
-<th>参数名称</th>
-<th>类型</th>
-<th style="text-align:center">是否必须</th>
-<th>说明</th>
-<th>样例</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>uid</td>
-<td>string</td>
-<td style="text-align:center">yes</td>
-<td>炫耀党uid</td>
-<td></td>
-</tr>
-<tr>
-<td>game_cms_id</td>
-<td>string</td>
-<td style="text-align:center">yes</td>
-<td>游戏的cms id</td>
-<td></td>
-</tr>
-</tbody>
-</table>
-<h3 id="返回data参数说明-4"><a href="#返回data参数说明-4" class="headerlink" title="返回data参数说明"></a>返回data参数说明</h3><table>
-<thead>
-<tr>
-<th>参数名称</th>
-<th>类型</th>
-<th style="text-align:center">是否必须</th>
-<th>说明</th>
-<th>样例</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>type</td>
-<td>string</td>
-<td style="text-align:center">yes</td>
-<td>cms文档id</td>
-<td>0 未关注 <br> 1 已关注</td>
-</tr>
-</tbody>
-</table>
-<h2 id="获取用户对游戏的关注列表"><a href="#获取用户对游戏的关注列表" class="headerlink" title="获取用户对游戏的关注列表"></a>获取用户对游戏的关注列表</h2><h3 id="请求方式：-5"><a href="#请求方式：-5" class="headerlink" title="请求方式："></a>请求方式：</h3><h3 id="请求地址：-5"><a href="#请求地址：-5" class="headerlink" title="请求地址："></a>请求地址：</h3><h3 id="请求参数说明-5"><a href="#请求参数说明-5" class="headerlink" title="请求参数说明"></a>请求参数说明</h3><table>
-<thead>
-<tr>
-<th>参数名称</th>
-<th>类型</th>
-<th style="text-align:center">是否必须</th>
-<th>说明</th>
-<th>样例</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>uid</td>
-<td>string</td>
-<td style="text-align:center">yes</td>
-<td>炫耀党uid</td>
-<td></td>
-</tr>
-</tbody>
-</table>
-<h3 id="返回data参数说明-5"><a href="#返回data参数说明-5" class="headerlink" title="返回data参数说明"></a>返回data参数说明</h3><table>
-<thead>
-<tr>
-<th>参数名称</th>
-<th>类型</th>
-<th style="text-align:center">是否必须</th>
-<th>说明</th>
-<th>样例</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>total</td>
-<td>int</td>
-<td style="text-align:center">yes</td>
-<td>总数</td>
-<td>100</td>
-</tr>
-<tr>
-<td>games</td>
-<td>json</td>
-<td style="text-align:center">yes</td>
-<td>关注的用户信息</td>
-<td>见下</td>
-</tr>
-</tbody>
-</table>
-<h3 id="games-json-array说明"><a href="#games-json-array说明" class="headerlink" title="games json array说明"></a>games json array说明</h3><table>
-<thead>
-<tr>
-<th>参数名称</th>
-<th>类型</th>
-<th style="text-align:center">是否必须</th>
-<th>说明</th>
-<th>样例</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>game_cms_id</td>
-<td>string</td>
-<td style="text-align:center">yes</td>
-<td>游戏的cms_id</td>
-<td></td>
-</tr>
-</tbody>
-</table>
+    <span class="archive-page-counter">
+      
+      
+      
+        
+      
+      嗯..! 目前共计 2 篇日志。 继续努力。
+    </span>
 
     
-  </div>
+
+      
+      
+      
+
+      
+        
+        <div class="collection-title">
+          <h2 class="archive-year motion-element" id="archive-year-2017">2017</h2>
+        </div>
+      
+      
+
+      
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      <h1 class="post-title">
+        
+            <a class="post-title-link" href="/数据结构与算法/" itemprop="url">
+              
+                <span itemprop="name">数据结构与算法</span>
+              
+            </a>
+        
+      </h1>
+
+      <div class="post-meta">
+        <time class="post-time" itemprop="dateCreated"
+              datetime="2017-03-24T17:00:00+08:00"
+              content="2017-03-24" >
+          03-24
+        </time>
+      </div>
+
+    </header>
+  </article>
+
+
+
+    
+
+  </section>
+
+  
+
 
           
           </div>
@@ -781,12 +343,6 @@
 
 
           
-  <div class="comments" id="comments">
-    
-      <div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>
-    
-  </div>
-
 
         </div>
         
@@ -997,6 +553,12 @@
   
 
   
+  
+    <script type="text/javascript" id="motion.page.archive">
+      $('.archive-year').velocity('transition.slideLeftIn');
+    </script>
+  
+
 
   
 
