@@ -1,6 +1,250 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[模式-适配器]]></title>
+    <url>%2F%E6%A8%A1%E5%BC%8F-%E9%80%82%E9%85%8D%E5%99%A8%2F</url>
+    <content type="text"><![CDATA[设计模式之适配器模式 简介将一个类的接口转换成客户希望的另外一个接口。 使用条件 一般是已存在的类 其方法 与 需求有些不符 通过加工处理可以完成 需求 类图12345678910111213141516171819@startumlTitle &quot;适配器模式 类图&quot;class Clientinterface Target &#123; +Request()&#125;class Adapter&#123; +Request()&#125;class Adaptee&#123; +SpecificRequest()&#125;Client--&gt;TargetAdapter--|&gt;TargetAdapter--&gt;Adaptee@enduml 实现PHP 终端所需知道的 123interface Target&#123; public function Request();&#125; 具体适配器 12345678910111213141516/** * Class 适配器 * @package App\Maozhua\Libs */class Adapter implements Target &#123; private $adaptee; public function __construct() &#123; $this-&gt;adaptee = new Adaptee(); &#125; public function Request() &#123; $this-&gt;adaptee-&gt;SpecificRequest(); &#125;&#125; 适配的对象 123456789/** * Class 适配的对象 * @package App\Maozhua\Libs */class Adaptee &#123; public function SpecificRequest() &#123; &#125;&#125; 使用 12$target = new Adapter();$target-&gt;Request();]]></content>
+      <categories>
+        <category>模式</category>
+      </categories>
+      <tags>
+        <tag>模式</tag>
+        <tag>笔记</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Go小记-初识]]></title>
+    <url>%2FGo%E5%B0%8F%E8%AE%B0%2F</url>
+    <content type="text"><![CDATA[整理的一些小记 dep1brew install dep 情景 gitlab Go toolsLint语法检测与建议 安装1go get -u golang.org/x/lint/golint 无梯子的安装/tools/init.sh123456789101112#!/usr/bin/env bash## 安装lint，其他需要翻墙的，大多也能这么安装mkdir -p $GOPATH/src/golang.org/xif [ ! -d $GOPATH/src/golang.org/x/tools ]; then cd $GOPATH/src/golang.org/x git clone https://github.com/golang/tools.git git clone https://github.com/golang/lint.git go get golang.org/x/lint/golintfi 使用1golint -set_exit_status $(go list ./... | grep -v /vendor/) Unit test单元测试 使用每个目录都执行 go test 方法1go test -short $(go list ./... | grep -v /vendor/) Code coverage这个可以计算单元测试覆盖率，添加已下脚本文件 使用/tools/coverage.sh1234567#!/usr/bin/env bashPKG_LIST=$(go list ./... | grep -v /vendor/) for package in $&#123;PKG_LIST&#125;; do go test -covermode=count -coverprofile "cover/$&#123;package##*/&#125;.cov" "$package" ;donetail -q -n +2 cover/*.cov &gt;&gt; cover/coverage.covgo tool cover -func=cover/coverage.cov 查看1go tool cover -html=cover/coverage.cov -o coverage.html 写个makefile，来集中调用这些工具项目下创建Makefile文件一些语法需要注意下： 行首的缩进必须是tab 1234567891011121314151617181920212223242526272829303132333435363738394041PROJECT_NAME := "maozhuaV4"PKG := "$(PROJECT_NAME)"PKG_LIST := $(shell go list $&#123;PKG&#125;/... | grep -v /vendor/)GO_FILES := $(shell find . -name '*.go' | grep -v /vendor/ | grep -v _test.go)PATH := $(PATH):$&#123;GOPATH&#125;/binSHELL := env PATH=$(PATH) /bin/bash.PHONY: all dep build clean test coverage coverhtml lintall: buildlint: ## Lint the files @golint -set_exit_status $&#123;PKG_LIST&#125;test: ## Run unittests @go test -short $&#123;PKG_LIST&#125;race: dep ## Run data race detector @go test -race -short $&#123;PKG_LIST&#125;msan: dep ## Run memory sanitizer @go test -msan -short $&#123;PKG_LIST&#125;coverage: ## Generate global code coverage report ./tools/coverage.sh;coverhtml: ## Generate global code coverage report in HTML ./tools/coverage.sh html;dep: ## Get the dependencies ./tools/init.sh; ## @go get -v -d ./...build: dep ## Build the binary file @go build -i -v $(PKG)clean: ## Remove previous build @rm -f $(PROJECT_NAME)help: ## Display this help screen @grep -h -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | awk 'BEGIN &#123;FS = ":.*?## "&#125;; &#123;printf "\033[36m%-30s\033[0m %s\n", $$1, $$2&#125;' 使用12345make helpmake lintmake depmake coverage## ... gitlab的CI/CD整理好了这些工具，那怎么自动调用呢？ 如gitlab有pipelines、drone等。这里使用的是gitlab。 创建 .gitlab-ci.yml官方文档变量 12345678910111213141516171819202122232425262728293031323334353637383940414243444546image: golang:1.10cache: paths: - /apt-cache - /go/src/github.com - /go/src/golang.org - /go/src/google.golang.org - /go/src/gopkg.instages: - test - buildbefore_script: - mkdir -p /go/src/$CI_PROJECT_NAMESPACE/$CI_PROJECT_NAME /go/src/_/builds/$CI_PROJECT_NAMESPACE - cp -r $CI_PROJECT_DIR /go/src/$CI_PROJECT_NAME - ln -s /go/src/$CI_PROJECT_NAME /go/src/_/builds/$CI_PROJECT_NAMESPACE/$CI_PROJECT_NAME - make depunit_tests: stage: test script: - make testrace_detector: stage: test script: - make race#memory_sanitizer:# stage: test# script:# - make msancode_coverage: stage: test script: - make coveragecode_coverage_report: stage: test script: - make coverhtml only: - masterlint_code: stage: test script: - make lintbuild: stage: build script: - make 安装Runner上述只是任务，具体在哪跑，得另行指定 k8s手动安装登录gitlab服务器，执行1sudo wget -O /usr/local/bin/gitlab-runner https://gitlab-runner-downloads.s3.amazonaws.com/latest/binaries/gitlab-runner-linux-amd64 镜像build pushdocker in docker上面的runner用的executor用的是docker，那么问题来了，要怎么把生成好的镜像推送到镜像仓库呢？ 在容器中再安装docker run的时候传入： docker run -v /var/run/docker.sock:/var/run/docker.sock -v $(which docker):$(which docker) -ti google/golang /bin/bash gitlab-runner提供了方法 1、找到配置文件1gitlab-runner list /etc/gitlab-runner/config.toml 中修改1234[[runners]] executor = &quot;docker&quot; [runners.docker] privileged = true 2、建个镜像，把go环境也搭好，这里镜像就叫mygolang了Dockerfile123456789101112131415161718192021222324252627282930313233343536373839404142FROM dockerMAINTAINER lepoch &lt;ll-xzx@qq.com&gt;#使用 ali 仓库地址RUN echo -e "http://mirrors.aliyun.com/alpine/latest-stable/main\n\http://mirrors.aliyun.com/alpine/latest-stable/community" &gt; /etc/apk/repositoriesRUN apk update &amp;&amp; apk add curl ca-certificates wget bash go1.10 git make &amp;&amp; \ ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime &amp;&amp; \ echo "Asia/Shanghai" &gt; /etc/timezone &amp;&amp; \ rm -rf /root/.cacheRUN set -eux; \ apk update; \ apk add --no-cache --virtual .build-deps \ bash \ gcc \ musl-dev \ openssl \ ; \ export \# set GOROOT_BOOTSTRAP such that we can actually build Go GOROOT_BOOTSTRAP="$(go env GOROOT)" \# ... and set "cross-building" related vars to the installed system's values so that we create a build targeting the proper arch# (for example, if our build host is GOARCH=amd64, but our build env/image is GOARCH=386, our build needs GOARCH=386) GOOS="$(go env GOOS)" \ GOARCH="$(go env GOARCH)" \ GOHOSTOS="$(go env GOHOSTOS)" \ GOHOSTARCH="$(go env GOHOSTARCH)" \ CGO_ENABLED="0" \ ; \ export PATH="/usr/local/go/bin:$PATH"; \ go versionENV GOPATH /goENV PATH $GOPATH/bin:/usr/local/go/bin:$PATHENV CGO_ENABLED "0"RUN mkdir -p "$GOPATH/src" "$GOPATH/bin" &amp;&amp; chmod -R 777 "$GOPATH"WORKDIR $GOPATH 3、修改yaml文件1234567image: mygolang# Use the OverlayFS driver for improved performance.variables: DOCKER_DRIVER: overlayservices: - docker:dind 4、build 和 push 12345678build: stage: build script: - docker info - docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN registry.maozhuar.com - CGO_ENABLED=0 GOOS=linux go build -a -installsuffix cgo -o main $CI_PROJECT_NAME/ - docker build -t registry.maozhuar.com/backenddeveloper/maozhuav4:$CI_COMMIT_REF_NAME . - docker push registry.maozhuar.com/backenddeveloper/maozhuav4:$CI_COMMIT_REF_NAME 部署以单台机器来说，用ssh远程执行其脚本即可。 在要部署的机器上，执行1234useradd --comment 'GitLab Runner' --create-home gitlab-runner --shell /bin/bashgroupadd dockerusermod -aG docker gitlab-runnersystemctl restart docker ssh使用秘钥 [https://docs.gitlab.com/ee/ci/ssh_keys/README.html] 创建秘钥对 把私钥放入gitlab CI/CD的 secret key 把ssh-keyscan的结果也放入 secret key 相关网址 Go tools &amp; GitLab — how to do Continuous Integration like a boss Runner]]></content>
+      <categories>
+        <category>Go</category>
+      </categories>
+      <tags>
+        <tag>笔记</tag>
+        <tag>Go</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Go小记-初识]]></title>
+    <url>%2Fkubeadmin%E8%B6%B3%E8%BF%B9%2F</url>
+    <content type="text"><![CDATA[跟着官方文档，使用kubeadmin搭建kubernetes。 环境6台阿里云ecs，CPU： 2核 内存：4 GB ， centOS 7.4 64位， root用户 k8s1 192.168.0.248 k8s2 192.168.0.249 k8s3 192.168.0.250 k8s4 192.168.0.251 k8s5 192.168.0.252 k8s6 192.168.0.247 123456789101112131415161718192021222324252627282930313233yum install -y dockersystemctl enable docker &amp;&amp; systemctl start dockercat &lt;&lt;EOF &gt; /etc/yum.repos.d/kubernetes.repo[kubernetes]name=Kubernetesbaseurl=https://packages.cloud.google.com/yum/repos/kubernetes-el7-x86_64enabled=1gpgcheck=1repo_gpgcheck=1gpgkey=https://packages.cloud.google.com/yum/doc/yum-key.gpg https://packages.cloud.google.com/yum/doc/rpm-package-key.gpgEOFsetenforce 0yum install -y kubelet kubeadm kubectlsystemctl enable kubelet &amp;&amp; systemctl start kubeletcat &lt;&lt;EOF &gt; /etc/sysctl.d/k8s.confnet.bridge.bridge-nf-call-ip6tables = 1net.bridge.bridge-nf-call-iptables = 1EOFsysctl --systemsed -i &quot;s/cgroup-driver=systemd/cgroup-driver=systemd/g&quot; /etc/systemd/system/kubelet.service.d/10-kubeadm.confsystemctl daemon-reloadsystemctl restart kubeletecho &apos;export KUBECONFIG=/etc/kubernetes/admin.conf&apos; &gt;&gt; ~/.bash_profilesource ~/.bash_profile# kubeadm join --token 0c13a5.bf9bda1f47c070d3 192.168.0.131:6443 --discovery-token-ca-cert-hash sha256:4576241c6828d3b635bf3cab14cfce7eee7e5016502fd1cb69fbea1a7ea87ea2 123456789101112131415161718192021yum install -y dockersystemctl enable docker &amp;&amp; systemctl start dockercat &gt;&gt; /etc/yum.repos.d/kubernetes.repo &lt;&lt;EOF[kubernetes]name=Kubernetesbaseurl=https://mirrors.aliyun.com/kubernetes/yum/repos/kubernetes-el7-x86_64/enabled=1gpgcheck=0EOFsetenforce 0yum install -y kubelet kubeadm kubectlsystemctl enable kubelet &amp;&amp; systemctl start kubeletsed -i &quot;s/cgroup-driver=systemd/cgroup-driver=systemd/g&quot; /etc/systemd/system/kubelet.service.d/10-kubeadm.confsystemctl daemon-reloadsystemctl restart kubelet# kubeadm join --token 6b71c7.2816073a294e1f3d 192.168.0.131:6443 --discovery-token-ca-cert-hash sha256:f8db9e3bd9aa5e0c9b5954a54e0dbbec3d70e1133423c257ff474f479a87333a 安装安装docker12yum install -y dockersystemctl enable docker &amp;&amp; systemctl start docker 安装kubeadm，kubelet和kubectl kubeadm：引导群集的命令。 kubelet：在群集中的所有机器上运行的组件，并执行诸如启动荚和容器之类的组件。 kubectl：命令行util与您的群集通话。 天朝网络不可达，得另寻出路1234567891011cat &gt;&gt; /etc/yum.repos.d/kubernetes.repo &lt;&lt;EOF[kubernetes]name=Kubernetesbaseurl=https://mirrors.aliyun.com/kubernetes/yum/repos/kubernetes-el7-x86_64/enabled=1gpgcheck=0EOFsetenforce 0yum install -y kubelet kubeadm kubectlsystemctl enable kubelet &amp;&amp; systemctl start kubelet 在主节点上配置kubelet使用的cgroup驱动程序查看驱动：12docker info | grep -i cgroupcat /etc/systemd/system/kubelet.service.d/10-kubeadm.conf 修改cgroup-driver为docker使用的驱动1sed -i &quot;s/cgroup-driver=systemd/cgroup-driver=systemd/g&quot; /etc/systemd/system/kubelet.service.d/10-kubeadm.conf 重启kubelet12systemctl daemon-reloadsystemctl restart kubelet 创建集群初始化master指定版本，不然就得翻墙。。。1kubeadm init --kubernetes-version=1.9.0 --token-ttl 0 root用户：export KUBECONFIG=/etc/kubernetes/admin.conf]]></content>
+      <categories>
+        <category>运维</category>
+      </categories>
+      <tags>
+        <tag>kubernetes</tag>
+        <tag>k8s</tag>
+        <tag>kubeadmin</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[PHP性能分析工具]]></title>
+    <url>%2FPHP%E6%80%A7%E8%83%BD%E5%88%86%E6%9E%90%E5%B7%A5%E5%85%B7%2F</url>
+    <content type="text"><![CDATA[PHP性能分析工具tideways：xhgui：用于显示xhprof数据的图形界面。环境：腾讯云CentOS 7 x64php 7.1 安装mongodbvi /etc/yum.repos.d/mongodb-org-3.2.repo123456[mongodb-org-3.2]name=MongoDB Repositorybaseurl=https://repo.mongodb.org/yum/redhat/$releasever/mongodb-org/3.2/x86_64/gpgcheck=1enabled=1gpgkey=https://www.mongodb.org/static/pgp/server-3.2.asc 安装1yum -y install mongodb-org 启动12mkdir -p /data/mongodb/dbmongod --dbpath=/data/mongodb/db --fork --logpath=/data/mongodb/mongodb.log xhgui前置：mongodb扩展12345678910111213# ubuntu# yum install libssl openssl-devel -y# ln -s /usr/lib/x86_64-linux-gnu/libssl.so /usr/lib# pecl install mongodbgit clone https://github.com/mongodb/mongo-php-driver.gitcd mongo-php-drivergit submodule sync &amp;&amp; git submodule update --initphpize./configuremake all -j 5make install 在 fpm/php.ini和cli/php.ini里打开扩展，如12echo &quot;extension=mongodb.so&quot; &gt;&gt; /usr/local/serv/php/etc/php.iniecho &quot;extension=mongodb.so&quot; &gt;&gt; /usr/local/serv/php/lib/php.ini php install.phpphp7.1没有mcrypt扩展，php install.php执行时会可能会出现问题，其引用的require修改成“&gt;”版本即可 Problem 1 Installation request for slim/slim 2.3.1 -&gt; satisfiable by slim/slim[2.3.1]. slim/slim 2.3.1 requires ext-mcrypt * -&gt; the requested PHP extension mcrypt is missing from your system. 安装12git clone https://github.com/maxincai/xhgui.git profiler.maozhuar.comcd profiler.maozhuar.com 索引1mongo 123456use xhprofdb.results.ensureIndex( &#123; &apos;meta.SERVER.REQUEST_TIME&apos; : -1 &#125; )db.results.ensureIndex( &#123; &apos;profile.main().wt&apos; : -1 &#125; )db.results.ensureIndex( &#123; &apos;profile.main().mu&apos; : -1 &#125; )db.results.ensureIndex( &#123; &apos;profile.main().cpu&apos; : -1 &#125; )db.results.ensureIndex( &#123; &apos;meta.url&apos; : 1 &#125; ) nginx配置123456789server &#123; server_name profiler.maozhuar.com; root /data/www/htdocs/profiler.maozhuar.com/webroot; location ~ \.php &#123; fastcgi_pass localhost:9002; &#125; try_files $uri $uri/ /index.php?$query_string;&#125; tideways 见该安装地址，选择系统安装方式https://tideways.io/profiler/docs/setup/installation 配置123echo &quot;extension=tideways.so&quot; &gt;&gt; /usr/local/serv/php/etc/php.iniecho &quot;tideways.sample_rate=25&quot; &gt;&gt; /usr/local/serv/php/etc/php.iniecho &quot;auto_prepend_file=/data/www/htdocs/xhgui/external/header.php&quot; &gt;&gt; /usr/local/serv/php/etc/php.ini 参考 PHP性能被动分析工具之xhgui加tideways的安装实践 CentOS 7 yum方式快速安装MongoDB]]></content>
+      <categories>
+        <category>PHP</category>
+      </categories>
+      <tags>
+        <tag>PHP</tag>
+        <tag>工具</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Hive小记]]></title>
+    <url>%2FHive%E5%B0%8F%E8%AE%B0%2F</url>
+    <content type="text"><![CDATA[Hive小记环境：腾讯云CentOS 7 x64目标：安装、使用Hadoop Hive 安装安装 OpenJDK 8Hadoop小记 安装 Hive下载网址：[http://mirror.bit.edu.cn/apache/hive/]1234567891011121314wget http://10.210.0.8/apache-hive-2.1.1-bin.tar.gztar -xzf apache-hive-2.1.1-bin.tar.gzmv apache-hive-2.1.1-bin /usr/local/( cat &lt;&lt;EOFexport HIVE_HOME=/usr/local/apache-hive-2.1.1-binexport PATH=$HIVE_HOME/bin:$PATHEOF) &gt;&gt; /etc/profilesource /etc/profile 设置 metastoreconf/hive-site.xml12345678910111213141516171819202122&lt;configuration&gt; &lt;property&gt; &lt;name&gt;javax.jdo.option.ConnectionURL&lt;/name&gt; &lt;value&gt;jdbc:mysql://localhost/metastore?createDatabaseIfNotExist=true&lt;/value&gt; &lt;description&gt;metadata is stored in a MySQL server&lt;/description&gt; &lt;/property&gt; &lt;property&gt; &lt;name&gt;javax.jdo.option.ConnectionDriverName&lt;/name&gt; &lt;value&gt;com.mysql.jdbc.Driver&lt;/value&gt; &lt;description&gt;MySQL JDBC driver class&lt;/description&gt; &lt;/property&gt; &lt;property&gt; &lt;name&gt;javax.jdo.option.ConnectionUserName&lt;/name&gt; &lt;value&gt;hive&lt;/value&gt; &lt;description&gt;user name for connecting to mysql server&lt;/description&gt; &lt;/property&gt; &lt;property&gt; &lt;name&gt;javax.jdo.option.ConnectionPassword&lt;/name&gt; &lt;value&gt;hivepassword&lt;/value&gt; &lt;description&gt;password for connecting to mysql server&lt;/description&gt; &lt;/property&gt;&lt;/configuration&gt; jdbc123wget https://dev.mysql.com/get/Downloads/Connector-J/mysql-connector-java-5.1.42.zipunzip -o mysql-connector-java-5.1.42.zipmv mysql-connector-java-5.1.42/mysql-connector-java-5.1.42-bin.jar $HIVE_HOME/lib/ 启动问题：1Unable to instantiate org.apache.hadoop.hive.ql.metadata.SessionHiveMet 解决：12# 初始化bin/schematool -dbType mysql -initSchema 使用12345678CREATE EXTERNAL TABLE IF NOT EXISTS maozhua_weight_production (type TINYINT, mark STRING, act TINYINT, uid INT, time int) ROW FORMAT SERDE &apos;org.apache.hive.hcatalog.data.JsonSerDe&apos; LOCATION &apos;/maozhua/production/weight&apos;;CREATE EXTERNAL TABLE IF NOT EXISTS maozhua_weight_testing (type TINYINT, mark STRING, act TINYINT, uid INT, time int) ROW FORMAT SERDE &apos;org.apache.hive.hcatalog.data.JsonSerDe&apos; LOCATION &apos;/maozhua/testing/weight/&apos;; 问题：递归12set hive.mapred.supports.subdirectories=true;set mapreduce.input.fileinputformat.input.dir.recursive=true; 问题：format Json FAILED: Execution Error, return code 1 from org.apache.hadoop.hive.ql.exec.DDLTask. Cannot validate serde: org.apache.hive.hcatalog.data.JsonSerDe HCatalog12export CLASSPATH=$HIVE_HOME/hcatalog/share/hcatalog:$CLASSPATHADD JAR /usr/local/apache-hive-2.1.1-bin/hcatalog/share/hcatalog/hive-hcatalog-core-2.1.1.jar; 参考 官方文档 Hadoop 伪分布式下更换默认hadoop.tmp.dir路径 关于Hive Metastore模式杂谈 搭建Hive所遇过的坑]]></content>
+      <categories>
+        <category>Hadoop</category>
+        <category>小记</category>
+      </categories>
+      <tags>
+        <tag>Hive</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Flume小记]]></title>
+    <url>%2FFlume%E5%B0%8F%E8%AE%B0%2F</url>
+    <content type="text"><![CDATA[Flume小记 环境：腾讯云CentOS 7 x64目标：安装Flume 1.7 安装java 1.8Hadoop小记 Flume 1.7123456# wget http://apache.fayea.com/flume/1.7.0/apache-flume-1.7.0-bin.tar.gzwget http://10.210.0.8/apache-flume-1.7.0-bin.tar.gztar -xzf apache-flume-1.7.0-bin.tar.gzmv apache-flume-1.7.0-bin /usr/local/cd /usr/local/apache-flume-1.7.0-bin 配置client使用exec sourcevim conf/client.conf1234567891011121314151617181920212223242526272829# Name the components on this agentclient.sinks = k1client.sources = r1client.channels = c1# Use a channel which buffers events in memoryclient.channels.c1.type = memoryclient.channels.c1.capacity = 1000client.channels.c1.transactionCapacity = 100client.sources.r1.type = TAILDIRclient.sources.r1.channels = c1client.sources.r1.positionFile = /data/www/flume/taildir_position.jsonclient.sources.r1.filegroups = f1client.sources.r1.filegroups.f1 = /data/www/htdocs/v3.maozhuar.com/storage/maozhua/production/weight/log-.*client.sources.r1.headers.f1.headerKey1 = value1client.sources.r1.fileHeader = true# Describe the sinkclient.sinks.k1.type = avroclient.sinks.k1.channel = c1client.sinks.k1.hostname = hadoop.maozhuar.comclient.sinks.k1.port = 4100 运行1nohup /usr/local/apache-flume-1.7.0-bin/bin/flume-ng agent --conf conf --conf-file /usr/local/apache-flume-1.7.0-bin/conf/client.conf --name client &gt; 2 &gt;&amp;1 &amp; 接收端使用使用hdfs，得先把hadoop中得jar包复制到flume/lib/中hadoop/share/hadoop/common/.jarhadoop/share/hadoop/common/lib/.jarhadoop/share/hadoop/hdfs/hadoop-hdfs-*.jar 123456789101112131415161718192021222324252627# Name the components on this agenta1.sinks = k1a1.sources = r1a1.channels = c1a1.sources.r1.type = avroa1.sources.r1.channels = c1a1.sources.r1.bind = 0.0.0.0a1.sources.r1.port = 4141a1.sinks.k1.type = hdfsa1.sinks.k1.channel = c1a1.sinks.k1.hdfs.path = hdfs://hadoop.maozhuar.com:9000/flume/events/%y-%m-%d/a1.sinks.k1.hdfs.useLocalTimeStamp = truea1.sinks.k1.hdfs.filePrefix=maozhuaa1.sinks.k1.hdfs.minBlockReplicas=1a1.sinks.k1.hdfs.fileType=DataStreama1.sinks.k1.hdfs.writeFormat=Texta1.sinks.k1.hdfs.rollInterval=600a1.sinks.k1.hdfs.rollSize=0a1.sinks.k1.hdfs.rollCount=0a1.sinks.k1.hdfs.idleTimeout=0a1.channels.c1.type = memorya1.channels.c1.capacity = 1000a1.channels.c1.transactionCapacity = 100 运行1bin/flume-ng agent --conf conf --conf-file conf/.conf --name a1 -Dflume.root.logger=INFO,console 问题：hdfs文件乱码解决：1a1.sinks.k1.hdfs.fileType=DataStream 问题：Expected timestamp in the Flume event headers, but it was null解决1，每行开头有时间戳解决21a1.sinks.k1.hdfs.useLocalTimeStamp = true 问题：没秒钟产生一个hdfs文件解决12345678910111213a1.sinks.k1.type = hdfsa1.sinks.k1.channel = c1a1.sinks.k1.hdfs.path = hdfs://hadoop.maozhuar.com:9000/flume/events/%y-%m-%d/a1.sinks.k1.hdfs.useLocalTimeStamp = truea1.sinks.k1.hdfs.filePrefix=maozhuaa1.sinks.k1.hdfs.minBlockReplicas=1a1.sinks.k1.hdfs.fileType=DataStreama1.sinks.k1.hdfs.writeFormat=Texta1.sinks.k1.hdfs.rollInterval=600a1.sinks.k1.hdfs.rollSize=0a1.sinks.k1.hdfs.rollCount=0a1.sinks.k1.hdfs.idleTimeout=0 参考【Flume】【源码分析】flume中sink到hdfs，文件系统频繁产生文件，文件滚动配置不起作用？]]></content>
+      <categories>
+        <category>Hadoop</category>
+        <category>小记</category>
+      </categories>
+      <tags>
+        <tag>Hadoop</tag>
+        <tag>Flume</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Haddop小记]]></title>
+    <url>%2FHadoop%E5%B0%8F%E8%AE%B0%2F</url>
+    <content type="text"><![CDATA[Haddop小记环境：腾讯云CentOS 7 x64目标：安装Hadoop 2.8.0 安装安装 OpenJDK 8下载地址：[http://www.oracle.com/technetwork/java/javase/downloads/index.html]修改 vim /etc/profile 12345678910111213141516171819sudo sucd ~wget http://58.87.87.210/server-jre-8u131-linux-x64.tartar -xf server-jre-8u131-linux-x64.tarcp -r jdk1.8.0_131 /usr/local/#修改/etc/profile( cat &lt;&lt;EOFexport JAVA_HOME=/usr/local/jdk1.8.0_131export JRE_HOME=\$JAVA_HOME/jreexport CLASSPATH=.:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar:$JRE_HOME/lib:$CLASSPATHexport PATH=\$JAVA_HOME/bin:\$PATHEOF) &gt;&gt; /etc/profilesource /etc/profile 依赖1yum install -y ssh rsync 安装hadoop 2.8.012345678wget https://mirrors.tuna.tsinghua.edu.cn/apache/hadoop/common/hadoop-2.8.0/hadoop-2.8.0.tar.gztar -zxf hadoop-2.8.0.tar.gzmv hadoop-2.8.0 /usr/local/mkdir inputcp etc/hadoop/*.xml inputbin/hadoop jar share/hadoop/mapreduce/hadoop-mapreduce-examples-2.8.0.jar grep input output &apos;dfs[a-z.]+&apos;cat output/* 使用伪分布式的hdfs目录修改 etc/hadoop/core-site.xml，加入12345&lt;property&gt; &lt;name&gt;hadoop.tmp.dir&lt;/name&gt; &lt;value&gt;/data/hadoop/data&lt;/value&gt; &lt;description&gt;A base for other temporary directories.&lt;/description&gt; &lt;/property&gt; 其他见官方文档 参考 [http://blog.csdn.net/telnetor/article/details/6993336]]]></content>
+      <categories>
+        <category>Hadoop</category>
+        <category>小记</category>
+      </categories>
+      <tags>
+        <tag>Hadoop</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[laravel]]></title>
+    <url>%2Flaravel%2F</url>
+    <content type="text"><![CDATA[laravel 笔记 homestead这是个vagrant使用的盒子，其中包含开发使用的各种环境。 添加 yar 扩展登陆到虚拟机后1234567891011121314151617181920212223242526sudo suapt-get updateapt-get install -y libcurl3-devwget http://pecl.php.net/get/yar-2.0.2.tgztar -zxf yar-2.0.2.tgzcd yar-2.0.2phpize./configuremake &amp;&amp; make installecho &quot;extension=yar.so&quot; &gt;&gt; /etc/php/7.1/fpm/php.ini/etc/init.d/php7.1-fpm reloadyum install autoconf -ycd /usr/local/serv/srcwget http://pecl.php.net/get/redis-3.1.2.tgztar -zxf redis-3.1.2.tgzcd redis-3.1.2phpize./configuremake &amp;&amp; make installecho &quot;extension=redis.so&quot; &gt;&gt; /etc/php/7.1/fpm/php.ini/etc/init.d/php7.1-fpm reload]]></content>
+      <categories>
+        <category>PHP</category>
+        <category>laravel</category>
+      </categories>
+      <tags>
+        <tag>PHP</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Git]]></title>
+    <url>%2FGit%2F</url>
+    <content type="text"><![CDATA[Git 彻底删除某文件及历史git filter-branch –force –index-filter ‘git rm –cached –ignore-unmatch “doc/base.sql” ‘ –prune-empty –tag-name-filter cat – –allgit push origin –force –allgit push origin –force –tagsgit for-each-ref –format=’delete %(refname)’ refs/original | git update-ref –stdingit reflog expire –expire=now –allgit gc –prune=nowgit count-objects -v]]></content>
+      <tags>
+        <tag>笔记</tag>
+        <tag>Git</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Swoole初识]]></title>
+    <url>%2FSwoole%E5%88%9D%E8%AF%86%2F</url>
+    <content type="text"><![CDATA[Swoole初识 背景可能是因为Laravel框架原因，Yar并发请求的性能并没有达到预期目标。需探索另外的道路。 安装Homestead环境1234567891011121314sudo sucd ~wget https://github.com/swoole/swoole-src/archive/v2.0.7.tar.gztar -xzf v2.0.7.tar.gzcd swoole-src-2.0.7/phpize./configure --enable-coroutinemakemake installecho &quot;extension=swoole.so&quot; &gt;&gt; /etc/php/7.1/cli/php.ini# echo &quot;extension=swoole.so&quot; &gt;&gt; /etc/php/7.1/fpm/php.ini# /etc/init.d/php7.1-fpm reload]]></content>
+      <tags>
+        <tag>笔记</tag>
+        <tag>Swoole</tag>
+        <tag>Laravel</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[NewSQL]]></title>
+    <url>%2FNewSQL%2F</url>
+    <content type="text"><![CDATA[参考 数据库功能深度解析：怎样打造一个分布式数据库 TiDB 的正确使用姿势]]></content>
+      <tags>
+        <tag>mysql</tag>
+        <tag>sql</tag>
+        <tag>nosql</tag>
+        <tag>分布式数据库</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[游戏推编码规范]]></title>
+    <url>%2F%E6%B8%B8%E6%88%8F%E6%8E%A8%E7%BC%96%E7%A0%81%E8%A7%84%E8%8C%83%2F</url>
+    <content type="text"><![CDATA[游戏推编码规范 PSR-[0-4] 规范具体见PSR这里我只简单强调几点。 一般的IDE都有一键PSR格式化，然而其只能做到花括号位置调整、空格调整等功能，剩下的就得靠自己注意了。 PHP文件规范 只使用 &lt;?php标签 只使用不带BOM的UTF-8文件（IDE代办） 纯PHP代码源文件的关闭标签?&gt;必须省略。 必须使用Unix LF(换行)作为行结束符。（IDE代办） 命名规范 命名空间必须跟目录、文件名保持关联，如文件 Doctrine/Common/IsolatedClassLoader.php 的类应是 123456namespace Doctrine\Common\class IsolatedClassLoader&#123; // ...&#125; 类名(class name) 必须使用骆驼式(StudlyCaps)写法 类名必须要和对应的文件名要一模一样，大小写也要一模一样 类(class)中的常量必须只由大写字母和下划线(_)组成 方法名(method name) 必须使用驼峰式(cameCase)写法 属性(property)、方法(method)必须声明其可见性 代码风格 文件末尾必须空一行。 必须使用4个空格来缩进 一行推荐的是最多写80个字符 php的关键字，必须小写，boolean值：true，false，null 也必须小写 ‘__halt_compiler’, ‘abstract’, ‘and’, ‘array’, ‘as’, ‘break’, ‘callable’, ‘case’, ‘catch’, ‘class’, ‘clone’, ‘const’, ‘continue’, ‘declare’, ‘default’, ‘die’, ‘do’, ‘echo’, ‘else’, ‘elseif’, ‘empty’, ‘enddeclare’, ‘endfor’, ‘endforeach’, ‘endif’, ‘endswitch’, ‘endwhile’, ‘eval’, ‘exit’, ‘extends’, ‘final’, ‘for’, ‘foreach’, ‘function’, ‘global’, ‘goto’, ‘if’, ‘implements’, ‘include’, ‘include_once’, ‘instanceof’, ‘insteadof’, ‘interface’, ‘isset’, ‘list’, ‘namespace’, ‘new’, ‘or’, ‘print’, ‘private’, ‘protected’, ‘public’, ‘require’, ‘require_once’, ‘return’, ‘static’, ‘switch’, ‘throw’, ‘trait’, ‘try’, ‘unset’, ‘use’, ‘var’, ‘while’, ‘xor’ 类、方法、函数的花括号换行 123456&lt;?phpnamespace Lib\Databaes;class Mysql extends ParentClass implements \PDO, \DB // 写一行&#123; //换行写&#123;&#125; if else while switch等花括号不换行12345678&lt;?phpif ($expr1) &#123; //左右空格 // if body&#125; elseif ($expr2) &#123; //elesif 连着写 // elseif body&#125; else &#123; // else body;&#125; 注释规范 这得重点强调，每个类、方法都需有注释，且需要注明时间、作者 修改时，注明修改人、修改时间 laravel 规范helper方法在有helper方法的前提下，强烈建议使用helper方法代替对应的Facade或其他操作。 目录结构的调整 追加App/Models目录，App/User.php迁移至App/Models目录中，注意修改NameSpace和Use。 追加App/Libs目录，用于存放业务逻辑代码，参考了laravel官方示例的App/Repositories目录。 类调用写法 除使用Laravel的Facade等机制外，其他常规代码必须在php文件前部先use所需要使用的类，然后代码中直接调用。 如果出现不同namespace有相同的类名的情况的时候，必须全部使用别名来处理。 关于常量 附属于类的常量必须使用const定义，例如ActiveRecord中定义数据库里status/flag类型字段的具体数值和含义的时候。 归属于业务逻辑的常量，强烈建议定义在config目录中，通过config方法调用。 对于需要根据环境（env）进行变更的内容，按照以下原则进行： 配置内容属于架构信息、服务器信息、有必要隐藏无法提交git的信息，请使用.env文件配合env()方法进行设定（.env.example中必须添加对应的字段和示例） 属于业务逻辑的常量内容，或可以提交到git无需隐藏的部分配置类信息，直接在定义代码处使用环境判断函数判断环境后将所有值都写入代码中。 blade 模版引擎 使用如下标志符{{ }} laravel5.0起，是会其进行html_filter处理的，可以避免XSS攻击 资料参考 [https://www.zybuluo.com/phper/note/65033] [https://wenku.baidu.com/view/1693ade0964bcf84b8d57bd3.html] [http://www.ultrakuma.com/laravel-framework-specification-5-1-11.html]]]></content>
+      <tags>
+        <tag>游戏推</tag>
+        <tag>PHP</tag>
+        <tag>laravel</tag>
+        <tag>规范</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[游戏推开发环境搭建]]></title>
+    <url>%2F%E6%B8%B8%E6%88%8F%E6%8E%A8%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%2F</url>
+    <content type="text"><![CDATA[游戏推开发环境搭建 12345678910echo &apos;LANG=&quot;zh_CN.UTF-8&quot;&apos; &gt; /etc/locale.confsource /etc/locale.conf # 挂载硬盘fdisk /dev/vdb# n -&gt; p -&gt; \n -&gt; \n -&gt; \n -&gt; wmkfs.ext3 /dev/vdb1mount /dev/vdb1 /data# 开机自动挂载echo &apos;/dev/vdb1 /data ext3 defaults 1 2&apos; &gt;&gt; /etc/fstab Nginx + PHP7 + PHP5.4[https://github.com/lepoch/MaozhuaServ] mysql123456789101112131415161718192021222324252627282930313233yum install gcc gcc-c++ ncurses-devel perl cmake -ygroupadd mysql useradd -r -g mysql mysqlmkdir -p /usr/local/serv/mysqlmkdir -p /data/mysqldbmkdir -p /usr/local/serv/srccd /usr/local/serv/srcwget https://cdn.mysql.com//Downloads/MySQL-5.7/mysql-5.7.18.tar.gztar -zxv -f mysql-5.7.18.tar.gz cd mysql-5.7.18cmake \-DCMAKE_INSTALL_PREFIX=/usr/local/serv/mysql \-DDEFAULT_CHARSET=utf8 \-DDEFAULT_COLLATION=utf8_general_ci \-DWITH_EXTRA_CHARSETS:STRING=utf8,gbk \-DWITH_MYISAM_STORAGE_ENGINE=1 \-DWITH_INNOBASE_STORAGE_ENGINE=1 \-DWITH_MEMORY_STORAGE_ENGINE=1 \-DWITH_READLINE=1 \-DENABLED_LOCAL_INFILE=1 \-DMYSQL_DATADIR=/data/mysql \-DMYSQL_USER=mysql \-DDOWNLOAD_BOOST=1 \-DMYSQL_TCP_PORT=3306# 修改密码grep &apos;temporary password&apos; /var/log/mysqld.log redis1234567891011wget http://dl.fedoraproject.org/pub/epel/7/x86_64/e/epel-release-7-5.noarch.rpmrpm -ivh epel-release-7-5.noarch.rpmyum update -yyum install redis php-pecl-redis -y#systemctl start redis-server.service#systemctl enable redis-server.serviceredis-server /etc/redis.confecho &quot;redis-server /etc/redis.conf&quot; &gt;&gt; /etc/rc.local]]></content>
+      <categories>
+        <category>Linux</category>
+      </categories>
+      <tags>
+        <tag>游戏推</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Mac使用]]></title>
+    <url>%2FMac%E4%BD%BF%E7%94%A8%2F</url>
+    <content type="text"><![CDATA[Mac使用 ssh登陆不用每次输入完整命令、密码 使用expect使用iterm2终端，ssh + expect + 别名 此种方式登陆会出现lrzsz没效果的情况！！ yum install expect -y ~/expect/login.sh 12345678910#! /usr/bin/expectset timeout 30eval spawn [lrange $argv 1 end]expect &#123; &quot;(yes/no)?&quot; &#123;send &quot;yes\n&quot;;exp_continue&#125; &quot;password:&quot; &#123;send &quot;[lindex $argv 0]\n&quot;&#125;&#125;interact ~/.bash_profileexpect ~/expect/login.sh 密码 ssh 完整命令 1alias lssh-vultr=&apos;expect ~/expect/login.sh 密码 ssh root@45.77.12.xxx&apos; source ~/.bash_profile 使用 lssh-vultr 直接登陆 使用 sshpass使用.ssh (推荐)终端文字颜色 ~/.bash_profile123alias ls=&apos;ls -G&apos;alias ll=&apos;ls -l&apos;alias grep=&apos;grep --color&apos; source ~/.bash_profile]]></content>
+      <categories>
+        <category>Mac</category>
+      </categories>
+      <tags>
+        <tag>Mac</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[代码review工具]]></title>
+    <url>%2F%E4%BB%A3%E7%A0%81review%E5%B7%A5%E5%85%B7%2F</url>
+    <content type="text"><![CDATA[上周审核了几个同事的代码，发现代码规范用处太小。使用工具进行代码的审核势在必行。 环境LINUX 虚拟机 CentOS7 命令行代理，见另一篇 《Linux代理》Rietveld谷歌出品工具，很犀利，免费开源。PYTHON + Django， 使用Google App Engine。 git Google Cloud SDK 安装1wget https://storage.googleapis.com/appengine-sdks/featured/google_appengine_1.9.50.zip Phabricatorfacebook出品。基于LAMP。官方安装手册 环境依赖 Apache MySQL PHP yum 安装这种会出现 proc_open 调用系统命令权限问题 安装环境1234567891011yum install -y httpdyum install -y httpd-manual mod_ssl mod_perl mod_auth_mysqlwget http://dev.mysql.com/get/mysql-community-release-el7-5.noarch.rpmrpm -ivh mysql-community-release-el7-5.noarch.rpmyum install -y mysql-community-serveryum install -y mysql mysql-develyum install -y php php-mysqlyum install -y gd php-gd gd-devel php-xml php-common php-mbstring php-ldap php-pear php-xmlrpc php-imap 安装组件复制下来直接执行，执行路径即安装路径 .sh脚本 配置，Configration Guide Apache MySQL 使用 打开页面，创建管理员帐号 左上角的 Setup Issues，一个一个解决 Arcanist安装这个可以使用lint等，进行代码检测。 依赖 Install PHP. Install Git. 安装 1234mkdir somewhere/cd somewhere/git clone https://github.com/phacility/libphutil.gitgit clone https://github.com/phacility/arcanist.git 添加到PATH 1export PATH=&quot;$PATH:/somewhere/arcanist/bin/&quot; #### Diffusion这是绑定SVN、GIT等版本控制软件的工具。 提交后的审查auditPost-commit code review and auditing. Audits you are assigned to will appear here. 这里有一节《Audits in Small Teams》，中有Herald rule，在More Applications菜单中能找到。 问题Authentication Failure This Phabricator install is not configured with any enabled authentication providers which can be used to log in. If you have accidentally locked yourself out by disabling all providers, you can use phabricator/bin/auth recover &lt;username&gt; to recover access to an administrative account. 这是管理员被锁上了，使用提示中的命令恢复下就好。 proc问题查看diffusion，报错如下： Command failed with error #128! COMMAND git for-each-ref –sort=’-creatordate’ –format=’%(objectname)%01%(objecttype)%01%(refname)%01%(_objectname)%01%(_objecttype)%01%(subject)%01%(creator)’ – ‘refs/‘ STDOUT (empty) STDERR fatal: Not a git repository (or any of the parent directories): .git 还有svn –non-interactive –no-auth-cache –username什么什么的错误。 跟踪代码发现，都是proc执行系统命令出现的权限错误。而直接用 php cli 模式执行那些命令，则正常。。因时间原因，我直接换了 lnmp 。 ini_set include_path不生效 Unable to load libphutil. Put libphutil/ next to phabricator/, or update your PHP ‘include_path’ to include the parent directory of libphutil/. 发现是在fpm配置中写的，删除之后就行。 php_admin_value[include_path] = .:/usr/local/sinasrv2/lib/php SonarQube用于检测代码质量的开源平台，通过插件可对PHP,Java,C/C++,JavaScript等20多种语言进行多纬度质量检测。 依赖 Java 安装官方手册：&lt;https://docs.sonarqube.org/display/SONARQUBE56/Documentation/ &gt;本次安装的是5.6.6 LTS，P.S. 6.3 我这连MySQL失败 SonarQube serverweb可视化管理工具， 去&lt;http://www.sonarsource.org/downloads/ &gt;下载，unzip 解压。 1234wget https://sonarsource.bintray.com/Distribution/sonarqube/sonarqube-5.6.6.zipunzip sonarqube-5.6.6.zipmv sonarqube-5.6.6 /etc/sonarqube/etc/sonarqube/bin/[OS]/sonar.sh console 国内得修改谷歌字体，不然很卡1sed -i &apos;s/\(@import url(https:\/\/fonts.googleapis.com\/css\)/\/\/\1/g&apos; /etc/sonarqube/web/js/* 配置MySQL数据库，因为是虚拟机，就直接yum安装MySQLl了。12345CREATE DATABASE sonar CHARACTER SET utf8 COLLATE utf8_general_ci;CREATE USER &apos;sonar&apos; IDENTIFIED BY &apos;sonar&apos;;GRANT ALL ON sonar.* TO &apos;sonar&apos;@&apos;%&apos; IDENTIFIED BY &apos;sonar&apos;;GRANT ALL ON sonar.* TO &apos;sonar&apos;@&apos;localhost&apos; IDENTIFIED BY &apos;sonar&apos;;FLUSH PRIVILEGES; 配置MySQL1234567891011121314151617181920[root@localhost bin]# cat /etc/my.cnf[mysqld]max_allowed_packet=10Mdatadir=/var/lib/mysqlsocket=/var/lib/mysql/mysql.sockuser=mysql# Disabling symbolic-links is recommend to prevent assorted security riskssymbolic-links=0# 修改默认的存储引擎为InnoDBdefault-storage-engine=InnoDB# 这个参数主要作用是缓存innodb表的索引，数据，插入数据时的缓冲innodb_buffer_pool_size = 256M# 配置查询缓存的大小query_cache_size=128M# 启动mysql高速缓存query_cache_type=1[mysqld_safe]log-error=/var/log/mysqld.logpid-file=/var/run/mysqld/mysqld.pid 修改配置vim /etc/sonarqube/conf/sonar.properties123sonar.jdbc.username=sonarsonar.jdbc.password=sonarsonar.jdbc.url=jdbc:mysql://localhost:3306/sonar?useUnicode=true&amp;characterEncoding=utf8&amp;rewriteBatchedStatements=true&amp;useConfigs=maxPerformance SonarQube Scanner检测工具12345wget https://sonarsource.bintray.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-3.0.1.733-linux.zipunzip sonar-scanner-cli-3.0.1.733-linux.zipmv sonar-scanner-3.0.1.733-linux /etc/sonar-scannerln -s /etc/sonar-scanner/bin/sonar-scanner /bin/sonar-scanner 安装插件 SonarPHPhttps://sonarsource.bintray.com/Distribution/sonar-php-plugin/sonar-php-plugin-2.10.0.2087.jar 参考资料 https://secure.phabricator.com/book/phabricator/article/installation_guide/ https://www.oschina.net/news/53172/phabricator-manual-cn]]></content>
+      <categories>
+        <category>php</category>
+      </categories>
+      <tags>
+        <tag>新浪游戏</tag>
+        <tag>php</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Git托管]]></title>
+    <url>%2FGit%E6%89%98%E7%AE%A1%2F</url>
+    <content type="text"><![CDATA[一些使用过的Git托管平台 GitHub 国外 最著名的 每个帐号都对外的page，可以当博客使用。 私有项目收费 Bitbucket 国外 免费私有项目 国内速度可能有些慢 Coding 国内 速度很快 管理界面舒服，功能强大 pull项目有大小限制，根据帐号等级不同限制 团队功能目前免费 私有项目免费]]></content>
+      <categories>
+        <category>Git</category>
+      </categories>
+      <tags>
+        <tag>Git</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[docker小记]]></title>
+    <url>%2Fdocker%E5%B0%8F%E8%AE%B0%2F</url>
+    <content type="text"><![CDATA[docker笔记 容器运行后就退出，如何才能一直运行？比如centos:7镜像1docker run -itd centos:7 bash 创建镜像本地镜像1docker commit -m &quot;xxx&quot; -a &quot;lepoch&quot; a4170f6b81b3 lepoch/worker:0.1 -m 注释-a 作者0b2616b0e5a8 容器IDouruser/sinatra:v2 镜像id:tag Dockerfile源码见 worker-dockerfile 1docker build -t lepoch/worker:0.01 . 删除所有非运行的容器， rm -f 为强制删除1docker rm `docker ps -aq` 挂载宿主机目录，并授权1docker run -d -p 8001:80 -v /worker/www/:/usr/local/nginx/html --privileged=true lepoch/worker:php5.3 启动MySQL，并link12docker run --name mysql -v /worker/mysql/datadir:/var/lib/mysql --privileged=true -e MYSQL_ROOT_PASSWORD=root mysqldocker run -d --link=mysql -p 8002:80 -v /worker/www/:/usr/local/nginx/html --privileged=true lepoch/worker:php5.3 -p 会直接打开宿主机的端口 使用 docker overlay networkdocker network create 网络名称docker run –net=网络名称 mysqldocker run –net=网络名称 tomcat docker network disconnect 网络名称 tomcatdocker network connect 网络名称 tomcat]]></content>
+      <categories>
+        <category>Linux</category>
+      </categories>
+      <tags>
+        <tag>笔记</tag>
+        <tag>docker</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[supervisor小记]]></title>
+    <url>%2Fsupervisor%E5%B0%8F%E8%AE%B0%2F</url>
+    <content type="text"><![CDATA[supervisor小记 配置期待的退出状态]]></content>
+      <categories>
+        <category>Linux</category>
+      </categories>
+      <tags>
+        <tag>笔记</tag>
+        <tag>supervisor</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[win7安装vbox]]></title>
+    <url>%2Fwin7%E5%AE%89%E8%A3%85vbox%2F</url>
+    <content type="text"><![CDATA[win7下安装virtual box笔记 virtual box创建CentOS虚拟机win7下使用SSH登录虚拟机使用NAT方式使用端口转发，把宿主机的端口，转到虚拟机上去， 如下图 win7 与虚拟机的共享文件夹安装增强功能12345yum install -y gcc gcc-devel gcc-c++ gcc-c++-devel make kernel kernel-devel bzip2mkdir /mnt/cdrommount /dev/cdrom /mnt/cdromcd /mnt/cdrom./VBoxLinuxAdditions.run 然后就各种yes，回车了。 配置共享文件夹在虚拟机设置，共享文件夹，新增得到共享文件夹名称。1sudo mount -t vboxsf 共享文件夹名称（在设置页面设置的） 挂载的目录]]></content>
+      <categories>
+        <category>Linux</category>
+      </categories>
+      <tags>
+        <tag>笔记</tag>
+        <tag>vbox</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[2017技术清单]]></title>
+    <url>%2F2017%E6%8A%80%E6%9C%AF%E6%B8%85%E5%8D%95%2F</url>
+    <content type="text"><![CDATA[2017技术清单 TCP 握手]]></content>
+      <categories>
+        <category>Linux</category>
+      </categories>
+      <tags>
+        <tag>笔记</tag>
+        <tag>清单</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[升级python]]></title>
+    <url>%2F%E5%8D%87%E7%BA%A7python%2F</url>
+    <content type="text"><![CDATA[升级CentOS 自带的 python 2.7.5 到 2.7.11 环境LINUX 虚拟机CentOS 7 升级 python12345678910111213141516171819# 先装 zlibyum install -y zlib1g-dev zlib zlib-devel openssl-develwget https://www.python.org/ftp/python/2.7.11/Python-2.7.11.tgztar -zxf Python-2.7.11.tgzcd Python-2.7.11# 安装mkdir /usr/local/python-2.7.11./configure --prefix=/usr/local/python-2.7.11# moudle @TODOsed -i &apos;/#zlib zlibmodule.c/s/.//&apos; Modules/Setupsed -i &apos;/#_ssl _ssl.c/,+2&#123;s/#//&#125;&apos; Modules/Setupmake &amp;&amp; make install 扩展_sqliteyum install sqlite-devel -y重新编译安装 替换默认的 python 命令 慎重因新装的python module会导致yum等系统命令问题。12345mv /bin/python /bin/python_old mv /usr/bin/python /usr/bin/python_old ln -s /usr/local/python-2.7.11/bin/python2.7 /bin/pythonln -s /usr/local/python-2.7.11/bin/python2.7 /usr/bin/python 重装pip，已知所需module：zlib, ssl12wget https://bootstrap.pypa.io/get-pip.pypython get-pip.py yum 修复第一种，指向yum到原来的python， 这种简单些12sed -i &apos;1s/$/&amp;_old/&apos; /usr/bin/yumsed -i &apos;1s/$/&amp;_old/&apos; /usr/libexec/urlgrabber-ext-down 第二种，重装yum]]></content>
+      <categories>
+        <category>Linux</category>
+      </categories>
+      <tags>
+        <tag>Linux</tag>
+        <tag>CentOS</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[数据结构与算法]]></title>
     <url>%2F%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95%2F</url>
     <content type="text"><![CDATA[Bloom Filter]]></content>
@@ -11,6 +255,52 @@
       <tags>
         <tag>算法</tag>
         <tag>数据结构</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Vue小记-初识]]></title>
+    <url>%2FVue%E5%B0%8F%E8%AE%B0-%E5%88%9D%E8%AF%86%2F</url>
+    <content type="text"><![CDATA[Vue的初识笔记，语法什么的见[https://cn.vuejs.org/v2/guide/syntax.html] 什么是Vue 渐进式框架 受 MVVM模型启发 操作 [虚拟DOM] (https://github.com/livoras/blog/issues/13) 什么是虚拟DOM单个元素就已经很大，DOM很慢。如果要修改某处，直接操作整个DOM可行，但会造成很多无用的性能消耗。DOM可以用JavaScript对象表示出来。 虚拟DOM 就是用户只操作 js 数据，由框架来实现最终的DOM 精准 渲染。]]></content>
+      <categories>
+        <category>Vue</category>
+      </categories>
+      <tags>
+        <tag>笔记</tag>
+        <tag>Vue</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[yum安装MySQL]]></title>
+    <url>%2Fyum%E5%AE%89%E8%A3%85MySQL%2F</url>
+    <content type="text"><![CDATA[yum 安装 MySQL 环境：CentOS7VBox 1234567891011121314wget http://dev.mysql.com/get/mysql57-community-release-el7-7.noarch.rpmyum localinstall -y mysql57-community-release-el7-7.noarch.rpmyum install -y mysql-community-serversystemctl start mysqld.service# 密码：grep &apos;password&apos; /var/log/mysqld.log | awk &apos;&#123;print $NF&#125;&apos;mysql -u root -p`grep &apos;password&apos; /var/log/mysqld.log | awk &apos;&#123;print $NF&#125;&apos;`# 重设密码set global validate_password_policy=0;set global validate_password_length=4;set password for &apos;root&apos;@&apos;localhost&apos;=password(&apos;root&apos;);flush privileges;]]></content>
+      <categories>
+        <category>MySQL</category>
+      </categories>
+      <tags>
+        <tag>MySQL</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[sed]]></title>
+    <url>%2Fsed%2F</url>
+    <content type="text"><![CDATA[sed 使用笔记 简介一个文本处理工具。 常用选项 -n∶使用安静(silent)模式。在一般 sed 的用法中，所有来自 STDIN的资料一般都会被列出到萤幕上。但如果加上 -n 参数后，则只有经过sed 特殊处理的那一行(或者动作)才会被列出来。 -e∶直接在指令列模式上进行 sed 的动作编辑； -f∶直接将 sed 的动作写在一个档案内， -f filename 则可以执行 filename 内的sed 动作； -r∶sed 的动作支援的是延伸型正规表示法的语法。(预设是基础正规表示法语法) -i∶直接修改读取的档案内容。 常用命令 a 在当前行下面插入文本。 i 在当前行上面插入文本。 c 把选定的行改为新的文本。 d 删除，删除选择的行。 D 删除模板块的第一行。 s 替换指定字符 h 拷贝模板块的内容到内存中的缓冲区。 H 追加模板块的内容到内存中的缓冲区。 g 获得内存缓冲区的内容，并替代当前模板块中的文本。 G 获得内存缓冲区的内容，并追加到当前模板块文本的后面。 l 列表不能打印字符的清单。 n 读取下一个输入行，用下一个命令处理新的行而不是用第一个命令。 N 追加下一个输入行到模板块后面并在二者间嵌入一个新行，改变当前行号码。 p 打印模板块的行。 P(大写) 打印模板块的第一行。 q 退出Sed。 b lable 分支到脚本中带有标记的地方，如果分支不存在则分支到脚本的末尾。 r file 从file中读行。 t label if分支，从最后一行开始，条件一旦满足或者T，t命令，将导致分支到带有标号的命令处，或者到脚本的末尾。 T label 错误分支，从最后一行开始，一旦发生错误或者T，t命令，将导致分支到带有标号的命令处，或者到脚本的末尾。 w file 写并追加模板块到file末尾。 W file 写并追加模板块的第一行到file末尾。 ! 表示后面的命令对所有没有被选定的行发生作用。 = 打印当前行号码。 # 把注释扩展到下一个换行符以前。 栗子首行尾添加字符，直接修改文件使用 -i 选项， s命令sed -i &#39;1s/$/&amp;123&#39; file 去除指定字符串””#zlib zlibmodule.c” 的首个字符使用s命令，sed ‘/匹配字符串/s/替换源字符串/替换目标字符串/g’sed &#39;/#zlib zlibmodule.c/s/.//&#39; file 去除指定字符串 “#_ssl _ssl.c” 所在行与之后的2行的特定字符 “#”使用 /匹配字符串/,+2， 表示取得匹配字符串和之后的两行{代码块}sed &#39;/#_ssl _ssl.c/,+2{s/#//}&#39; file game_app.sqlsed -i ‘/character_set_client/s/.*//‘ game_app.sqlsed -i ‘/DEFAULT CHARSET=utf8/s/DEFAULT CHARSET=utf8 /DEFAULT CHARSET=utf8mb4 /‘ game_app.sqlsed -i ‘/DEFAULT CHARSET=utf8/s/DEFAULT CHARSET=utf8;/DEFAULT CHARSET=utf8mb4;/‘ game_app.sql]]></content>
+      <categories>
+        <category>Linux</category>
+      </categories>
+      <tags>
+        <tag>Linux</tag>
+        <tag>笔记</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Linux代理]]></title>
+    <url>%2FLinux%E4%BB%A3%E7%90%86%2F</url>
+    <content type="text"><![CDATA[在搭建Rietveld时，碰到需要科学上网的情况。 这里使用 shadowsocks + privoxy 环境LINUX 虚拟机CentOS 7 方法1，使用宿主机的代理1234export http_proxy=宿主机IP:1080export https_proxy=宿主机IP:1080export ftp_proxy=宿主机IP:1080export no_proxy="127.0.0.1, localhost" 如本机1234export http_proxy=127.0.0.1:1080export https_proxy=127.0.0.1:1080export ftp_proxy=127.0.0.1:1080export no_proxy="127.0.0.1, localhost" 方法2，独立安装代理shadowsocks python版本shadowsocks1234567891011121314151617181920212223yum -y install epel-releaseyum install python-pip -ypip install --upgrade pippip install shadowsocks# 配置( cat &lt;&lt;EOF&#123; "server":"IP地址", "server_port":端口, "local_address":"127.0.0.1", "local_port":1080, "password":"密码", "timeout":300, "method":"加密方式", "fast_open":false&#125;EOF) &gt; /etc/shadowsocks.json# 启动sslocal -c /etc/shadowsocks.json -d start 问题 然而报错 Exception: libsodium not found，发现是系统没有我指定的加密算法chacha20，所需 libsodium 1234567891011121314yum install wget -yyum install m2crypto gcc -ywget -N --no-check-certificate https://download.libsodium.org/libsodium/releases/libsodium-1.0.10.tar.gztar zfvx libsodium-1.0.10.tar.gzcd libsodium-1.0.10./configuremake &amp;&amp; make install(cat &lt;&lt;EOF/lib/usr/lib64/usr/local/libEOF) &gt;&gt; /etc/ld.so.confldconfig privoxy12345yum install privoxy -yecho "forward-socks5t / 127.0.0.1:1080 ." &gt;&gt; /etc/privoxy/config# 启动privoxy /etc/privoxy/config 设置代理1234export http_proxy=http://127.0.0.1:8118export https_proxy=http://127.0.0.1:8118export ftp_proxy=http://127.0.0.1:8118export no_proxy="127.0.0.1, localhost" 成功1curl https://google.com 简化123alias ssinit='nohup sslocal -c /etc/shadowsocks.json &amp;&gt;&gt; /var/log/sslocal.log &amp;'alias sson='export http_proxy=http://127.0.0.1:8118 &amp;&amp; export https_proxy=http://127.0.0.1:8118 &amp;&amp; systemctl start privoxy'alias ssoff='unset http_proxy &amp;&amp; unset https_proxy &amp;&amp; systemctl stop privoxy &amp;&amp; pkill sslocal' 扩展yum使用123456#使用socket代理 vim /etc/yum.conf#httpproxy=socks5://127.0.0.1:1080#httpsproxy=socks5h://127.0.0.1:1080 yum关闭gpgcheck12vim /etc/yum.confgpgcheck=0]]></content>
+      <categories>
+        <category>Linux</category>
+      </categories>
+      <tags>
+        <tag>Linux</tag>
       </tags>
   </entry>
 </search>
