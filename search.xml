@@ -1,18 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title><![CDATA[模式-适配器]]></title>
-    <url>%2F%E6%A8%A1%E5%BC%8F-%E9%80%82%E9%85%8D%E5%99%A8%2F</url>
-    <content type="text"><![CDATA[设计模式之适配器模式 简介将一个类的接口转换成客户希望的另外一个接口。 使用条件 一般是已存在的类 其方法 与 需求有些不符 通过加工处理可以完成 需求 类图12345678910111213141516171819@startumlTitle &quot;适配器模式 类图&quot;class Clientinterface Target &#123; +Request()&#125;class Adapter&#123; +Request()&#125;class Adaptee&#123; +SpecificRequest()&#125;Client--&gt;TargetAdapter--|&gt;TargetAdapter--&gt;Adaptee@enduml 实现PHP 终端所需知道的 123interface Target&#123; public function Request();&#125; 具体适配器 12345678910111213141516/** * Class 适配器 * @package App\Maozhua\Libs */class Adapter implements Target &#123; private $adaptee; public function __construct() &#123; $this-&gt;adaptee = new Adaptee(); &#125; public function Request() &#123; $this-&gt;adaptee-&gt;SpecificRequest(); &#125;&#125; 适配的对象 123456789/** * Class 适配的对象 * @package App\Maozhua\Libs */class Adaptee &#123; public function SpecificRequest() &#123; &#125;&#125; 使用 12$target = new Adapter();$target-&gt;Request();]]></content>
-      <categories>
-        <category>模式</category>
-      </categories>
-      <tags>
-        <tag>模式</tag>
-        <tag>笔记</tag>
-      </tags>
-  </entry>
-  <entry>
     <title><![CDATA[数据结构与算法]]></title>
     <url>%2F%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95%2F</url>
     <content type="text"><![CDATA[Bloom Filter]]></content>
