@@ -138,8 +138,8 @@
     <url>%2FGit%2F</url>
     <content type="text"><![CDATA[Git 彻底删除某文件及历史git filter-branch –force –index-filter ‘git rm –cached –ignore-unmatch “doc/base.sql” ‘ –prune-empty –tag-name-filter cat – –allgit push origin –force –allgit push origin –force –tagsgit for-each-ref –format=’delete %(refname)’ refs/original | git update-ref –stdingit reflog expire –expire=now –allgit gc –prune=nowgit count-objects -v]]></content>
       <tags>
-        <tag>Git</tag>
         <tag>笔记</tag>
+        <tag>Git</tag>
       </tags>
   </entry>
   <entry>
@@ -221,18 +221,6 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[supervisor小记]]></title>
-    <url>%2Fsupervisor%E5%B0%8F%E8%AE%B0%2F</url>
-    <content type="text"><![CDATA[supervisor小记 配置期待的退出状态]]></content>
-      <categories>
-        <category>Linux</category>
-      </categories>
-      <tags>
-        <tag>笔记</tag>
-        <tag>supervisor</tag>
-      </tags>
-  </entry>
-  <entry>
     <title><![CDATA[win7安装vbox]]></title>
     <url>%2Fwin7%E5%AE%89%E8%A3%85vbox%2F</url>
     <content type="text"><![CDATA[win7下安装virtual box笔记 virtual box创建CentOS虚拟机win7下使用SSH登录虚拟机使用NAT方式使用端口转发，把宿主机的端口，转到虚拟机上去， 如下图 win7 与虚拟机的共享文件夹安装增强功能12345yum install -y gcc gcc-devel gcc-c++ gcc-c++-devel make kernel kernel-devel bzip2mkdir /mnt/cdrommount /dev/cdrom /mnt/cdromcd /mnt/cdrom./VBoxLinuxAdditions.run 然后就各种yes，回车了。 配置共享文件夹在虚拟机设置，共享文件夹，新增得到共享文件夹名称。1sudo mount -t vboxsf 共享文件夹名称（在设置页面设置的） 挂载的目录]]></content>
@@ -254,6 +242,18 @@
       <tags>
         <tag>清单</tag>
         <tag>笔记</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[supervisor小记]]></title>
+    <url>%2Fsupervisor%E5%B0%8F%E8%AE%B0%2F</url>
+    <content type="text"><![CDATA[supervisor小记 配置期待的退出状态]]></content>
+      <categories>
+        <category>Linux</category>
+      </categories>
+      <tags>
+        <tag>笔记</tag>
+        <tag>supervisor</tag>
       </tags>
   </entry>
   <entry>
