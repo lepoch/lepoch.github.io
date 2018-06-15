@@ -1,6 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[模式-桥接模式]]></title>
+    <url>%2F%E6%A8%A1%E5%BC%8F-%E6%A1%A5%E6%8E%A5%E6%A8%A1%E5%BC%8F%2F</url>
+    <content type="text"><![CDATA[设计模式之桥接模式 简介 将抽象部分与它的实现部分分离，使他们都可以独立地变化。 也就是如果实现系统，可以多维度分类，那就能让他们独立变化，以减少耦合。 多组合，少继承 的体现。 关键点 可多维度分类 多维度分类可以变化 可用聚合表示 类图 12345678910111213141516171819202122232425262728293031323334@startumlTitle &quot;桥接模式&quot;class Clientabstract class Abstraction &#123; +&#123;abstract&#125; operation()&#125;class refinedAbstraction &#123; +operation()&#125;abstract class Implementor &#123; +&#123;abstract&#125; operationImp()&#125;class ConcrateImplementorA &#123; +operationImp()&#125;class ConcrateImplementorB &#123; +operationImp()&#125;Client -right--&gt; AbstractionrefinedAbstraction -up--|&gt; AbstractionConcrateImplementorA -up--|&gt; ImplementorConcrateImplementorB -up--|&gt; ImplementorImplementor -left&lt;--o AbstractionAbstraction -righto--&gt; Implemento@enduml 实现PHP定义抽象者12345678910111213141516171819abstract class Abstraction &#123; /** * @var Implementor */ protected $implementor; public function setImplementor(Implementor $imp) &#123; $this-&gt;implementor = $imp; &#125; abstract public function operation();&#125;class RefinedAbstraction extends Abstraction &#123; public function operation() &#123; $this-&gt;implementor-&gt;operationImp(); &#125;&#125; 实现者1234567891011121314151617abstract class Implementor &#123; abstract public function operationImp();&#125;class ConcreteImplementorA extends Implementor &#123; public function operationImp() &#123; echo &apos;具体实现者A&apos;, PHP_EOL; &#125;&#125;class ConcreteImplementorB extends Implementor &#123; public function operationImp() &#123; echo &apos;具体实现者B&apos;, PHP_EOL; &#125;&#125; 使用123456$ab = new RefinedAbstraction();$ab-&gt;setImplementor(new ConcreteImplementorA());$ab-&gt;operation();$ab-&gt;setImplementor(new ConcreteImplementorB());$ab-&gt;operation(); 结果12具体实现者A具体实现者B 具体例子 🌰题画图，存在三种图形，三种颜色 正方形、长方形、圆形 红、绿、蓝 使用继承的方式图形1234567891011121314151617@startuml正方形 -up- 形状长方形 -up- 形状圆形 -up- 形状红3 -up- 圆形绿3 -up- 圆形蓝3 -up- 圆形红2 -up- 长方形绿2 -up- 长方形蓝2 -up- 长方形红1 -up- 正方形绿1 -up- 正方形蓝1 -up- 正方形@enduml 颜色1234567891011121314151617@startuml红 -up- 颜色绿 -up- 颜色蓝 -up- 颜色正方形3 -up- 蓝长方形3 -up- 蓝圆形3 -up- 蓝正方形2 -up- 绿长方形2 -up- 绿圆形2 -up- 绿正方形1 -up- 红长方形1 -up- 红圆形1 -up- 红@enduml 问题很明显，如果再添加形状或者颜色，那会疯掉。 以组合或者聚合的方式12345678910111213141516@startuml红 -up- 颜色绿 -up- 颜色蓝 -up- 颜色正方形 -up- 形状长方形 -up- 形状圆形 -up- 形状红 -down- 结果绿 -down- 结果蓝 -down- 结果正方形 -down- 结果长方形 -down- 结果圆形 -down- 结果@enduml 使用时，把颜色和图形进行组合。ok，下面咱们来用桥接模式实现这套方案 类图1234567891011121314151617181920212223242526272829303132333435363738abstract class Shape &#123; # color : Color + setColor(Color color) : void + &#123;abstract&#125; draw() : void&#125;class Square &#123; + draw() : void&#125;class Rectangle &#123; + draw() : void&#125;class Circle &#123; + draw() : void&#125;abstract class Color &#123; + &#123;abstract&#125; paint() : void&#125;class Red &#123; + paint() : void&#125;class Green &#123; + paint() : void&#125;class Blue &#123; + paint() : void&#125;Square -up--|&gt; ShapeRectangle -up--|&gt; ShapeCircle -up--|&gt; ShapeRed -up--|&gt; ColorGreen -up--|&gt; ColorBlue -up--|&gt; ColorColor -right--o Shape@enduml PHP定义抽象者12345678910111213141516171819202122232425262728293031323334353637383940abstract class Shape &#123; /** * @var Color */ protected $color; public function setColor(Color $color) &#123; $this-&gt;color = $color; &#125; abstract public function draw() : void;&#125;class Square extends Shape &#123; public function draw() : void &#123; echo &apos;正方形，&apos;; $this-&gt;color-&gt;paint(); echo PHP_EOL; &#125;&#125;class Rectangle extends Shape &#123; public function draw() : void &#123; echo &apos;长方形，&apos;; $this-&gt;color-&gt;paint(); echo PHP_EOL; &#125;&#125;class Circle extends Shape &#123; public function draw() : void &#123; echo &apos;圆形，&apos;; $this-&gt;color-&gt;paint(); echo PHP_EOL; &#125;&#125; 实现者123456789101112131415161718192021222324252627abstract class Color &#123; abstract public function paint() : void;&#125;class Red extends Color &#123; public function paint() : void &#123; echo &apos;红色&apos;; &#125;&#125;class Green extends Color &#123; public function paint() : void &#123; echo &apos;绿色&apos;; &#125;&#125;class Blue extends Color &#123; public function paint() : void &#123; echo &apos;蓝色&apos;; &#125;&#125; 使用1234567891011$shape = new Circle();$shape-&gt;setColor(new Red());$shape-&gt;draw();$shape = new Square();$shape-&gt;setColor(new Green());$shape-&gt;draw();$shape = new Rectangle();$shape-&gt;setColor(new Blue());$shape-&gt;draw(); 结果123圆形，红色正方形，绿色长方形，蓝色 参考设计模式读书笔记—–桥接模式]]></content>
+      <categories>
+        <category>模式</category>
+      </categories>
+      <tags>
+        <tag>笔记</tag>
+        <tag>模式</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[模式-单例模式]]></title>
     <url>%2F%E6%A8%A1%E5%BC%8F-%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F%2F</url>
     <content type="text"><![CDATA[设计模式之单例模式 简介 保证一个类仅有一个实例，并提供一个访问它的全局访问点。 关键点 一个实例 全局，多线程、协程 一个访问点 类图 12345678910@startumlTitle &quot;单例模式&quot;class Singleton &#123; -&#123;static&#125; Singleton instance -__construct() : void +&#123;static&#125; getInstance() : void&#125;@enduml 实现PHP 只需要实现单线程的单例 注意__clone() 定义1234567891011class Singleton &#123; private static $instance; private function __construct() &#123; &#125; private function __clone() &#123; &#125; public static function getInstance() &#123; if (!isset(self::$instance)) &#123; self::$instance = new self(); &#125; return self::$instance; &#125;&#125; 使用1234$single1 = Singleton::getInstance();$single2 = Singleton::getInstance();echo $single1 === $single2; 结果11]]></content>
@@ -56,8 +68,8 @@
         <category>Go</category>
       </categories>
       <tags>
-        <tag>Go</tag>
         <tag>笔记</tag>
+        <tag>Go</tag>
       </tags>
   </entry>
   <entry>
@@ -240,8 +252,8 @@
         <category>Linux</category>
       </categories>
       <tags>
-        <tag>笔记</tag>
         <tag>清单</tag>
+        <tag>笔记</tag>
       </tags>
   </entry>
   <entry>
@@ -281,18 +293,6 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[升级python]]></title>
-    <url>%2F%E5%8D%87%E7%BA%A7python%2F</url>
-    <content type="text"><![CDATA[升级CentOS 自带的 python 2.7.5 到 2.7.11 环境LINUX 虚拟机CentOS 7 升级 python12345678910111213141516171819# 先装 zlibyum install -y zlib1g-dev zlib zlib-devel openssl-develwget https://www.python.org/ftp/python/2.7.11/Python-2.7.11.tgztar -zxf Python-2.7.11.tgzcd Python-2.7.11# 安装mkdir /usr/local/python-2.7.11./configure --prefix=/usr/local/python-2.7.11# moudle @TODOsed -i &apos;/#zlib zlibmodule.c/s/.//&apos; Modules/Setupsed -i &apos;/#_ssl _ssl.c/,+2&#123;s/#//&#125;&apos; Modules/Setupmake &amp;&amp; make install 扩展_sqliteyum install sqlite-devel -y重新编译安装 替换默认的 python 命令 慎重因新装的python module会导致yum等系统命令问题。12345mv /bin/python /bin/python_old mv /usr/bin/python /usr/bin/python_old ln -s /usr/local/python-2.7.11/bin/python2.7 /bin/pythonln -s /usr/local/python-2.7.11/bin/python2.7 /usr/bin/python 重装pip，已知所需module：zlib, ssl12wget https://bootstrap.pypa.io/get-pip.pypython get-pip.py yum 修复第一种，指向yum到原来的python， 这种简单些12sed -i &apos;1s/$/&amp;_old/&apos; /usr/bin/yumsed -i &apos;1s/$/&amp;_old/&apos; /usr/libexec/urlgrabber-ext-down 第二种，重装yum]]></content>
-      <categories>
-        <category>Linux</category>
-      </categories>
-      <tags>
-        <tag>Linux</tag>
-        <tag>CentOS</tag>
-      </tags>
-  </entry>
-  <entry>
     <title><![CDATA[数据结构与算法]]></title>
     <url>%2F%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95%2F</url>
     <content type="text"><![CDATA[Bloom Filter]]></content>
@@ -303,6 +303,18 @@
       <tags>
         <tag>算法</tag>
         <tag>数据结构</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[升级python]]></title>
+    <url>%2F%E5%8D%87%E7%BA%A7python%2F</url>
+    <content type="text"><![CDATA[升级CentOS 自带的 python 2.7.5 到 2.7.11 环境LINUX 虚拟机CentOS 7 升级 python12345678910111213141516171819# 先装 zlibyum install -y zlib1g-dev zlib zlib-devel openssl-develwget https://www.python.org/ftp/python/2.7.11/Python-2.7.11.tgztar -zxf Python-2.7.11.tgzcd Python-2.7.11# 安装mkdir /usr/local/python-2.7.11./configure --prefix=/usr/local/python-2.7.11# moudle @TODOsed -i &apos;/#zlib zlibmodule.c/s/.//&apos; Modules/Setupsed -i &apos;/#_ssl _ssl.c/,+2&#123;s/#//&#125;&apos; Modules/Setupmake &amp;&amp; make install 扩展_sqliteyum install sqlite-devel -y重新编译安装 替换默认的 python 命令 慎重因新装的python module会导致yum等系统命令问题。12345mv /bin/python /bin/python_old mv /usr/bin/python /usr/bin/python_old ln -s /usr/local/python-2.7.11/bin/python2.7 /bin/pythonln -s /usr/local/python-2.7.11/bin/python2.7 /usr/bin/python 重装pip，已知所需module：zlib, ssl12wget https://bootstrap.pypa.io/get-pip.pypython get-pip.py yum 修复第一种，指向yum到原来的python， 这种简单些12sed -i &apos;1s/$/&amp;_old/&apos; /usr/bin/yumsed -i &apos;1s/$/&amp;_old/&apos; /usr/libexec/urlgrabber-ext-down 第二种，重装yum]]></content>
+      <categories>
+        <category>Linux</category>
+      </categories>
+      <tags>
+        <tag>Linux</tag>
+        <tag>CentOS</tag>
       </tags>
   </entry>
   <entry>

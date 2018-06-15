@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://lepoch.github.io/"/>
-  <updated>2018-06-15T06:29:42.109Z</updated>
+  <updated>2018-06-15T08:43:13.259Z</updated>
   <id>https://lepoch.github.io/</id>
   
   <author>
@@ -15,6 +15,28 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>模式-桥接模式</title>
+    <link href="https://lepoch.github.io/%E6%A8%A1%E5%BC%8F-%E6%A1%A5%E6%8E%A5%E6%A8%A1%E5%BC%8F/"/>
+    <id>https://lepoch.github.io/模式-桥接模式/</id>
+    <published>2018-06-15T08:35:00.000Z</published>
+    <updated>2018-06-15T08:43:13.259Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;设计模式之桥接模式&lt;br&gt;
+    
+    </summary>
+    
+      <category term="模式" scheme="https://lepoch.github.io/categories/%E6%A8%A1%E5%BC%8F/"/>
+    
+    
+      <category term="笔记" scheme="https://lepoch.github.io/tags/%E7%AC%94%E8%AE%B0/"/>
+    
+      <category term="模式" scheme="https://lepoch.github.io/tags/%E6%A8%A1%E5%BC%8F/"/>
+    
+  </entry>
   
   <entry>
     <title>模式-单例模式</title>
@@ -43,11 +65,11 @@
     <link href="https://lepoch.github.io/%E6%A8%A1%E5%BC%8F-%E7%BB%84%E5%90%88%E6%A8%A1%E5%BC%8F/"/>
     <id>https://lepoch.github.io/模式-组合模式/</id>
     <published>2018-06-14T08:35:00.000Z</published>
-    <updated>2018-06-15T02:55:32.814Z</updated>
+    <updated>2018-06-15T06:56:03.714Z</updated>
     
     <summary type="html">
     
-      &lt;p&gt;设计模式之组合模式&lt;/p&gt;
+      &lt;p&gt;设计模式之组合模式&lt;br&gt;
     
     </summary>
     
@@ -65,11 +87,11 @@
     <link href="https://lepoch.github.io/%E6%A8%A1%E5%BC%8F-%E5%A4%87%E5%BF%98%E5%BD%95%E6%A8%A1%E5%BC%8F/"/>
     <id>https://lepoch.github.io/模式-备忘录模式/</id>
     <published>2018-06-13T08:35:00.000Z</published>
-    <updated>2018-06-15T02:38:13.282Z</updated>
+    <updated>2018-06-15T06:56:07.633Z</updated>
     
     <summary type="html">
     
-      &lt;p&gt;设计模式之备忘录模式&lt;/p&gt;
+      &lt;p&gt;设计模式之备忘录模式&lt;br&gt;
     
     </summary>
     
@@ -87,11 +109,11 @@
     <link href="https://lepoch.github.io/%E6%A8%A1%E5%BC%8F-%E9%80%82%E9%85%8D%E5%99%A8%E6%A8%A1%E5%BC%8F/"/>
     <id>https://lepoch.github.io/模式-适配器模式/</id>
     <published>2018-06-12T08:35:00.000Z</published>
-    <updated>2018-06-15T02:38:17.946Z</updated>
+    <updated>2018-06-15T06:56:11.032Z</updated>
     
     <summary type="html">
     
-      &lt;p&gt;设计模式之适配器模式&lt;/p&gt;
+      &lt;p&gt;设计模式之适配器模式&lt;br&gt;
     
     </summary>
     
@@ -120,9 +142,9 @@
       <category term="Go" scheme="https://lepoch.github.io/categories/Go/"/>
     
     
-      <category term="Go" scheme="https://lepoch.github.io/tags/Go/"/>
-    
       <category term="笔记" scheme="https://lepoch.github.io/tags/%E7%AC%94%E8%AE%B0/"/>
+    
+      <category term="Go" scheme="https://lepoch.github.io/tags/Go/"/>
     
   </entry>
   
@@ -436,28 +458,6 @@
     
     
       <category term="Git" scheme="https://lepoch.github.io/tags/Git/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>docker小记</title>
-    <link href="https://lepoch.github.io/docker%E5%B0%8F%E8%AE%B0/"/>
-    <id>https://lepoch.github.io/docker小记/</id>
-    <published>2017-04-04T20:05:00.000Z</published>
-    <updated>2017-05-19T17:05:37.000Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;docker笔记&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="Linux" scheme="https://lepoch.github.io/categories/Linux/"/>
-    
-    
-      <category term="笔记" scheme="https://lepoch.github.io/tags/%E7%AC%94%E8%AE%B0/"/>
-    
-      <category term="docker" scheme="https://lepoch.github.io/tags/docker/"/>
     
   </entry>
   
