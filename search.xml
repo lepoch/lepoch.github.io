@@ -1,9 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[模式-单例模式]]></title>
+    <url>%2F%E6%A8%A1%E5%BC%8F-%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F%2F</url>
+    <content type="text"><![CDATA[设计模式之单例模式 简介 保证一个类仅有一个实例，并提供一个访问它的全局访问点。 关键点 一个实例 全局，多线程、协程 一个访问点 类图 12345678910@startumlTitle &quot;单例模式&quot;class Singleton &#123; -&#123;static&#125; Singleton instance -__construct() : void +&#123;static&#125; getInstance() : void&#125;@enduml 实现PHP 只需要实现单线程的单例 注意__clone() 定义1234567891011class Singleton &#123; private static $instance; private function __construct() &#123; &#125; private function __clone() &#123; &#125; public static function getInstance() &#123; if (!isset(self::$instance)) &#123; self::$instance = new self(); &#125; return self::$instance; &#125;&#125; 使用1234$single1 = Singleton::getInstance();$single2 = Singleton::getInstance();echo $single1 === $single2; 结果11]]></content>
+      <categories>
+        <category>模式</category>
+      </categories>
+      <tags>
+        <tag>笔记</tag>
+        <tag>模式</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[模式-组合模式]]></title>
     <url>%2F%E6%A8%A1%E5%BC%8F-%E7%BB%84%E5%90%88%E6%A8%A1%E5%BC%8F%2F</url>
-    <content type="text"><![CDATA[设计模式之组合模式 简介 将对象组合成树形结构，以表示“部分-整体”的层次结构。可以使得单个对象和组合对象的使用，具有一致性。 关键点 树形 部分 - 整体 实现方式 安全方式 透明方式 ： 组合动作公用，无法区分具体的Leaf、Composite 以下为 安全方式 类图 1234567891011121314151617181920212223242526272829@startumlTitle &quot;组合模式&quot;class Clientclass Component &#123; +&#123;abstract&#125; add(Component) : void +&#123;abstract&#125; remove(Component) : void +&#123;abstract&#125; operate() : void&#125;note right: 抽象类，实现共有的默认行为class Leaf&#123; +operate()&#125;note bottom: 叶子节点，不能再添加部件class Composite&#123; +add(Component) : void +remove(Component) : void +operate() : void&#125;note bottom: 存储子部件Client -right--&gt; ComponentComposite -up--|&gt; ComponentLeaf -up--|&gt; ComponentComponent &lt;--o Composite@enduml 实现PHP定义12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364abstract class Component&#123; abstract public function add(Component $component) : void; abstract public function remove(Component $component) : void; abstract public function operate(int $depth); // 一些能公用的代码 protected $name = &apos;&apos;; public function __construct($name) &#123; $this-&gt;name = $name; &#125;&#125;class Leaf extends Component&#123; public function add(Component $component) : void &#123; throw new \Exception(&apos;Cannot add to a leaf&apos;); &#125; public function remove(Component $component) : void &#123; throw new \Exception(&apos;Cannot remove from a leaf&apos;); &#125; public function operate(int $depth) &#123; echo str_pad(&apos;&apos;, $depth, &apos;-&apos;), $this-&gt;name, PHP_EOL; &#125;&#125;class Composite extends Component&#123; private $components = []; public function add(Component $component) : void &#123; $this-&gt;components[ spl_object_id($component) ] = $component; &#125; public function remove(Component $component) : void &#123; unset($this-&gt;components[ spl_object_id($component) ]); &#125; public function operate(int $depth) &#123; echo str_pad(&apos;&apos;, $depth, &apos;-&apos;), $this-&gt;name, PHP_EOL; /** @var Component $component */ foreach ($this-&gt;components as $component) &#123; $component-&gt;operate($depth + 1); &#125; &#125;&#125; 使用12345678910111213141516171819$root = new Composite(&apos;root&apos;);$root-&gt;add(new Leaf(&apos;root leaf a&apos;));$root-&gt;add(new Leaf(&apos;root leaf b&apos;));$compA = new Composite(&apos;composite a&apos;);$compA-&gt;add(new Leaf(&apos;composite a leaf c&apos;));$compA-&gt;add(new Leaf(&apos;composite a leaf d&apos;));$compA-&gt;add(new Leaf(&apos;composite a leaf e&apos;));$root-&gt;add($compA);$compAA = new Composite(&apos;composite aa&apos;);$compAA-&gt;add(new Leaf(&apos;composite aa leaf f&apos;));$compAA-&gt;add(new Leaf(&apos;composite aa leaf g&apos;));$compAA-&gt;add(new Leaf(&apos;composite aa leaf h&apos;));$compA-&gt;add($compAA);$root-&gt;operate(0); 结果1234567891011root-root leaf a-root leaf b-composite a--composite a leaf c--composite a leaf d--composite a leaf e--composite aa---composite aa leaf f---composite aa leaf g---composite aa leaf h]]></content>
+    <content type="text"><![CDATA[设计模式之组合模式 简介 将对象组合成树形结构，以表示“部分-整体”的层次结构。可以使得单个对象和组合对象的使用，具有一致性。 关键点 树形 部分 - 整体 实现方式 安全方式 透明方式 ： 组合动作公用，无法区分具体的Leaf、Composite 以下为 安全方式 类图 1234567891011121314151617181920212223242526272829@startumlTitle &quot;组合模式&quot;class Clientabstract class Component &#123; +&#123;abstract&#125; add(Component) : void +&#123;abstract&#125; remove(Component) : void +&#123;abstract&#125; operate() : void&#125;note right: 抽象类，实现共有的默认行为class Leaf&#123; +operate()&#125;note bottom: 叶子节点，不能再添加部件class Composite&#123; +add(Component) : void +remove(Component) : void +operate() : void&#125;note bottom: 存储子部件Client -right--&gt; ComponentComposite -up--|&gt; ComponentLeaf -up--|&gt; ComponentComponent &lt;--o Composite@enduml 实现PHP定义12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364abstract class Component&#123; abstract public function add(Component $component) : void; abstract public function remove(Component $component) : void; abstract public function operate(int $depth); // 一些能公用的代码 protected $name = &apos;&apos;; public function __construct($name) &#123; $this-&gt;name = $name; &#125;&#125;class Leaf extends Component&#123; public function add(Component $component) : void &#123; throw new \Exception(&apos;Cannot add to a leaf&apos;); &#125; public function remove(Component $component) : void &#123; throw new \Exception(&apos;Cannot remove from a leaf&apos;); &#125; public function operate(int $depth) &#123; echo str_pad(&apos;&apos;, $depth, &apos;-&apos;), $this-&gt;name, PHP_EOL; &#125;&#125;class Composite extends Component&#123; private $components = []; public function add(Component $component) : void &#123; $this-&gt;components[ spl_object_id($component) ] = $component; &#125; public function remove(Component $component) : void &#123; unset($this-&gt;components[ spl_object_id($component) ]); &#125; public function operate(int $depth) &#123; echo str_pad(&apos;&apos;, $depth, &apos;-&apos;), $this-&gt;name, PHP_EOL; /** @var Component $component */ foreach ($this-&gt;components as $component) &#123; $component-&gt;operate($depth + 1); &#125; &#125;&#125; 使用12345678910111213141516171819$root = new Composite(&apos;root&apos;);$root-&gt;add(new Leaf(&apos;root leaf a&apos;));$root-&gt;add(new Leaf(&apos;root leaf b&apos;));$compA = new Composite(&apos;composite a&apos;);$compA-&gt;add(new Leaf(&apos;composite a leaf c&apos;));$compA-&gt;add(new Leaf(&apos;composite a leaf d&apos;));$compA-&gt;add(new Leaf(&apos;composite a leaf e&apos;));$root-&gt;add($compA);$compAA = new Composite(&apos;composite aa&apos;);$compAA-&gt;add(new Leaf(&apos;composite aa leaf f&apos;));$compAA-&gt;add(new Leaf(&apos;composite aa leaf g&apos;));$compAA-&gt;add(new Leaf(&apos;composite aa leaf h&apos;));$compA-&gt;add($compAA);$root-&gt;operate(0); 结果1234567891011root-root leaf a-root leaf b-composite a--composite a leaf c--composite a leaf d--composite a leaf e--composite aa---composite aa leaf f---composite aa leaf g---composite aa leaf h]]></content>
       <categories>
         <category>模式</category>
       </categories>
@@ -44,8 +56,8 @@
         <category>Go</category>
       </categories>
       <tags>
-        <tag>笔记</tag>
         <tag>Go</tag>
+        <tag>笔记</tag>
       </tags>
   </entry>
   <entry>
@@ -123,6 +135,16 @@
       </tags>
   </entry>
   <entry>
+    <title><![CDATA[Swoole初识]]></title>
+    <url>%2FSwoole%E5%88%9D%E8%AF%86%2F</url>
+    <content type="text"><![CDATA[Swoole初识 背景可能是因为Laravel框架原因，Yar并发请求的性能并没有达到预期目标。需探索另外的道路。 安装Homestead环境1234567891011121314sudo sucd ~wget https://github.com/swoole/swoole-src/archive/v2.0.7.tar.gztar -xzf v2.0.7.tar.gzcd swoole-src-2.0.7/phpize./configure --enable-coroutinemakemake installecho &quot;extension=swoole.so&quot; &gt;&gt; /etc/php/7.1/cli/php.ini# echo &quot;extension=swoole.so&quot; &gt;&gt; /etc/php/7.1/fpm/php.ini# /etc/init.d/php7.1-fpm reload]]></content>
+      <tags>
+        <tag>笔记</tag>
+        <tag>Swoole</tag>
+        <tag>Laravel</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[NewSQL]]></title>
     <url>%2FNewSQL%2F</url>
     <content type="text"><![CDATA[参考 数据库功能深度解析：怎样打造一个分布式数据库 TiDB 的正确使用姿势]]></content>
@@ -140,16 +162,6 @@
       <tags>
         <tag>笔记</tag>
         <tag>Git</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[Swoole初识]]></title>
-    <url>%2FSwoole%E5%88%9D%E8%AF%86%2F</url>
-    <content type="text"><![CDATA[Swoole初识 背景可能是因为Laravel框架原因，Yar并发请求的性能并没有达到预期目标。需探索另外的道路。 安装Homestead环境1234567891011121314sudo sucd ~wget https://github.com/swoole/swoole-src/archive/v2.0.7.tar.gztar -xzf v2.0.7.tar.gzcd swoole-src-2.0.7/phpize./configure --enable-coroutinemakemake installecho &quot;extension=swoole.so&quot; &gt;&gt; /etc/php/7.1/cli/php.ini# echo &quot;extension=swoole.so&quot; &gt;&gt; /etc/php/7.1/fpm/php.ini# /etc/init.d/php7.1-fpm reload]]></content>
-      <tags>
-        <tag>笔记</tag>
-        <tag>Swoole</tag>
-        <tag>Laravel</tag>
       </tags>
   </entry>
   <entry>
@@ -221,6 +233,18 @@
       </tags>
   </entry>
   <entry>
+    <title><![CDATA[2017技术清单]]></title>
+    <url>%2F2017%E6%8A%80%E6%9C%AF%E6%B8%85%E5%8D%95%2F</url>
+    <content type="text"><![CDATA[2017技术清单 TCP 握手]]></content>
+      <categories>
+        <category>Linux</category>
+      </categories>
+      <tags>
+        <tag>笔记</tag>
+        <tag>清单</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[win7安装vbox]]></title>
     <url>%2Fwin7%E5%AE%89%E8%A3%85vbox%2F</url>
     <content type="text"><![CDATA[win7下安装virtual box笔记 virtual box创建CentOS虚拟机win7下使用SSH登录虚拟机使用NAT方式使用端口转发，把宿主机的端口，转到虚拟机上去， 如下图 win7 与虚拟机的共享文件夹安装增强功能12345yum install -y gcc gcc-devel gcc-c++ gcc-c++-devel make kernel kernel-devel bzip2mkdir /mnt/cdrommount /dev/cdrom /mnt/cdromcd /mnt/cdrom./VBoxLinuxAdditions.run 然后就各种yes，回车了。 配置共享文件夹在虚拟机设置，共享文件夹，新增得到共享文件夹名称。1sudo mount -t vboxsf 共享文件夹名称（在设置页面设置的） 挂载的目录]]></content>
@@ -230,18 +254,6 @@
       <tags>
         <tag>笔记</tag>
         <tag>vbox</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[2017技术清单]]></title>
-    <url>%2F2017%E6%8A%80%E6%9C%AF%E6%B8%85%E5%8D%95%2F</url>
-    <content type="text"><![CDATA[2017技术清单 TCP 握手]]></content>
-      <categories>
-        <category>Linux</category>
-      </categories>
-      <tags>
-        <tag>清单</tag>
-        <tag>笔记</tag>
       </tags>
   </entry>
   <entry>
