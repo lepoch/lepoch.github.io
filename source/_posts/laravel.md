@@ -15,7 +15,7 @@ laravel 笔记
 
 # homestead
 这是个vagrant使用的盒子，其中包含开发使用的各种环境。
-## 添加 yar 扩展  
+## 添加 yar 扩展
 登陆到虚拟机后
 ```
 sudo su

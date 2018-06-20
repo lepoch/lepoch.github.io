@@ -8,7 +8,7 @@
         var $i = $("<span/>").text(a[a_idx]);
         var x = e.pageX,y = e.pageY;
         $i.css({
-            "z-index": 999999999999999999999999999999999999999999999999999999999999999999999,
+            "z-index": 99999,
             "top": y - 20,
             "left": x,
             "position": "absolute",
