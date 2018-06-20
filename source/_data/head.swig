@@ -25,7 +25,7 @@
             $i.remove();
         });
     });
-  }, false);
+  });
 })();
 </script>
 {% endautoescape %}
