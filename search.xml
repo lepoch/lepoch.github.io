@@ -147,13 +147,12 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[Swoole初识]]></title>
-    <url>%2FSwoole%E5%88%9D%E8%AF%86%2F</url>
-    <content type="text"><![CDATA[Swoole初识 背景可能是因为Laravel框架原因，Yar并发请求的性能并没有达到预期目标。需探索另外的道路。 安装Homestead环境1234567891011121314sudo sucd ~wget https://github.com/swoole/swoole-src/archive/v2.0.7.tar.gztar -xzf v2.0.7.tar.gzcd swoole-src-2.0.7/phpize./configure --enable-coroutinemakemake installecho &quot;extension=swoole.so&quot; &gt;&gt; /etc/php/7.1/cli/php.ini# echo &quot;extension=swoole.so&quot; &gt;&gt; /etc/php/7.1/fpm/php.ini# /etc/init.d/php7.1-fpm reload]]></content>
+    <title><![CDATA[Git]]></title>
+    <url>%2FGit%2F</url>
+    <content type="text"><![CDATA[Git 彻底删除某文件及历史git filter-branch –force –index-filter ‘git rm –cached –ignore-unmatch “doc/base.sql” ‘ –prune-empty –tag-name-filter cat – –allgit push origin –force –allgit push origin –force –tagsgit for-each-ref –format=’delete %(refname)’ refs/original | git update-ref –stdingit reflog expire –expire=now –allgit gc –prune=nowgit count-objects -v]]></content>
       <tags>
         <tag>笔记</tag>
-        <tag>Swoole</tag>
-        <tag>Laravel</tag>
+        <tag>Git</tag>
       </tags>
   </entry>
   <entry>
@@ -168,12 +167,13 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[Git]]></title>
-    <url>%2FGit%2F</url>
-    <content type="text"><![CDATA[Git 彻底删除某文件及历史git filter-branch –force –index-filter ‘git rm –cached –ignore-unmatch “doc/base.sql” ‘ –prune-empty –tag-name-filter cat – –allgit push origin –force –allgit push origin –force –tagsgit for-each-ref –format=’delete %(refname)’ refs/original | git update-ref –stdingit reflog expire –expire=now –allgit gc –prune=nowgit count-objects -v]]></content>
+    <title><![CDATA[Swoole初识]]></title>
+    <url>%2FSwoole%E5%88%9D%E8%AF%86%2F</url>
+    <content type="text"><![CDATA[Swoole初识 背景可能是因为Laravel框架原因，Yar并发请求的性能并没有达到预期目标。需探索另外的道路。 安装Homestead环境1234567891011121314sudo sucd ~wget https://github.com/swoole/swoole-src/archive/v2.0.7.tar.gztar -xzf v2.0.7.tar.gzcd swoole-src-2.0.7/phpize./configure --enable-coroutinemakemake installecho &quot;extension=swoole.so&quot; &gt;&gt; /etc/php/7.1/cli/php.ini# echo &quot;extension=swoole.so&quot; &gt;&gt; /etc/php/7.1/fpm/php.ini# /etc/init.d/php7.1-fpm reload]]></content>
       <tags>
         <tag>笔记</tag>
-        <tag>Git</tag>
+        <tag>Swoole</tag>
+        <tag>Laravel</tag>
       </tags>
   </entry>
   <entry>
