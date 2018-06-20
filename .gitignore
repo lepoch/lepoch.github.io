@@ -2,3 +2,4 @@
 public/
 private/
 node_modules
+db.json
