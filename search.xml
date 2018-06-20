@@ -61,6 +61,11 @@
       </tags>
   </entry>
   <entry>
+    <title><![CDATA[博客搭建]]></title>
+    <url>%2F%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA%2F</url>
+    <content type="text"><![CDATA[该博客搭建的笔记。 next主题进入博客主目录123## 安装next主题rm -rf themes/nextgit clone https://github.com/theme-next/hexo-theme-next themes/next fancybox - 图片可点击放大安装12rm -rf themes/next/source/lib/fancyboxgit clone https://github.com/theme-next/theme-next-fancybox3 themes/next/source/lib/fancybox 配置htemes/next/_config.yml1fancybox= true]]></content>
+  </entry>
+  <entry>
     <title><![CDATA[Go小记-初识]]></title>
     <url>%2FGo%E5%B0%8F%E8%AE%B0%2F</url>
     <content type="text"><![CDATA[整理的一些小记 dep1brew install dep 情景 gitlab Go toolsLint语法检测与建议 安装1go get -u golang.org/x/lint/golint 无梯子的安装/tools/init.sh123456789101112#!/usr/bin/env bash## 安装lint，其他需要翻墙的，大多也能这么安装mkdir -p $GOPATH/src/golang.org/xif [ ! -d $GOPATH/src/golang.org/x/tools ]; then cd $GOPATH/src/golang.org/x git clone https://github.com/golang/tools.git git clone https://github.com/golang/lint.git go get golang.org/x/lint/golintfi 使用1golint -set_exit_status $(go list ./... | grep -v /vendor/) Unit test单元测试 使用每个目录都执行 go test 方法1go test -short $(go list ./... | grep -v /vendor/) Code coverage这个可以计算单元测试覆盖率，添加已下脚本文件 使用/tools/coverage.sh1234567#!/usr/bin/env bashPKG_LIST=$(go list ./... | grep -v /vendor/) for package in $&#123;PKG_LIST&#125;; do go test -covermode=count -coverprofile "cover/$&#123;package##*/&#125;.cov" "$package" ;donetail -q -n +2 cover/*.cov &gt;&gt; cover/coverage.covgo tool cover -func=cover/coverage.cov 查看1go tool cover -html=cover/coverage.cov -o coverage.html 写个makefile，来集中调用这些工具项目下创建Makefile文件一些语法需要注意下： 行首的缩进必须是tab 1234567891011121314151617181920212223242526272829303132333435363738394041PROJECT_NAME := "maozhuaV4"PKG := "$(PROJECT_NAME)"PKG_LIST := $(shell go list $&#123;PKG&#125;/... | grep -v /vendor/)GO_FILES := $(shell find . -name '*.go' | grep -v /vendor/ | grep -v _test.go)PATH := $(PATH):$&#123;GOPATH&#125;/binSHELL := env PATH=$(PATH) /bin/bash.PHONY: all dep build clean test coverage coverhtml lintall: buildlint: ## Lint the files @golint -set_exit_status $&#123;PKG_LIST&#125;test: ## Run unittests @go test -short $&#123;PKG_LIST&#125;race: dep ## Run data race detector @go test -race -short $&#123;PKG_LIST&#125;msan: dep ## Run memory sanitizer @go test -msan -short $&#123;PKG_LIST&#125;coverage: ## Generate global code coverage report ./tools/coverage.sh;coverhtml: ## Generate global code coverage report in HTML ./tools/coverage.sh html;dep: ## Get the dependencies ./tools/init.sh; ## @go get -v -d ./...build: dep ## Build the binary file @go build -i -v $(PKG)clean: ## Remove previous build @rm -f $(PROJECT_NAME)help: ## Display this help screen @grep -h -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | awk 'BEGIN &#123;FS = ":.*?## "&#125;; &#123;printf "\033[36m%-30s\033[0m %s\n", $$1, $$2&#125;' 使用12345make helpmake lintmake depmake coverage## ... gitlab的CI/CD整理好了这些工具，那怎么自动调用呢？ 如gitlab有pipelines、drone等。这里使用的是gitlab。 创建 .gitlab-ci.yml官方文档变量 12345678910111213141516171819202122232425262728293031323334353637383940414243444546image: golang:1.10cache: paths: - /apt-cache - /go/src/github.com - /go/src/golang.org - /go/src/google.golang.org - /go/src/gopkg.instages: - test - buildbefore_script: - mkdir -p /go/src/$CI_PROJECT_NAMESPACE/$CI_PROJECT_NAME /go/src/_/builds/$CI_PROJECT_NAMESPACE - cp -r $CI_PROJECT_DIR /go/src/$CI_PROJECT_NAME - ln -s /go/src/$CI_PROJECT_NAME /go/src/_/builds/$CI_PROJECT_NAMESPACE/$CI_PROJECT_NAME - make depunit_tests: stage: test script: - make testrace_detector: stage: test script: - make race#memory_sanitizer:# stage: test# script:# - make msancode_coverage: stage: test script: - make coveragecode_coverage_report: stage: test script: - make coverhtml only: - masterlint_code: stage: test script: - make lintbuild: stage: build script: - make 安装Runner上述只是任务，具体在哪跑，得另行指定 k8s手动安装登录gitlab服务器，执行1sudo wget -O /usr/local/bin/gitlab-runner https://gitlab-runner-downloads.s3.amazonaws.com/latest/binaries/gitlab-runner-linux-amd64 镜像build pushdocker in docker上面的runner用的executor用的是docker，那么问题来了，要怎么把生成好的镜像推送到镜像仓库呢？ 在容器中再安装docker run的时候传入： docker run -v /var/run/docker.sock:/var/run/docker.sock -v $(which docker):$(which docker) -ti google/golang /bin/bash gitlab-runner提供了方法 1、找到配置文件1gitlab-runner list /etc/gitlab-runner/config.toml 中修改1234[[runners]] executor = &quot;docker&quot; [runners.docker] privileged = true 2、建个镜像，把go环境也搭好，这里镜像就叫mygolang了Dockerfile123456789101112131415161718192021222324252627282930313233343536373839404142FROM dockerMAINTAINER lepoch &lt;ll-xzx@qq.com&gt;#使用 ali 仓库地址RUN echo -e "http://mirrors.aliyun.com/alpine/latest-stable/main\n\http://mirrors.aliyun.com/alpine/latest-stable/community" &gt; /etc/apk/repositoriesRUN apk update &amp;&amp; apk add curl ca-certificates wget bash go1.10 git make &amp;&amp; \ ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime &amp;&amp; \ echo "Asia/Shanghai" &gt; /etc/timezone &amp;&amp; \ rm -rf /root/.cacheRUN set -eux; \ apk update; \ apk add --no-cache --virtual .build-deps \ bash \ gcc \ musl-dev \ openssl \ ; \ export \# set GOROOT_BOOTSTRAP such that we can actually build Go GOROOT_BOOTSTRAP="$(go env GOROOT)" \# ... and set "cross-building" related vars to the installed system's values so that we create a build targeting the proper arch# (for example, if our build host is GOARCH=amd64, but our build env/image is GOARCH=386, our build needs GOARCH=386) GOOS="$(go env GOOS)" \ GOARCH="$(go env GOARCH)" \ GOHOSTOS="$(go env GOHOSTOS)" \ GOHOSTARCH="$(go env GOHOSTARCH)" \ CGO_ENABLED="0" \ ; \ export PATH="/usr/local/go/bin:$PATH"; \ go versionENV GOPATH /goENV PATH $GOPATH/bin:/usr/local/go/bin:$PATHENV CGO_ENABLED "0"RUN mkdir -p "$GOPATH/src" "$GOPATH/bin" &amp;&amp; chmod -R 777 "$GOPATH"WORKDIR $GOPATH 3、修改yaml文件1234567image: mygolang# Use the OverlayFS driver for improved performance.variables: DOCKER_DRIVER: overlayservices: - docker:dind 4、build 和 push 12345678build: stage: build script: - docker info - docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN registry.maozhuar.com - CGO_ENABLED=0 GOOS=linux go build -a -installsuffix cgo -o main $CI_PROJECT_NAME/ - docker build -t registry.maozhuar.com/backenddeveloper/maozhuav4:$CI_COMMIT_REF_NAME . - docker push registry.maozhuar.com/backenddeveloper/maozhuav4:$CI_COMMIT_REF_NAME 部署以单台机器来说，用ssh远程执行其脚本即可。 在要部署的机器上，执行1234useradd --comment 'GitLab Runner' --create-home gitlab-runner --shell /bin/bashgroupadd dockerusermod -aG docker gitlab-runnersystemctl restart docker ssh使用秘钥 [https://docs.gitlab.com/ee/ci/ssh_keys/README.html] 创建秘钥对 把私钥放入gitlab CI/CD的 secret key 把ssh-keyscan的结果也放入 secret key 相关网址 Go tools &amp; GitLab — how to do Continuous Integration like a boss Runner]]></content>
@@ -147,15 +152,6 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[Git]]></title>
-    <url>%2FGit%2F</url>
-    <content type="text"><![CDATA[Git 彻底删除某文件及历史git filter-branch –force –index-filter ‘git rm –cached –ignore-unmatch “doc/base.sql” ‘ –prune-empty –tag-name-filter cat – –allgit push origin –force –allgit push origin –force –tagsgit for-each-ref –format=’delete %(refname)’ refs/original | git update-ref –stdingit reflog expire –expire=now –allgit gc –prune=nowgit count-objects -v]]></content>
-      <tags>
-        <tag>Git</tag>
-        <tag>笔记</tag>
-      </tags>
-  </entry>
-  <entry>
     <title><![CDATA[NewSQL]]></title>
     <url>%2FNewSQL%2F</url>
     <content type="text"><![CDATA[参考 数据库功能深度解析：怎样打造一个分布式数据库 TiDB 的正确使用姿势]]></content>
@@ -164,6 +160,15 @@
         <tag>sql</tag>
         <tag>nosql</tag>
         <tag>分布式数据库</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Git]]></title>
+    <url>%2FGit%2F</url>
+    <content type="text"><![CDATA[Git 彻底删除某文件及历史git filter-branch –force –index-filter ‘git rm –cached –ignore-unmatch “doc/base.sql” ‘ –prune-empty –tag-name-filter cat – –allgit push origin –force –allgit push origin –force –tagsgit for-each-ref –format=’delete %(refname)’ refs/original | git update-ref –stdingit reflog expire –expire=now –allgit gc –prune=nowgit count-objects -v]]></content>
+      <tags>
+        <tag>Git</tag>
+        <tag>笔记</tag>
       </tags>
   </entry>
   <entry>
@@ -201,18 +206,6 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[win7安装vbox]]></title>
-    <url>%2Fwin7%E5%AE%89%E8%A3%85vbox%2F</url>
-    <content type="text"><![CDATA[win7下安装virtual box笔记 virtual box创建CentOS虚拟机win7下使用SSH登录虚拟机使用NAT方式使用端口转发，把宿主机的端口，转到虚拟机上去， 如下图 win7 与虚拟机的共享文件夹安装增强功能12345yum install -y gcc gcc-devel gcc-c++ gcc-c++-devel make kernel kernel-devel bzip2mkdir /mnt/cdrommount /dev/cdrom /mnt/cdromcd /mnt/cdrom./VBoxLinuxAdditions.run 然后就各种yes，回车了。 配置共享文件夹在虚拟机设置，共享文件夹，新增得到共享文件夹名称。1sudo mount -t vboxsf 共享文件夹名称（在设置页面设置的） 挂载的目录]]></content>
-      <categories>
-        <category>Linux</category>
-      </categories>
-      <tags>
-        <tag>笔记</tag>
-        <tag>vbox</tag>
-      </tags>
-  </entry>
-  <entry>
     <title><![CDATA[supervisor小记]]></title>
     <url>%2Fsupervisor%E5%B0%8F%E8%AE%B0%2F</url>
     <content type="text"><![CDATA[supervisor小记 配置期待的退出状态]]></content>
@@ -222,6 +215,18 @@
       <tags>
         <tag>笔记</tag>
         <tag>supervisor</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[win7安装vbox]]></title>
+    <url>%2Fwin7%E5%AE%89%E8%A3%85vbox%2F</url>
+    <content type="text"><![CDATA[win7下安装virtual box笔记 virtual box创建CentOS虚拟机win7下使用SSH登录虚拟机使用NAT方式使用端口转发，把宿主机的端口，转到虚拟机上去， 如下图 win7 与虚拟机的共享文件夹安装增强功能12345yum install -y gcc gcc-devel gcc-c++ gcc-c++-devel make kernel kernel-devel bzip2mkdir /mnt/cdrommount /dev/cdrom /mnt/cdromcd /mnt/cdrom./VBoxLinuxAdditions.run 然后就各种yes，回车了。 配置共享文件夹在虚拟机设置，共享文件夹，新增得到共享文件夹名称。1sudo mount -t vboxsf 共享文件夹名称（在设置页面设置的） 挂载的目录]]></content>
+      <categories>
+        <category>Linux</category>
+      </categories>
+      <tags>
+        <tag>笔记</tag>
+        <tag>vbox</tag>
       </tags>
   </entry>
   <entry>
