@@ -115,7 +115,7 @@
         var $i = $("<span/>").text(a[a_idx]);
         var x = e.pageX,y = e.pageY;
         $i.css({
-            "z-index": 999999999999999999999999999999999999999999999999999999999999999999999,
+            "z-index": 99999,
             "top": y - 20,
             "left": x,
             "position": "absolute",
@@ -140,7 +140,7 @@
 
   <meta property="og:type" content="website">
 <meta property="og:title" content="战吧">
-<meta property="og:url" content="https://lepoch.github.io/categories/php/index.html">
+<meta property="og:url" content="https://lepoch.github.io/categories/PHP/index.html">
 <meta property="og:site_name" content="战吧">
 <meta property="og:locale" content="zh-Hans">
 <meta name="twitter:card" content="summary">
@@ -151,7 +151,7 @@
 
 
 
-  <link rel="canonical" href="https://lepoch.github.io/categories/php/"/>
+  <link rel="canonical" href="https://lepoch.github.io/categories/PHP/"/>
 
 
 
@@ -161,7 +161,7 @@
   };
 </script>
 
-  <title>分类: php | 战吧</title>
+  <title>分类: PHP | 战吧</title>
   
 
 
@@ -384,7 +384,7 @@
 
     <div id="posts" class="posts-collapse">
       <div class="collection-title">
-        <h1>php<small>分类</small>
+        <h1>PHP<small>分类</small>
         </h1>
       </div>
 
@@ -396,9 +396,9 @@
 
       <h2 class="post-title">
         
-            <a class="post-title-link" href="/代码review工具/" itemprop="url">
+            <a class="post-title-link" href="/PHP性能分析工具/" itemprop="url">
               
-                <span itemprop="name">代码review工具</span>
+                <span itemprop="name">PHP性能分析工具</span>
               
             </a>
         
@@ -406,9 +406,37 @@
 
       <div class="post-meta">
         <time class="post-time" itemprop="dateCreated"
-              datetime="2017-04-14T15:00:00+08:00"
-              content="2017-04-14" >
-          04-14
+              datetime="2017-06-28T17:26:00+08:00"
+              content="2017-06-28" >
+          06-28
+        </time>
+      </div>
+
+    </header>
+  </article>
+
+
+      
+        
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      <h2 class="post-title">
+        
+            <a class="post-title-link" href="/laravel/" itemprop="url">
+              
+                <span itemprop="name">laravel</span>
+              
+            </a>
+        
+      </h2>
+
+      <div class="post-meta">
+        <time class="post-time" itemprop="dateCreated"
+              datetime="2017-05-24T15:04:07+08:00"
+              content="2017-05-24" >
+          05-24
         </time>
       </div>
 
@@ -466,7 +494,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">30</span>
+                    <span class="site-state-item-count">24</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -503,13 +531,7 @@
                     
                       
                     
-                      
-                    
-                      
-                    
-                      
-                    
-                    <span class="site-state-item-count">15</span>
+                    <span class="site-state-item-count">12</span>
                     <span class="site-state-item-name">分类</span>
                   </a>
                 </div>
@@ -570,27 +592,7 @@
                     
                       
                     
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                    <span class="site-state-item-count">34</span>
+                    <span class="site-state-item-count">24</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
@@ -1079,55 +1081,6 @@
 
     // handle and trigger popup window;
     $('.popup-trigger').click(function(e) {
-      e.stopPropagation();
-      if (isfetched === false) {
-        searchFunc(path, 'local-search-input', 'local-search-result');
-      } else {
-        proceedsearch();
-      };
-    });
-
-    $('.popup-btn-close').click(onPopupClose);
-    $('.popup').click(function(e){
-      e.stopPropagation();
-    });
-    $(document).on('keyup', function (event) {
-      var shouldDismissSearchPopup = event.which === 27 &&
-        $('.search-popup').is(':visible');
-      if (shouldDismissSearchPopup) {
-        onPopupClose();
-      }
-    });
-  </script>
-
-
-
-
-
-  
-
-  
-
-  
-
-  
-
-  
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-</body>
-</html>
-ick(function(e) {
       e.stopPropagation();
       if (isfetched === false) {
         searchFunc(path, 'local-search-input', 'local-search-result');

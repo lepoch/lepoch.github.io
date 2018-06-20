@@ -147,13 +147,12 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[Swoole初识]]></title>
-    <url>%2FSwoole%E5%88%9D%E8%AF%86%2F</url>
-    <content type="text"><![CDATA[Swoole初识 背景可能是因为Laravel框架原因，Yar并发请求的性能并没有达到预期目标。需探索另外的道路。 安装Homestead环境1234567891011121314sudo sucd ~wget https://github.com/swoole/swoole-src/archive/v2.0.7.tar.gztar -xzf v2.0.7.tar.gzcd swoole-src-2.0.7/phpize./configure --enable-coroutinemakemake installecho &quot;extension=swoole.so&quot; &gt;&gt; /etc/php/7.1/cli/php.ini# echo &quot;extension=swoole.so&quot; &gt;&gt; /etc/php/7.1/fpm/php.ini# /etc/init.d/php7.1-fpm reload]]></content>
+    <title><![CDATA[Git]]></title>
+    <url>%2FGit%2F</url>
+    <content type="text"><![CDATA[Git 彻底删除某文件及历史git filter-branch –force –index-filter ‘git rm –cached –ignore-unmatch “doc/base.sql” ‘ –prune-empty –tag-name-filter cat – –allgit push origin –force –allgit push origin –force –tagsgit for-each-ref –format=’delete %(refname)’ refs/original | git update-ref –stdingit reflog expire –expire=now –allgit gc –prune=nowgit count-objects -v]]></content>
       <tags>
+        <tag>Git</tag>
         <tag>笔记</tag>
-        <tag>Swoole</tag>
-        <tag>Laravel</tag>
       </tags>
   </entry>
   <entry>
@@ -168,37 +167,6 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[Git]]></title>
-    <url>%2FGit%2F</url>
-    <content type="text"><![CDATA[Git 彻底删除某文件及历史git filter-branch –force –index-filter ‘git rm –cached –ignore-unmatch “doc/base.sql” ‘ –prune-empty –tag-name-filter cat – –allgit push origin –force –allgit push origin –force –tagsgit for-each-ref –format=’delete %(refname)’ refs/original | git update-ref –stdingit reflog expire –expire=now –allgit gc –prune=nowgit count-objects -v]]></content>
-      <tags>
-        <tag>笔记</tag>
-        <tag>Git</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[游戏推编码规范]]></title>
-    <url>%2F%E6%B8%B8%E6%88%8F%E6%8E%A8%E7%BC%96%E7%A0%81%E8%A7%84%E8%8C%83%2F</url>
-    <content type="text"><![CDATA[游戏推编码规范 PSR-[0-4] 规范具体见PSR这里我只简单强调几点。 一般的IDE都有一键PSR格式化，然而其只能做到花括号位置调整、空格调整等功能，剩下的就得靠自己注意了。 PHP文件规范 只使用 &lt;?php标签 只使用不带BOM的UTF-8文件（IDE代办） 纯PHP代码源文件的关闭标签?&gt;必须省略。 必须使用Unix LF(换行)作为行结束符。（IDE代办） 命名规范 命名空间必须跟目录、文件名保持关联，如文件 Doctrine/Common/IsolatedClassLoader.php 的类应是 123456namespace Doctrine\Common\class IsolatedClassLoader&#123; // ...&#125; 类名(class name) 必须使用骆驼式(StudlyCaps)写法 类名必须要和对应的文件名要一模一样，大小写也要一模一样 类(class)中的常量必须只由大写字母和下划线(_)组成 方法名(method name) 必须使用驼峰式(cameCase)写法 属性(property)、方法(method)必须声明其可见性 代码风格 文件末尾必须空一行。 必须使用4个空格来缩进 一行推荐的是最多写80个字符 php的关键字，必须小写，boolean值：true，false，null 也必须小写 ‘__halt_compiler’, ‘abstract’, ‘and’, ‘array’, ‘as’, ‘break’, ‘callable’, ‘case’, ‘catch’, ‘class’, ‘clone’, ‘const’, ‘continue’, ‘declare’, ‘default’, ‘die’, ‘do’, ‘echo’, ‘else’, ‘elseif’, ‘empty’, ‘enddeclare’, ‘endfor’, ‘endforeach’, ‘endif’, ‘endswitch’, ‘endwhile’, ‘eval’, ‘exit’, ‘extends’, ‘final’, ‘for’, ‘foreach’, ‘function’, ‘global’, ‘goto’, ‘if’, ‘implements’, ‘include’, ‘include_once’, ‘instanceof’, ‘insteadof’, ‘interface’, ‘isset’, ‘list’, ‘namespace’, ‘new’, ‘or’, ‘print’, ‘private’, ‘protected’, ‘public’, ‘require’, ‘require_once’, ‘return’, ‘static’, ‘switch’, ‘throw’, ‘trait’, ‘try’, ‘unset’, ‘use’, ‘var’, ‘while’, ‘xor’ 类、方法、函数的花括号换行 123456&lt;?phpnamespace Lib\Databaes;class Mysql extends ParentClass implements \PDO, \DB // 写一行&#123; //换行写&#123;&#125; if else while switch等花括号不换行12345678&lt;?phpif ($expr1) &#123; //左右空格 // if body&#125; elseif ($expr2) &#123; //elesif 连着写 // elseif body&#125; else &#123; // else body;&#125; 注释规范 这得重点强调，每个类、方法都需有注释，且需要注明时间、作者 修改时，注明修改人、修改时间 laravel 规范helper方法在有helper方法的前提下，强烈建议使用helper方法代替对应的Facade或其他操作。 目录结构的调整 追加App/Models目录，App/User.php迁移至App/Models目录中，注意修改NameSpace和Use。 追加App/Libs目录，用于存放业务逻辑代码，参考了laravel官方示例的App/Repositories目录。 类调用写法 除使用Laravel的Facade等机制外，其他常规代码必须在php文件前部先use所需要使用的类，然后代码中直接调用。 如果出现不同namespace有相同的类名的情况的时候，必须全部使用别名来处理。 关于常量 附属于类的常量必须使用const定义，例如ActiveRecord中定义数据库里status/flag类型字段的具体数值和含义的时候。 归属于业务逻辑的常量，强烈建议定义在config目录中，通过config方法调用。 对于需要根据环境（env）进行变更的内容，按照以下原则进行： 配置内容属于架构信息、服务器信息、有必要隐藏无法提交git的信息，请使用.env文件配合env()方法进行设定（.env.example中必须添加对应的字段和示例） 属于业务逻辑的常量内容，或可以提交到git无需隐藏的部分配置类信息，直接在定义代码处使用环境判断函数判断环境后将所有值都写入代码中。 blade 模版引擎 使用如下标志符{{ }} laravel5.0起，是会其进行html_filter处理的，可以避免XSS攻击 资料参考 [https://www.zybuluo.com/phper/note/65033] [https://wenku.baidu.com/view/1693ade0964bcf84b8d57bd3.html] [http://www.ultrakuma.com/laravel-framework-specification-5-1-11.html]]]></content>
-      <tags>
-        <tag>PHP</tag>
-        <tag>游戏推</tag>
-        <tag>laravel</tag>
-        <tag>规范</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[游戏推开发环境搭建]]></title>
-    <url>%2F%E6%B8%B8%E6%88%8F%E6%8E%A8%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%2F</url>
-    <content type="text"><![CDATA[游戏推开发环境搭建 12345678910echo &apos;LANG=&quot;zh_CN.UTF-8&quot;&apos; &gt; /etc/locale.confsource /etc/locale.conf # 挂载硬盘fdisk /dev/vdb# n -&gt; p -&gt; \n -&gt; \n -&gt; \n -&gt; wmkfs.ext3 /dev/vdb1mount /dev/vdb1 /data# 开机自动挂载echo &apos;/dev/vdb1 /data ext3 defaults 1 2&apos; &gt;&gt; /etc/fstab Nginx + PHP7 + PHP5.4[https://github.com/lepoch/MaozhuaServ] mysql123456789101112131415161718192021222324252627282930313233yum install gcc gcc-c++ ncurses-devel perl cmake -ygroupadd mysql useradd -r -g mysql mysqlmkdir -p /usr/local/serv/mysqlmkdir -p /data/mysqldbmkdir -p /usr/local/serv/srccd /usr/local/serv/srcwget https://cdn.mysql.com//Downloads/MySQL-5.7/mysql-5.7.18.tar.gztar -zxv -f mysql-5.7.18.tar.gz cd mysql-5.7.18cmake \-DCMAKE_INSTALL_PREFIX=/usr/local/serv/mysql \-DDEFAULT_CHARSET=utf8 \-DDEFAULT_COLLATION=utf8_general_ci \-DWITH_EXTRA_CHARSETS:STRING=utf8,gbk \-DWITH_MYISAM_STORAGE_ENGINE=1 \-DWITH_INNOBASE_STORAGE_ENGINE=1 \-DWITH_MEMORY_STORAGE_ENGINE=1 \-DWITH_READLINE=1 \-DENABLED_LOCAL_INFILE=1 \-DMYSQL_DATADIR=/data/mysql \-DMYSQL_USER=mysql \-DDOWNLOAD_BOOST=1 \-DMYSQL_TCP_PORT=3306# 修改密码grep &apos;temporary password&apos; /var/log/mysqld.log redis1234567891011wget http://dl.fedoraproject.org/pub/epel/7/x86_64/e/epel-release-7-5.noarch.rpmrpm -ivh epel-release-7-5.noarch.rpmyum update -yyum install redis php-pecl-redis -y#systemctl start redis-server.service#systemctl enable redis-server.serviceredis-server /etc/redis.confecho &quot;redis-server /etc/redis.conf&quot; &gt;&gt; /etc/rc.local]]></content>
-      <categories>
-        <category>Linux</category>
-      </categories>
-      <tags>
-        <tag>游戏推</tag>
-      </tags>
-  </entry>
-  <entry>
     <title><![CDATA[Mac使用]]></title>
     <url>%2FMac%E4%BD%BF%E7%94%A8%2F</url>
     <content type="text"><![CDATA[Mac使用 ssh登陆不用每次输入完整命令、密码 使用expect使用iterm2终端，ssh + expect + 别名 此种方式登陆会出现lrzsz没效果的情况！！ yum install expect -y ~/expect/login.sh 12345678910#! /usr/bin/expectset timeout 30eval spawn [lrange $argv 1 end]expect &#123; &quot;(yes/no)?&quot; &#123;send &quot;yes\n&quot;;exp_continue&#125; &quot;password:&quot; &#123;send &quot;[lindex $argv 0]\n&quot;&#125;&#125;interact ~/.bash_profileexpect ~/expect/login.sh 密码 ssh 完整命令 1alias lssh-vultr=&apos;expect ~/expect/login.sh 密码 ssh root@45.77.12.xxx&apos; source ~/.bash_profile 使用 lssh-vultr 直接登陆 使用 sshpass使用.ssh (推荐)终端文字颜色 ~/.bash_profile123alias ls=&apos;ls -G&apos;alias ll=&apos;ls -l&apos;alias grep=&apos;grep --color&apos; source ~/.bash_profile]]></content>
@@ -207,18 +175,6 @@
       </categories>
       <tags>
         <tag>Mac</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[代码review工具]]></title>
-    <url>%2F%E4%BB%A3%E7%A0%81review%E5%B7%A5%E5%85%B7%2F</url>
-    <content type="text"><![CDATA[上周审核了几个同事的代码，发现代码规范用处太小。使用工具进行代码的审核势在必行。 环境LINUX 虚拟机 CentOS7 命令行代理，见另一篇 《Linux代理》Rietveld谷歌出品工具，很犀利，免费开源。PYTHON + Django， 使用Google App Engine。 git Google Cloud SDK 安装1wget https://storage.googleapis.com/appengine-sdks/featured/google_appengine_1.9.50.zip Phabricatorfacebook出品。基于LAMP。官方安装手册 环境依赖 Apache MySQL PHP yum 安装这种会出现 proc_open 调用系统命令权限问题 安装环境1234567891011yum install -y httpdyum install -y httpd-manual mod_ssl mod_perl mod_auth_mysqlwget http://dev.mysql.com/get/mysql-community-release-el7-5.noarch.rpmrpm -ivh mysql-community-release-el7-5.noarch.rpmyum install -y mysql-community-serveryum install -y mysql mysql-develyum install -y php php-mysqlyum install -y gd php-gd gd-devel php-xml php-common php-mbstring php-ldap php-pear php-xmlrpc php-imap 安装组件复制下来直接执行，执行路径即安装路径 .sh脚本 配置，Configration Guide Apache MySQL 使用 打开页面，创建管理员帐号 左上角的 Setup Issues，一个一个解决 Arcanist安装这个可以使用lint等，进行代码检测。 依赖 Install PHP. Install Git. 安装 1234mkdir somewhere/cd somewhere/git clone https://github.com/phacility/libphutil.gitgit clone https://github.com/phacility/arcanist.git 添加到PATH 1export PATH=&quot;$PATH:/somewhere/arcanist/bin/&quot; #### Diffusion这是绑定SVN、GIT等版本控制软件的工具。 提交后的审查auditPost-commit code review and auditing. Audits you are assigned to will appear here. 这里有一节《Audits in Small Teams》，中有Herald rule，在More Applications菜单中能找到。 问题Authentication Failure This Phabricator install is not configured with any enabled authentication providers which can be used to log in. If you have accidentally locked yourself out by disabling all providers, you can use phabricator/bin/auth recover &lt;username&gt; to recover access to an administrative account. 这是管理员被锁上了，使用提示中的命令恢复下就好。 proc问题查看diffusion，报错如下： Command failed with error #128! COMMAND git for-each-ref –sort=’-creatordate’ –format=’%(objectname)%01%(objecttype)%01%(refname)%01%(_objectname)%01%(_objecttype)%01%(subject)%01%(creator)’ – ‘refs/‘ STDOUT (empty) STDERR fatal: Not a git repository (or any of the parent directories): .git 还有svn –non-interactive –no-auth-cache –username什么什么的错误。 跟踪代码发现，都是proc执行系统命令出现的权限错误。而直接用 php cli 模式执行那些命令，则正常。。因时间原因，我直接换了 lnmp 。 ini_set include_path不生效 Unable to load libphutil. Put libphutil/ next to phabricator/, or update your PHP ‘include_path’ to include the parent directory of libphutil/. 发现是在fpm配置中写的，删除之后就行。 php_admin_value[include_path] = .:/usr/local/sinasrv2/lib/php SonarQube用于检测代码质量的开源平台，通过插件可对PHP,Java,C/C++,JavaScript等20多种语言进行多纬度质量检测。 依赖 Java 安装官方手册：&lt;https://docs.sonarqube.org/display/SONARQUBE56/Documentation/ &gt;本次安装的是5.6.6 LTS，P.S. 6.3 我这连MySQL失败 SonarQube serverweb可视化管理工具， 去&lt;http://www.sonarsource.org/downloads/ &gt;下载，unzip 解压。 1234wget https://sonarsource.bintray.com/Distribution/sonarqube/sonarqube-5.6.6.zipunzip sonarqube-5.6.6.zipmv sonarqube-5.6.6 /etc/sonarqube/etc/sonarqube/bin/[OS]/sonar.sh console 国内得修改谷歌字体，不然很卡1sed -i &apos;s/\(@import url(https:\/\/fonts.googleapis.com\/css\)/\/\/\1/g&apos; /etc/sonarqube/web/js/* 配置MySQL数据库，因为是虚拟机，就直接yum安装MySQLl了。12345CREATE DATABASE sonar CHARACTER SET utf8 COLLATE utf8_general_ci;CREATE USER &apos;sonar&apos; IDENTIFIED BY &apos;sonar&apos;;GRANT ALL ON sonar.* TO &apos;sonar&apos;@&apos;%&apos; IDENTIFIED BY &apos;sonar&apos;;GRANT ALL ON sonar.* TO &apos;sonar&apos;@&apos;localhost&apos; IDENTIFIED BY &apos;sonar&apos;;FLUSH PRIVILEGES; 配置MySQL1234567891011121314151617181920[root@localhost bin]# cat /etc/my.cnf[mysqld]max_allowed_packet=10Mdatadir=/var/lib/mysqlsocket=/var/lib/mysql/mysql.sockuser=mysql# Disabling symbolic-links is recommend to prevent assorted security riskssymbolic-links=0# 修改默认的存储引擎为InnoDBdefault-storage-engine=InnoDB# 这个参数主要作用是缓存innodb表的索引，数据，插入数据时的缓冲innodb_buffer_pool_size = 256M# 配置查询缓存的大小query_cache_size=128M# 启动mysql高速缓存query_cache_type=1[mysqld_safe]log-error=/var/log/mysqld.logpid-file=/var/run/mysqld/mysqld.pid 修改配置vim /etc/sonarqube/conf/sonar.properties123sonar.jdbc.username=sonarsonar.jdbc.password=sonarsonar.jdbc.url=jdbc:mysql://localhost:3306/sonar?useUnicode=true&amp;characterEncoding=utf8&amp;rewriteBatchedStatements=true&amp;useConfigs=maxPerformance SonarQube Scanner检测工具12345wget https://sonarsource.bintray.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-3.0.1.733-linux.zipunzip sonar-scanner-cli-3.0.1.733-linux.zipmv sonar-scanner-3.0.1.733-linux /etc/sonar-scannerln -s /etc/sonar-scanner/bin/sonar-scanner /bin/sonar-scanner 安装插件 SonarPHPhttps://sonarsource.bintray.com/Distribution/sonar-php-plugin/sonar-php-plugin-2.10.0.2087.jar 参考资料 https://secure.phabricator.com/book/phabricator/article/installation_guide/ https://www.oschina.net/news/53172/phabricator-manual-cn]]></content>
-      <categories>
-        <category>php</category>
-      </categories>
-      <tags>
-        <tag>新浪游戏</tag>
-        <tag>php</tag>
       </tags>
   </entry>
   <entry>
@@ -242,18 +198,6 @@
       <tags>
         <tag>笔记</tag>
         <tag>docker</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[2017技术清单]]></title>
-    <url>%2F2017%E6%8A%80%E6%9C%AF%E6%B8%85%E5%8D%95%2F</url>
-    <content type="text"><![CDATA[2017技术清单 TCP 握手]]></content>
-      <categories>
-        <category>Linux</category>
-      </categories>
-      <tags>
-        <tag>清单</tag>
-        <tag>笔记</tag>
       </tags>
   </entry>
   <entry>
@@ -281,31 +225,6 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[Vue小记-初识]]></title>
-    <url>%2FVue%E5%B0%8F%E8%AE%B0-%E5%88%9D%E8%AF%86%2F</url>
-    <content type="text"><![CDATA[Vue的初识笔记，语法什么的见[https://cn.vuejs.org/v2/guide/syntax.html] 什么是Vue 渐进式框架 受 MVVM模型启发 操作 [虚拟DOM] (https://github.com/livoras/blog/issues/13) 什么是虚拟DOM单个元素就已经很大，DOM很慢。如果要修改某处，直接操作整个DOM可行，但会造成很多无用的性能消耗。DOM可以用JavaScript对象表示出来。 虚拟DOM 就是用户只操作 js 数据，由框架来实现最终的DOM 精准 渲染。]]></content>
-      <categories>
-        <category>Vue</category>
-      </categories>
-      <tags>
-        <tag>笔记</tag>
-        <tag>Vue</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[数据结构与算法]]></title>
-    <url>%2F%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95%2F</url>
-    <content type="text"><![CDATA[Bloom Filter]]></content>
-      <categories>
-        <category>算法</category>
-        <category>数据结构</category>
-      </categories>
-      <tags>
-        <tag>算法</tag>
-        <tag>数据结构</tag>
-      </tags>
-  </entry>
-  <entry>
     <title><![CDATA[升级python]]></title>
     <url>%2F%E5%8D%87%E7%BA%A7python%2F</url>
     <content type="text"><![CDATA[升级CentOS 自带的 python 2.7.5 到 2.7.11 环境LINUX 虚拟机CentOS 7 升级 python12345678910111213141516171819# 先装 zlibyum install -y zlib1g-dev zlib zlib-devel openssl-develwget https://www.python.org/ftp/python/2.7.11/Python-2.7.11.tgztar -zxf Python-2.7.11.tgzcd Python-2.7.11# 安装mkdir /usr/local/python-2.7.11./configure --prefix=/usr/local/python-2.7.11# moudle @TODOsed -i &apos;/#zlib zlibmodule.c/s/.//&apos; Modules/Setupsed -i &apos;/#_ssl _ssl.c/,+2&#123;s/#//&#125;&apos; Modules/Setupmake &amp;&amp; make install 扩展_sqliteyum install sqlite-devel -y重新编译安装 替换默认的 python 命令 慎重因新装的python module会导致yum等系统命令问题。12345mv /bin/python /bin/python_old mv /usr/bin/python /usr/bin/python_old ln -s /usr/local/python-2.7.11/bin/python2.7 /bin/pythonln -s /usr/local/python-2.7.11/bin/python2.7 /usr/bin/python 重装pip，已知所需module：zlib, ssl12wget https://bootstrap.pypa.io/get-pip.pypython get-pip.py yum 修复第一种，指向yum到原来的python， 这种简单些12sed -i &apos;1s/$/&amp;_old/&apos; /usr/bin/yumsed -i &apos;1s/$/&amp;_old/&apos; /usr/libexec/urlgrabber-ext-down 第二种，重装yum]]></content>
@@ -318,14 +237,15 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[yum安装MySQL]]></title>
-    <url>%2Fyum%E5%AE%89%E8%A3%85MySQL%2F</url>
-    <content type="text"><![CDATA[yum 安装 MySQL 环境：CentOS7VBox 1234567891011121314wget http://dev.mysql.com/get/mysql57-community-release-el7-7.noarch.rpmyum localinstall -y mysql57-community-release-el7-7.noarch.rpmyum install -y mysql-community-serversystemctl start mysqld.service# 密码：grep &apos;password&apos; /var/log/mysqld.log | awk &apos;&#123;print $NF&#125;&apos;mysql -u root -p`grep &apos;password&apos; /var/log/mysqld.log | awk &apos;&#123;print $NF&#125;&apos;`# 重设密码set global validate_password_policy=0;set global validate_password_length=4;set password for &apos;root&apos;@&apos;localhost&apos;=password(&apos;root&apos;);flush privileges;]]></content>
+    <title><![CDATA[Vue小记-初识]]></title>
+    <url>%2FVue%E5%B0%8F%E8%AE%B0-%E5%88%9D%E8%AF%86%2F</url>
+    <content type="text"><![CDATA[Vue的初识笔记，语法什么的见[https://cn.vuejs.org/v2/guide/syntax.html] 什么是Vue 渐进式框架 受 MVVM模型启发 操作 [虚拟DOM] (https://github.com/livoras/blog/issues/13) 什么是虚拟DOM单个元素就已经很大，DOM很慢。如果要修改某处，直接操作整个DOM可行，但会造成很多无用的性能消耗。DOM可以用JavaScript对象表示出来。 虚拟DOM 就是用户只操作 js 数据，由框架来实现最终的DOM 精准 渲染。]]></content>
       <categories>
-        <category>MySQL</category>
+        <category>Vue</category>
       </categories>
       <tags>
-        <tag>MySQL</tag>
+        <tag>笔记</tag>
+        <tag>Vue</tag>
       </tags>
   </entry>
   <entry>
@@ -338,6 +258,17 @@
       <tags>
         <tag>笔记</tag>
         <tag>Linux</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[yum安装MySQL]]></title>
+    <url>%2Fyum%E5%AE%89%E8%A3%85MySQL%2F</url>
+    <content type="text"><![CDATA[yum 安装 MySQL 环境：CentOS7VBox 1234567891011121314wget http://dev.mysql.com/get/mysql57-community-release-el7-7.noarch.rpmyum localinstall -y mysql57-community-release-el7-7.noarch.rpmyum install -y mysql-community-serversystemctl start mysqld.service# 密码：grep &apos;password&apos; /var/log/mysqld.log | awk &apos;&#123;print $NF&#125;&apos;mysql -u root -p`grep &apos;password&apos; /var/log/mysqld.log | awk &apos;&#123;print $NF&#125;&apos;`# 重设密码set global validate_password_policy=0;set global validate_password_length=4;set password for &apos;root&apos;@&apos;localhost&apos;=password(&apos;root&apos;);flush privileges;]]></content>
+      <categories>
+        <category>MySQL</category>
+      </categories>
+      <tags>
+        <tag>MySQL</tag>
       </tags>
   </entry>
   <entry>

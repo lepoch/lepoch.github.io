@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://lepoch.github.io/"/>
-  <updated>2018-06-20T10:33:14.160Z</updated>
+  <updated>2018-06-20T11:23:43.056Z</updated>
   <id>https://lepoch.github.io/</id>
   
   <author>
@@ -21,7 +21,7 @@
     <link href="https://lepoch.github.io/%E6%A8%A1%E5%BC%8F-%E6%A1%A5%E6%8E%A5%E6%A8%A1%E5%BC%8F/"/>
     <id>https://lepoch.github.io/模式-桥接模式/</id>
     <published>2018-06-15T08:35:00.000Z</published>
-    <updated>2018-06-20T10:33:14.160Z</updated>
+    <updated>2018-06-20T11:23:43.056Z</updated>
     
     <summary type="html">
     
@@ -267,7 +267,7 @@
     <link href="https://lepoch.github.io/laravel/"/>
     <id>https://lepoch.github.io/laravel/</id>
     <published>2017-05-24T07:04:07.000Z</published>
-    <updated>2017-05-31T12:26:38.000Z</updated>
+    <updated>2018-06-20T11:25:37.762Z</updated>
     
     <summary type="html">
     
@@ -285,24 +285,22 @@
   </entry>
   
   <entry>
-    <title>Swoole初识</title>
-    <link href="https://lepoch.github.io/Swoole%E5%88%9D%E8%AF%86/"/>
-    <id>https://lepoch.github.io/Swoole初识/</id>
+    <title>Git</title>
+    <link href="https://lepoch.github.io/Git/"/>
+    <id>https://lepoch.github.io/Git/</id>
     <published>2017-05-22T08:55:00.000Z</published>
-    <updated>2017-07-23T12:53:07.000Z</updated>
+    <updated>2017-07-07T09:41:03.000Z</updated>
     
     <summary type="html">
     
-      &lt;p&gt;Swoole初识&lt;/p&gt;
+      &lt;p&gt;Git&lt;/p&gt;
     
     </summary>
     
     
+      <category term="Git" scheme="https://lepoch.github.io/tags/Git/"/>
+    
       <category term="笔记" scheme="https://lepoch.github.io/tags/%E7%AC%94%E8%AE%B0/"/>
-    
-      <category term="Swoole" scheme="https://lepoch.github.io/tags/Swoole/"/>
-    
-      <category term="Laravel" scheme="https://lepoch.github.io/tags/Laravel/"/>
     
   </entry>
   
@@ -336,70 +334,6 @@
   </entry>
   
   <entry>
-    <title>Git</title>
-    <link href="https://lepoch.github.io/Git/"/>
-    <id>https://lepoch.github.io/Git/</id>
-    <published>2017-05-22T08:55:00.000Z</published>
-    <updated>2017-07-07T09:41:03.000Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;Git&lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="笔记" scheme="https://lepoch.github.io/tags/%E7%AC%94%E8%AE%B0/"/>
-    
-      <category term="Git" scheme="https://lepoch.github.io/tags/Git/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>游戏推编码规范</title>
-    <link href="https://lepoch.github.io/%E6%B8%B8%E6%88%8F%E6%8E%A8%E7%BC%96%E7%A0%81%E8%A7%84%E8%8C%83/"/>
-    <id>https://lepoch.github.io/游戏推编码规范/</id>
-    <published>2017-05-18T15:06:00.000Z</published>
-    <updated>2017-05-19T17:05:37.000Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;游戏推编码规范&lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="PHP" scheme="https://lepoch.github.io/tags/PHP/"/>
-    
-      <category term="游戏推" scheme="https://lepoch.github.io/tags/%E6%B8%B8%E6%88%8F%E6%8E%A8/"/>
-    
-      <category term="laravel" scheme="https://lepoch.github.io/tags/laravel/"/>
-    
-      <category term="规范" scheme="https://lepoch.github.io/tags/%E8%A7%84%E8%8C%83/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>游戏推开发环境搭建</title>
-    <link href="https://lepoch.github.io/%E6%B8%B8%E6%88%8F%E6%8E%A8%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/"/>
-    <id>https://lepoch.github.io/游戏推开发环境搭建/</id>
-    <published>2017-05-17T13:14:00.000Z</published>
-    <updated>2017-07-18T08:47:33.000Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;游戏推开发环境搭建&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="Linux" scheme="https://lepoch.github.io/categories/Linux/"/>
-    
-    
-      <category term="游戏推" scheme="https://lepoch.github.io/tags/%E6%B8%B8%E6%88%8F%E6%8E%A8/"/>
-    
-  </entry>
-  
-  <entry>
     <title>Mac使用</title>
     <link href="https://lepoch.github.io/Mac%E4%BD%BF%E7%94%A8/"/>
     <id>https://lepoch.github.io/Mac使用/</id>
@@ -420,28 +354,6 @@
   </entry>
   
   <entry>
-    <title>代码review工具</title>
-    <link href="https://lepoch.github.io/%E4%BB%A3%E7%A0%81review%E5%B7%A5%E5%85%B7/"/>
-    <id>https://lepoch.github.io/代码review工具/</id>
-    <published>2017-04-14T07:00:00.000Z</published>
-    <updated>2017-05-19T17:05:37.000Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;上周审核了几个同事的代码，发现代码规范用处太小。使用工具进行代码的审核势在必行。&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="php" scheme="https://lepoch.github.io/categories/php/"/>
-    
-    
-      <category term="新浪游戏" scheme="https://lepoch.github.io/tags/%E6%96%B0%E6%B5%AA%E6%B8%B8%E6%88%8F/"/>
-    
-      <category term="php" scheme="https://lepoch.github.io/tags/php/"/>
-    
-  </entry>
-  
-  <entry>
     <title>Git托管</title>
     <link href="https://lepoch.github.io/Git%E6%89%98%E7%AE%A1/"/>
     <id>https://lepoch.github.io/Git托管/</id>
@@ -458,6 +370,94 @@
     
     
       <category term="Git" scheme="https://lepoch.github.io/tags/Git/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>docker小记</title>
+    <link href="https://lepoch.github.io/docker%E5%B0%8F%E8%AE%B0/"/>
+    <id>https://lepoch.github.io/docker小记/</id>
+    <published>2017-04-04T20:05:00.000Z</published>
+    <updated>2017-05-19T17:05:37.000Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;docker笔记&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="Linux" scheme="https://lepoch.github.io/categories/Linux/"/>
+    
+    
+      <category term="笔记" scheme="https://lepoch.github.io/tags/%E7%AC%94%E8%AE%B0/"/>
+    
+      <category term="docker" scheme="https://lepoch.github.io/tags/docker/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>win7安装vbox</title>
+    <link href="https://lepoch.github.io/win7%E5%AE%89%E8%A3%85vbox/"/>
+    <id>https://lepoch.github.io/win7安装vbox/</id>
+    <published>2017-03-31T13:14:00.000Z</published>
+    <updated>2017-05-19T17:05:37.000Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;win7下安装virtual box笔记&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="Linux" scheme="https://lepoch.github.io/categories/Linux/"/>
+    
+    
+      <category term="笔记" scheme="https://lepoch.github.io/tags/%E7%AC%94%E8%AE%B0/"/>
+    
+      <category term="vbox" scheme="https://lepoch.github.io/tags/vbox/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>supervisor小记</title>
+    <link href="https://lepoch.github.io/supervisor%E5%B0%8F%E8%AE%B0/"/>
+    <id>https://lepoch.github.io/supervisor小记/</id>
+    <published>2017-03-31T13:14:00.000Z</published>
+    <updated>2017-05-19T17:05:37.000Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;supervisor小记&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="Linux" scheme="https://lepoch.github.io/categories/Linux/"/>
+    
+    
+      <category term="笔记" scheme="https://lepoch.github.io/tags/%E7%AC%94%E8%AE%B0/"/>
+    
+      <category term="supervisor" scheme="https://lepoch.github.io/tags/supervisor/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>升级python</title>
+    <link href="https://lepoch.github.io/%E5%8D%87%E7%BA%A7python/"/>
+    <id>https://lepoch.github.io/升级python/</id>
+    <published>2017-03-24T09:00:00.000Z</published>
+    <updated>2017-05-19T17:05:37.000Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;升级CentOS 自带的 python 2.7.5 到 2.7.11&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="Linux" scheme="https://lepoch.github.io/categories/Linux/"/>
+    
+    
+      <category term="Linux" scheme="https://lepoch.github.io/tags/Linux/"/>
+    
+      <category term="CentOS" scheme="https://lepoch.github.io/tags/CentOS/"/>
     
   </entry>
   

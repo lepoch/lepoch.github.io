@@ -115,7 +115,7 @@
         var $i = $("<span/>").text(a[a_idx]);
         var x = e.pageX,y = e.pageY;
         $i.css({
-            "z-index": 999999999999999999999999999999999999999999999999999999999999999999999,
+            "z-index": 99999,
             "top": y - 20,
             "left": x,
             "position": "absolute",
@@ -151,8 +151,7 @@
 <meta property="og:image" content="http://www.plantuml.com/plantuml/svg/SoWkIImgAStDuGh9BCb9LL1widlfoqLpNdHkUh9ZrxC5Ev_FQdc-U_cpplrAN5pFTorIq2qjq5M0AE1wldi_2l_5vBaeVAvdQnS_cxRpwTv5nX1ne0AkbrFtOuWzdTE6Ae3GQGGH15g5q8aGW-f4223fD8G80XsDq8aG0-b45N18pKi1XWC0">
 <meta property="og:image" content="http://www.plantuml.com/plantuml/svg/SoWkIImgAStDuGh9BCb9LL1widlfyzqjJoTqFEkOzgAXzKNZB23x-QoMPzDsFjtJhyJ5zNpN8WNTqW9TXPUBvhpetCJrVFT-5FwBoNDH-5pFrYu6QTuBrGPaFE_QnlLowduiea_djA49GIrCoI_FqrLuldloitbpG5QYYe0iHHL1s8eg3h4NKnnaCwQWGsfU2Z1i0000">
 <meta property="og:image" content="http://www.plantuml.com/plantuml/svg/2yaioKbLK7goU-dptIrF9tGywvZseg7rHUCi8Flvh9PdqtO-tTCFP3njtVvax-Jd6tS_dRrFYOihCQcuf2WnkKGXEIUnk5WXE2En85MXcaj1GLaXEJydlqZ1Ii4PH0D5j1MAKql070qm2L6W2LHHbf-P0bPG3JEkLY6bAB5S0ovPomKrlx0qiGXYWJOE9K6foIM9UUav-5KvPnOburA2uIk8SwlHdLYGc9bNWiq1AH2rk1Iu5wMcvk5NufHJcefB1HSq47HB2tHrQ-mWOSu5ypQwECYZ6890rIam8MZyW1s59WPo1PeG5oGiT8ioqpDAT7NpeGOwfEQbbERc0000">
-<meta property="og:image" content="http://www.plantuml.com/plantuml/svg/SoWkIImgAStDuGh9BCb9LL1widlfoqLpNdHkUh9ZrxC5Ev_FQdc-U_cpplrAN5pFTorIq2qjq5M0AE1wldi_2l_5vBaeVAvdQnS_cxRpwTv5nX1ne0AkbrFtOuWzdTE6Ae3GQGGH15g5q8aGW-f4223fD8G80XsDq8aG0-b45N18pKi1XWC0">
-<meta property="og:updated_time" content="2018-06-20T10:33:14.160Z">
+<meta property="og:updated_time" content="2018-06-20T11:23:43.056Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="模式-桥接模式">
 <meta name="twitter:description" content="设计模式之桥接模式">
@@ -442,7 +441,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="更新于：2018-06-20 18:33:14" itemprop="dateModified" datetime="2018-06-20T18:33:14+08:00">2018-06-20</time>
+                <time title="更新于：2018-06-20 19:23:43" itemprop="dateModified" datetime="2018-06-20T19:23:43+08:00">2018-06-20</time>
               
             
           </span>
@@ -526,7 +525,7 @@
 <h4 id="结果-1"><a href="#结果-1" class="headerlink" title="结果"></a>结果</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">圆形，红色</span><br><span class="line">正方形，绿色</span><br><span class="line">长方形，蓝色</span><br></pre></td></tr></table></figure>
 <h2 id="生成图的代码"><a href="#生成图的代码" class="headerlink" title="生成图的代码"></a>生成图的代码</h2><h3 id="桥接模式"><a href="#桥接模式" class="headerlink" title="桥接模式"></a>桥接模式</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">@startuml</span><br><span class="line">Title &quot;桥接模式&quot;</span><br><span class="line"></span><br><span class="line">class Client</span><br><span class="line">abstract class Abstraction &#123;</span><br><span class="line">  +&#123;abstract&#125; operation()</span><br><span class="line">&#125;</span><br><span class="line">class refinedAbstraction &#123;</span><br><span class="line">  +operation()</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">abstract class Implementor &#123;</span><br><span class="line">  +&#123;abstract&#125; operationImp()</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class ConcrateImplementorA &#123;</span><br><span class="line">  +operationImp()</span><br><span class="line">&#125;</span><br><span class="line">class ConcrateImplementorB &#123;</span><br><span class="line">  +operationImp()</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Client -right--&gt; Abstraction</span><br><span class="line"></span><br><span class="line">refinedAbstraction -up--|&gt; Abstraction</span><br><span class="line"></span><br><span class="line">ConcrateImplementorA -up--|&gt; Implementor</span><br><span class="line">ConcrateImplementorB -up--|&gt; Implementor</span><br><span class="line"></span><br><span class="line">Implementor -left&lt;--o Abstraction</span><br><span class="line">Abstraction -righto--&gt; Implemento</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">@enduml</span><br></pre></td></tr></table></figure>
 <h3 id="以形状为根的继承"><a href="#以形状为根的继承" class="headerlink" title="以形状为根的继承"></a>以形状为根的继承</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">@startuml</span><br><span class="line">Title &quot;以形状为根的继承&quot;</span><br><span class="line"></span><br><span class="line">正方形 -up- 形状</span><br><span class="line">长方形 -up- 形状</span><br><span class="line">圆形 -up- 形状</span><br><span class="line"></span><br><span class="line">红3 -up- 圆形</span><br><span class="line">绿3 -up- 圆形</span><br><span class="line">蓝3 -up- 圆形</span><br><span class="line"></span><br><span class="line">红2 -up- 长方形</span><br><span class="line">绿2 -up- 长方形</span><br><span class="line">蓝2 -up- 长方形</span><br><span class="line"></span><br><span class="line">红1 -up- 正方形</span><br><span class="line">绿1 -up- 正方形</span><br><span class="line">蓝1 -up- 正方形</span><br><span class="line">@enduml</span><br></pre></td></tr></table></figure>
-<h3 id="以颜色为根的继承"><a href="#以颜色为根的继承" class="headerlink" title="以颜色为根的继承"></a>以颜色为根的继承</h3><p><img src="http://www.plantuml.com/plantuml/svg/SoWkIImgAStDuGh9BCb9LL1widlfoqLpNdHkUh9ZrxC5Ev_FQdc-U_cpplrAN5pFTorIq2qjq5M0AE1wldi_2l_5vBaeVAvdQnS_cxRpwTv5nX1ne0AkbrFtOuWzdTE6Ae3GQGGH15g5q8aGW-f4223fD8G80XsDq8aG0-b45N18pKi1XWC0" alt=""><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">@startuml</span><br><span class="line">Title &quot;以颜色为根的继承&quot;</span><br><span class="line"></span><br><span class="line">红 -up- 颜色</span><br><span class="line">绿 -up- 颜色</span><br><span class="line">蓝 -up- 颜色</span><br><span class="line"></span><br><span class="line">正方形3 -up- 蓝</span><br><span class="line">长方形3 -up- 蓝</span><br><span class="line">圆形3 -up- 蓝</span><br><span class="line"></span><br><span class="line">正方形2 -up- 绿</span><br><span class="line">长方形2 -up- 绿</span><br><span class="line">圆形2 -up- 绿</span><br><span class="line"></span><br><span class="line">正方形1 -up- 红</span><br><span class="line">长方形1 -up- 红</span><br><span class="line">圆形1 -up- 红</span><br><span class="line">@enduml</span><br></pre></td></tr></table></figure></p>
+<h3 id="以颜色为根的继承"><a href="#以颜色为根的继承" class="headerlink" title="以颜色为根的继承"></a>以颜色为根的继承</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">@startuml</span><br><span class="line">Title &quot;以颜色为根的继承&quot;</span><br><span class="line"></span><br><span class="line">红 -up- 颜色</span><br><span class="line">绿 -up- 颜色</span><br><span class="line">蓝 -up- 颜色</span><br><span class="line"></span><br><span class="line">正方形3 -up- 蓝</span><br><span class="line">长方形3 -up- 蓝</span><br><span class="line">圆形3 -up- 蓝</span><br><span class="line"></span><br><span class="line">正方形2 -up- 绿</span><br><span class="line">长方形2 -up- 绿</span><br><span class="line">圆形2 -up- 绿</span><br><span class="line"></span><br><span class="line">正方形1 -up- 红</span><br><span class="line">长方形1 -up- 红</span><br><span class="line">圆形1 -up- 红</span><br><span class="line">@enduml</span><br></pre></td></tr></table></figure>
 <h3 id="以组合或者聚合的方式-1"><a href="#以组合或者聚合的方式-1" class="headerlink" title="以组合或者聚合的方式"></a>以组合或者聚合的方式</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">@startuml</span><br><span class="line">Title &quot;以组合或者聚合的方式&quot;</span><br><span class="line"></span><br><span class="line">红 -up- 颜色</span><br><span class="line">绿 -up- 颜色</span><br><span class="line">蓝 -up- 颜色</span><br><span class="line"></span><br><span class="line">正方形 -up- 形状</span><br><span class="line">长方形 -up- 形状</span><br><span class="line">圆形 -up- 形状</span><br><span class="line"></span><br><span class="line">红 -down- 结果</span><br><span class="line">绿 -down- 结果</span><br><span class="line">蓝 -down- 结果</span><br><span class="line">正方形 -down- 结果</span><br><span class="line">长方形 -down- 结果</span><br><span class="line">圆形 -down- 结果</span><br><span class="line">@enduml</span><br></pre></td></tr></table></figure>
 <h3 id="以组合或者聚合的方式的具体类图"><a href="#以组合或者聚合的方式的具体类图" class="headerlink" title="以组合或者聚合的方式的具体类图"></a>以组合或者聚合的方式的具体类图</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line">Title &quot;以组合或者聚合的方式的具体类图&quot;</span><br><span class="line"></span><br><span class="line">abstract class Shape &#123;</span><br><span class="line">  # color : Color</span><br><span class="line">  + setColor(Color color) : void</span><br><span class="line">  + &#123;abstract&#125; draw() : void</span><br><span class="line">&#125;</span><br><span class="line">class Square &#123;</span><br><span class="line">  + draw() : void</span><br><span class="line">&#125;</span><br><span class="line">class Rectangle &#123;</span><br><span class="line">  + draw() : void</span><br><span class="line">&#125;</span><br><span class="line">class Circle &#123;</span><br><span class="line">  + draw() : void</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">abstract class Color &#123;</span><br><span class="line">  + &#123;abstract&#125; paint() : void</span><br><span class="line">&#125;</span><br><span class="line">class Red &#123;</span><br><span class="line">  + paint() : void</span><br><span class="line">&#125;</span><br><span class="line">class Green &#123;</span><br><span class="line">  + paint() : void</span><br><span class="line">&#125;</span><br><span class="line">class Blue &#123;</span><br><span class="line">  + paint() : void</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Square -up--|&gt; Shape</span><br><span class="line">Rectangle -up--|&gt; Shape</span><br><span class="line">Circle -up--|&gt; Shape</span><br><span class="line"></span><br><span class="line">Red -up--|&gt; Color</span><br><span class="line">Green -up--|&gt; Color</span><br><span class="line">Blue -up--|&gt; Color</span><br><span class="line"></span><br><span class="line">Color -right--o Shape</span><br><span class="line">@enduml</span><br></pre></td></tr></table></figure>
 <h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a href="http://cmsblogs.com/?p=357" target="_blank" rel="noopener">设计模式读书笔记—–桥接模式</a></p>
@@ -647,7 +646,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">30</span>
+                    <span class="site-state-item-count">24</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -684,13 +683,7 @@
                     
                       
                     
-                      
-                    
-                      
-                    
-                      
-                    
-                    <span class="site-state-item-count">15</span>
+                    <span class="site-state-item-count">12</span>
                     <span class="site-state-item-name">分类</span>
                   </a>
                 </div>
@@ -751,27 +744,7 @@
                     
                       
                     
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                    <span class="site-state-item-count">34</span>
+                    <span class="site-state-item-count">24</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
