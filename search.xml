@@ -73,8 +73,8 @@
         <category>Go</category>
       </categories>
       <tags>
-        <tag>笔记</tag>
         <tag>Go</tag>
+        <tag>笔记</tag>
       </tags>
   </entry>
   <entry>
@@ -152,6 +152,15 @@
       </tags>
   </entry>
   <entry>
+    <title><![CDATA[Git]]></title>
+    <url>%2FGit%2F</url>
+    <content type="text"><![CDATA[Git 彻底删除某文件及历史git filter-branch –force –index-filter ‘git rm –cached –ignore-unmatch “doc/base.sql” ‘ –prune-empty –tag-name-filter cat – –allgit push origin –force –allgit push origin –force –tagsgit for-each-ref –format=’delete %(refname)’ refs/original | git update-ref –stdingit reflog expire –expire=now –allgit gc –prune=nowgit count-objects -v]]></content>
+      <tags>
+        <tag>Git</tag>
+        <tag>笔记</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[NewSQL]]></title>
     <url>%2FNewSQL%2F</url>
     <content type="text"><![CDATA[参考 数据库功能深度解析：怎样打造一个分布式数据库 TiDB 的正确使用姿势]]></content>
@@ -160,15 +169,6 @@
         <tag>sql</tag>
         <tag>nosql</tag>
         <tag>分布式数据库</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[Git]]></title>
-    <url>%2FGit%2F</url>
-    <content type="text"><![CDATA[Git 彻底删除某文件及历史git filter-branch –force –index-filter ‘git rm –cached –ignore-unmatch “doc/base.sql” ‘ –prune-empty –tag-name-filter cat – –allgit push origin –force –allgit push origin –force –tagsgit for-each-ref –format=’delete %(refname)’ refs/original | git update-ref –stdingit reflog expire –expire=now –allgit gc –prune=nowgit count-objects -v]]></content>
-      <tags>
-        <tag>Git</tag>
-        <tag>笔记</tag>
       </tags>
   </entry>
   <entry>
@@ -206,18 +206,6 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[supervisor小记]]></title>
-    <url>%2Fsupervisor%E5%B0%8F%E8%AE%B0%2F</url>
-    <content type="text"><![CDATA[supervisor小记 配置期待的退出状态]]></content>
-      <categories>
-        <category>Linux</category>
-      </categories>
-      <tags>
-        <tag>笔记</tag>
-        <tag>supervisor</tag>
-      </tags>
-  </entry>
-  <entry>
     <title><![CDATA[win7安装vbox]]></title>
     <url>%2Fwin7%E5%AE%89%E8%A3%85vbox%2F</url>
     <content type="text"><![CDATA[win7下安装virtual box笔记 virtual box创建CentOS虚拟机win7下使用SSH登录虚拟机使用NAT方式使用端口转发，把宿主机的端口，转到虚拟机上去， 如下图 win7 与虚拟机的共享文件夹安装增强功能12345yum install -y gcc gcc-devel gcc-c++ gcc-c++-devel make kernel kernel-devel bzip2mkdir /mnt/cdrommount /dev/cdrom /mnt/cdromcd /mnt/cdrom./VBoxLinuxAdditions.run 然后就各种yes，回车了。 配置共享文件夹在虚拟机设置，共享文件夹，新增得到共享文件夹名称。1sudo mount -t vboxsf 共享文件夹名称（在设置页面设置的） 挂载的目录]]></content>
@@ -230,15 +218,15 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[Vue小记-初识]]></title>
-    <url>%2FVue%E5%B0%8F%E8%AE%B0-%E5%88%9D%E8%AF%86%2F</url>
-    <content type="text"><![CDATA[Vue的初识笔记，语法什么的见[https://cn.vuejs.org/v2/guide/syntax.html] 什么是Vue 渐进式框架 受 MVVM模型启发 操作 [虚拟DOM] (https://github.com/livoras/blog/issues/13) 什么是虚拟DOM单个元素就已经很大，DOM很慢。如果要修改某处，直接操作整个DOM可行，但会造成很多无用的性能消耗。DOM可以用JavaScript对象表示出来。 虚拟DOM 就是用户只操作 js 数据，由框架来实现最终的DOM 精准 渲染。]]></content>
+    <title><![CDATA[supervisor小记]]></title>
+    <url>%2Fsupervisor%E5%B0%8F%E8%AE%B0%2F</url>
+    <content type="text"><![CDATA[supervisor小记 配置期待的退出状态]]></content>
       <categories>
-        <category>Vue</category>
+        <category>Linux</category>
       </categories>
       <tags>
         <tag>笔记</tag>
-        <tag>Vue</tag>
+        <tag>supervisor</tag>
       </tags>
   </entry>
   <entry>
@@ -251,6 +239,18 @@
       <tags>
         <tag>Linux</tag>
         <tag>CentOS</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Vue小记-初识]]></title>
+    <url>%2FVue%E5%B0%8F%E8%AE%B0-%E5%88%9D%E8%AF%86%2F</url>
+    <content type="text"><![CDATA[Vue的初识笔记，语法什么的见[https://cn.vuejs.org/v2/guide/syntax.html] 什么是Vue 渐进式框架 受 MVVM模型启发 操作 [虚拟DOM] (https://github.com/livoras/blog/issues/13) 什么是虚拟DOM单个元素就已经很大，DOM很慢。如果要修改某处，直接操作整个DOM可行，但会造成很多无用的性能消耗。DOM可以用JavaScript对象表示出来。 虚拟DOM 就是用户只操作 js 数据，由框架来实现最终的DOM 精准 渲染。]]></content>
+      <categories>
+        <category>Vue</category>
+      </categories>
+      <tags>
+        <tag>笔记</tag>
+        <tag>Vue</tag>
       </tags>
   </entry>
   <entry>
