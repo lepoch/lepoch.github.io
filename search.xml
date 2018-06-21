@@ -73,8 +73,8 @@
         <category>Go</category>
       </categories>
       <tags>
-        <tag>Go</tag>
         <tag>笔记</tag>
+        <tag>Go</tag>
       </tags>
   </entry>
   <entry>
@@ -152,15 +152,6 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[Git]]></title>
-    <url>%2FGit%2F</url>
-    <content type="text"><![CDATA[Git 彻底删除某文件及历史git filter-branch –force –index-filter ‘git rm –cached –ignore-unmatch “doc/base.sql” ‘ –prune-empty –tag-name-filter cat – –allgit push origin –force –allgit push origin –force –tagsgit for-each-ref –format=’delete %(refname)’ refs/original | git update-ref –stdingit reflog expire –expire=now –allgit gc –prune=nowgit count-objects -v]]></content>
-      <tags>
-        <tag>Git</tag>
-        <tag>笔记</tag>
-      </tags>
-  </entry>
-  <entry>
     <title><![CDATA[NewSQL]]></title>
     <url>%2FNewSQL%2F</url>
     <content type="text"><![CDATA[参考 数据库功能深度解析：怎样打造一个分布式数据库 TiDB 的正确使用姿势]]></content>
@@ -169,6 +160,15 @@
         <tag>sql</tag>
         <tag>nosql</tag>
         <tag>分布式数据库</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Git]]></title>
+    <url>%2FGit%2F</url>
+    <content type="text"><![CDATA[Git 彻底删除某文件及历史git filter-branch –force –index-filter ‘git rm –cached –ignore-unmatch “doc/base.sql” ‘ –prune-empty –tag-name-filter cat – –allgit push origin –force –allgit push origin –force –tagsgit for-each-ref –format=’delete %(refname)’ refs/original | git update-ref –stdingit reflog expire –expire=now –allgit gc –prune=nowgit count-objects -v]]></content>
+      <tags>
+        <tag>Git</tag>
+        <tag>笔记</tag>
       </tags>
   </entry>
   <entry>
