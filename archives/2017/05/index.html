@@ -110,6 +110,37 @@
   
 
 
+<script type="text/javascript" id="hexo.headll">
+(function () {
+  window.addEventListener("load", function () {   //添加load事件
+    $("body").click(function (e) {
+        var a = new Array("富强", "民主", "文明", "和谐", "自由", "平等", "公正", "法治", "爱国", "敬业", "诚信", "友善");
+        var a_idx=Math.floor(Math.random()*a.length);
+        var $i = $("<span/>").text(a[a_idx]);
+        var x = e.pageX,y = e.pageY;
+        $i.css({
+            "z-index": 99999,
+            "top": y - 20,
+            "left": x,
+            "position": "absolute",
+            "font-weight": "bold",
+            "color": "#ff6651"
+        });
+        $("body").append($i);
+        $i.animate({
+            "top": y - 180,
+            "opacity": 0
+        },
+        1500,
+        function () {
+            $i.remove();
+        });
+    });
+  });
+})();
+</script>
+
+
 
   <meta property="og:type" content="website">
 <meta property="og:title" content="战吧">
@@ -426,9 +457,9 @@
 
       <h3 class="post-title">
         
-            <a class="post-title-link" href="/Git/" itemprop="url">
+            <a class="post-title-link" href="/NewSQL/" itemprop="url">
               
-                <span itemprop="name">Git</span>
+                <span itemprop="name">NewSQL</span>
               
             </a>
         
@@ -463,9 +494,9 @@
 
       <h3 class="post-title">
         
-            <a class="post-title-link" href="/NewSQL/" itemprop="url">
+            <a class="post-title-link" href="/Git/" itemprop="url">
               
-                <span itemprop="name">NewSQL</span>
+                <span itemprop="name">Git</span>
               
             </a>
         
