@@ -466,6 +466,16 @@
 
           
             
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/Vue小记-初识/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count gitment-comments-count" data-xid="/Vue小记-初识/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
           
 
           
@@ -534,8 +544,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/sed/" rel="next" title="sed">
-                <i class="fa fa-chevron-left"></i> sed
+              <a href="/升级python/" rel="next" title="升级python">
+                <i class="fa fa-chevron-left"></i> 升级python
               </a>
             
           </div>
@@ -544,8 +554,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/升级python/" rel="prev" title="升级python">
-                升级python <i class="fa fa-chevron-right"></i>
+              <a href="/supervisor小记/" rel="prev" title="supervisor小记">
+                supervisor小记 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -571,6 +581,13 @@
 
           </div>
           
+
+  
+    <div class="comments" id="comments">
+      
+        <div id="gitment-container"></div>
+      
+    </div>
 
   
 
@@ -929,6 +946,43 @@
 
 
 
+
+
+<!-- LOCAL: You can save these files to your site and update links -->
+    
+        
+        <link rel="stylesheet" href="https://aimingoo.github.io/gitmint/style/default.css">
+        <script src="https://aimingoo.github.io/gitmint/dist/gitmint.browser.js"></script>
+    
+<!-- END LOCAL -->
+
+    
+
+    
+      <script type="text/javascript">
+      function renderGitment(){
+        var gitment = new Gitmint({
+            id: window.location.pathname,
+            owner: 'leopch',
+            repo: 'lepoch.github.io',
+            
+            lang: "" || navigator.language || navigator.systemLanguage || navigator.userLanguage,
+            
+            oauth: {
+            
+            
+                client_secret: '3908b1ecd434ae5746816fc3ea1552f3ef2081da',
+            
+                client_id: '814f6e12481d96b6b7e9'
+            }});
+        gitment.render('gitment-container');
+      }
+
+      
+      renderGitment();
+      
+      </script>
+    
 
 
 
