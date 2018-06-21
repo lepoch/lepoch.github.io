@@ -301,6 +301,26 @@
   </entry>
   
   <entry>
+    <title>Git</title>
+    <link href="https://lepoch.github.io/Git/"/>
+    <id>https://lepoch.github.io/Git/</id>
+    <published>2017-05-22T08:55:00.000Z</published>
+    <updated>2017-07-07T09:41:03.000Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;Git&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="Git" scheme="https://lepoch.github.io/tags/Git/"/>
+    
+      <category term="笔记" scheme="https://lepoch.github.io/tags/%E7%AC%94%E8%AE%B0/"/>
+    
+  </entry>
+  
+  <entry>
     <title>NewSQL</title>
     <link href="https://lepoch.github.io/NewSQL/"/>
     <id>https://lepoch.github.io/NewSQL/</id>
@@ -326,26 +346,6 @@
       <category term="nosql" scheme="https://lepoch.github.io/tags/nosql/"/>
     
       <category term="分布式数据库" scheme="https://lepoch.github.io/tags/%E5%88%86%E5%B8%83%E5%BC%8F%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Git</title>
-    <link href="https://lepoch.github.io/Git/"/>
-    <id>https://lepoch.github.io/Git/</id>
-    <published>2017-05-22T08:55:00.000Z</published>
-    <updated>2017-07-07T09:41:03.000Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;Git&lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="Git" scheme="https://lepoch.github.io/tags/Git/"/>
-    
-      <category term="笔记" scheme="https://lepoch.github.io/tags/%E7%AC%94%E8%AE%B0/"/>
     
   </entry>
   
