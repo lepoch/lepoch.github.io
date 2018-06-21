@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://lepoch.github.io/"/>
-  <updated>2018-06-20T11:23:43.056Z</updated>
+  <updated>2018-06-20T10:33:30.167Z</updated>
   <id>https://lepoch.github.io/</id>
   
   <author>
@@ -17,15 +17,15 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>模式-桥接模式</title>
-    <link href="https://lepoch.github.io/%E6%A8%A1%E5%BC%8F-%E6%A1%A5%E6%8E%A5%E6%A8%A1%E5%BC%8F/"/>
-    <id>https://lepoch.github.io/模式-桥接模式/</id>
+    <title>模式-单例模式</title>
+    <link href="https://lepoch.github.io/%E6%A8%A1%E5%BC%8F-%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F/"/>
+    <id>https://lepoch.github.io/模式-单例模式/</id>
     <published>2018-06-15T08:35:00.000Z</published>
-    <updated>2018-06-20T11:23:43.056Z</updated>
+    <updated>2018-06-20T10:33:30.167Z</updated>
     
     <summary type="html">
     
-      &lt;p&gt;设计模式之桥接模式&lt;br&gt;
+      &lt;p&gt;设计模式之单例模式&lt;/p&gt;
     
     </summary>
     
@@ -39,15 +39,15 @@
   </entry>
   
   <entry>
-    <title>模式-单例模式</title>
-    <link href="https://lepoch.github.io/%E6%A8%A1%E5%BC%8F-%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F/"/>
-    <id>https://lepoch.github.io/模式-单例模式/</id>
+    <title>模式-桥接模式</title>
+    <link href="https://lepoch.github.io/%E6%A8%A1%E5%BC%8F-%E6%A1%A5%E6%8E%A5%E6%A8%A1%E5%BC%8F/"/>
+    <id>https://lepoch.github.io/模式-桥接模式/</id>
     <published>2018-06-15T08:35:00.000Z</published>
-    <updated>2018-06-20T10:33:30.167Z</updated>
+    <updated>2018-06-20T11:23:43.056Z</updated>
     
     <summary type="html">
     
-      &lt;p&gt;设计模式之单例模式&lt;/p&gt;
+      &lt;p&gt;设计模式之桥接模式&lt;br&gt;
     
     </summary>
     
@@ -105,6 +105,22 @@
   </entry>
   
   <entry>
+    <title>博客搭建</title>
+    <link href="https://lepoch.github.io/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/"/>
+    <id>https://lepoch.github.io/博客搭建/</id>
+    <published>2018-06-12T08:35:00.000Z</published>
+    <updated>2018-06-20T13:16:47.672Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;该博客搭建的笔记。&lt;br&gt;
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
     <title>模式-适配器模式</title>
     <link href="https://lepoch.github.io/%E6%A8%A1%E5%BC%8F-%E9%80%82%E9%85%8D%E5%99%A8%E6%A8%A1%E5%BC%8F/"/>
     <id>https://lepoch.github.io/模式-适配器模式/</id>
@@ -127,22 +143,6 @@
   </entry>
   
   <entry>
-    <title>博客搭建</title>
-    <link href="https://lepoch.github.io/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/"/>
-    <id>https://lepoch.github.io/博客搭建/</id>
-    <published>2018-06-12T08:35:00.000Z</published>
-    <updated>2018-06-20T13:16:47.672Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;该博客搭建的笔记。&lt;br&gt;
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
     <title>Go小记-初识</title>
     <link href="https://lepoch.github.io/Go%E5%B0%8F%E8%AE%B0/"/>
     <id>https://lepoch.github.io/Go小记/</id>
@@ -158,9 +158,9 @@
       <category term="Go" scheme="https://lepoch.github.io/categories/Go/"/>
     
     
-      <category term="笔记" scheme="https://lepoch.github.io/tags/%E7%AC%94%E8%AE%B0/"/>
-    
       <category term="Go" scheme="https://lepoch.github.io/tags/Go/"/>
+    
+      <category term="笔记" scheme="https://lepoch.github.io/tags/%E7%AC%94%E8%AE%B0/"/>
     
   </entry>
   
@@ -412,28 +412,6 @@
   </entry>
   
   <entry>
-    <title>supervisor小记</title>
-    <link href="https://lepoch.github.io/supervisor%E5%B0%8F%E8%AE%B0/"/>
-    <id>https://lepoch.github.io/supervisor小记/</id>
-    <published>2017-03-31T13:14:00.000Z</published>
-    <updated>2017-05-19T17:05:37.000Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;supervisor小记&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="Linux" scheme="https://lepoch.github.io/categories/Linux/"/>
-    
-    
-      <category term="笔记" scheme="https://lepoch.github.io/tags/%E7%AC%94%E8%AE%B0/"/>
-    
-      <category term="supervisor" scheme="https://lepoch.github.io/tags/supervisor/"/>
-    
-  </entry>
-  
-  <entry>
     <title>win7安装vbox</title>
     <link href="https://lepoch.github.io/win7%E5%AE%89%E8%A3%85vbox/"/>
     <id>https://lepoch.github.io/win7安装vbox/</id>
@@ -452,6 +430,28 @@
       <category term="笔记" scheme="https://lepoch.github.io/tags/%E7%AC%94%E8%AE%B0/"/>
     
       <category term="vbox" scheme="https://lepoch.github.io/tags/vbox/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>supervisor小记</title>
+    <link href="https://lepoch.github.io/supervisor%E5%B0%8F%E8%AE%B0/"/>
+    <id>https://lepoch.github.io/supervisor小记/</id>
+    <published>2017-03-31T13:14:00.000Z</published>
+    <updated>2017-05-19T17:05:37.000Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;supervisor小记&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="Linux" scheme="https://lepoch.github.io/categories/Linux/"/>
+    
+    
+      <category term="笔记" scheme="https://lepoch.github.io/tags/%E7%AC%94%E8%AE%B0/"/>
+    
+      <category term="supervisor" scheme="https://lepoch.github.io/tags/supervisor/"/>
     
   </entry>
   
