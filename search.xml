@@ -206,18 +206,6 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[win7安装vbox]]></title>
-    <url>%2Fwin7%E5%AE%89%E8%A3%85vbox%2F</url>
-    <content type="text"><![CDATA[win7下安装virtual box笔记 virtual box创建CentOS虚拟机win7下使用SSH登录虚拟机使用NAT方式使用端口转发，把宿主机的端口，转到虚拟机上去， 如下图 win7 与虚拟机的共享文件夹安装增强功能12345yum install -y gcc gcc-devel gcc-c++ gcc-c++-devel make kernel kernel-devel bzip2mkdir /mnt/cdrommount /dev/cdrom /mnt/cdromcd /mnt/cdrom./VBoxLinuxAdditions.run 然后就各种yes，回车了。 配置共享文件夹在虚拟机设置，共享文件夹，新增得到共享文件夹名称。1sudo mount -t vboxsf 共享文件夹名称（在设置页面设置的） 挂载的目录]]></content>
-      <categories>
-        <category>Linux</category>
-      </categories>
-      <tags>
-        <tag>笔记</tag>
-        <tag>vbox</tag>
-      </tags>
-  </entry>
-  <entry>
     <title><![CDATA[supervisor小记]]></title>
     <url>%2Fsupervisor%E5%B0%8F%E8%AE%B0%2F</url>
     <content type="text"><![CDATA[supervisor小记 配置期待的退出状态]]></content>
@@ -230,15 +218,15 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[Vue小记-初识]]></title>
-    <url>%2FVue%E5%B0%8F%E8%AE%B0-%E5%88%9D%E8%AF%86%2F</url>
-    <content type="text"><![CDATA[Vue的初识笔记，语法什么的见[https://cn.vuejs.org/v2/guide/syntax.html] 什么是Vue 渐进式框架 受 MVVM模型启发 操作 [虚拟DOM] (https://github.com/livoras/blog/issues/13) 什么是虚拟DOM单个元素就已经很大，DOM很慢。如果要修改某处，直接操作整个DOM可行，但会造成很多无用的性能消耗。DOM可以用JavaScript对象表示出来。 虚拟DOM 就是用户只操作 js 数据，由框架来实现最终的DOM 精准 渲染。]]></content>
+    <title><![CDATA[win7安装vbox]]></title>
+    <url>%2Fwin7%E5%AE%89%E8%A3%85vbox%2F</url>
+    <content type="text"><![CDATA[win7下安装virtual box笔记 virtual box创建CentOS虚拟机win7下使用SSH登录虚拟机使用NAT方式使用端口转发，把宿主机的端口，转到虚拟机上去， 如下图 win7 与虚拟机的共享文件夹安装增强功能12345yum install -y gcc gcc-devel gcc-c++ gcc-c++-devel make kernel kernel-devel bzip2mkdir /mnt/cdrommount /dev/cdrom /mnt/cdromcd /mnt/cdrom./VBoxLinuxAdditions.run 然后就各种yes，回车了。 配置共享文件夹在虚拟机设置，共享文件夹，新增得到共享文件夹名称。1sudo mount -t vboxsf 共享文件夹名称（在设置页面设置的） 挂载的目录]]></content>
       <categories>
-        <category>Vue</category>
+        <category>Linux</category>
       </categories>
       <tags>
         <tag>笔记</tag>
-        <tag>Vue</tag>
+        <tag>vbox</tag>
       </tags>
   </entry>
   <entry>
@@ -254,14 +242,15 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[yum安装MySQL]]></title>
-    <url>%2Fyum%E5%AE%89%E8%A3%85MySQL%2F</url>
-    <content type="text"><![CDATA[yum 安装 MySQL 环境：CentOS7VBox 1234567891011121314wget http://dev.mysql.com/get/mysql57-community-release-el7-7.noarch.rpmyum localinstall -y mysql57-community-release-el7-7.noarch.rpmyum install -y mysql-community-serversystemctl start mysqld.service# 密码：grep &apos;password&apos; /var/log/mysqld.log | awk &apos;&#123;print $NF&#125;&apos;mysql -u root -p`grep &apos;password&apos; /var/log/mysqld.log | awk &apos;&#123;print $NF&#125;&apos;`# 重设密码set global validate_password_policy=0;set global validate_password_length=4;set password for &apos;root&apos;@&apos;localhost&apos;=password(&apos;root&apos;);flush privileges;]]></content>
+    <title><![CDATA[Vue小记-初识]]></title>
+    <url>%2FVue%E5%B0%8F%E8%AE%B0-%E5%88%9D%E8%AF%86%2F</url>
+    <content type="text"><![CDATA[Vue的初识笔记，语法什么的见[https://cn.vuejs.org/v2/guide/syntax.html] 什么是Vue 渐进式框架 受 MVVM模型启发 操作 [虚拟DOM] (https://github.com/livoras/blog/issues/13) 什么是虚拟DOM单个元素就已经很大，DOM很慢。如果要修改某处，直接操作整个DOM可行，但会造成很多无用的性能消耗。DOM可以用JavaScript对象表示出来。 虚拟DOM 就是用户只操作 js 数据，由框架来实现最终的DOM 精准 渲染。]]></content>
       <categories>
-        <category>MySQL</category>
+        <category>Vue</category>
       </categories>
       <tags>
-        <tag>MySQL</tag>
+        <tag>笔记</tag>
+        <tag>Vue</tag>
       </tags>
   </entry>
   <entry>
@@ -274,6 +263,17 @@
       <tags>
         <tag>笔记</tag>
         <tag>Linux</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[yum安装MySQL]]></title>
+    <url>%2Fyum%E5%AE%89%E8%A3%85MySQL%2F</url>
+    <content type="text"><![CDATA[yum 安装 MySQL 环境：CentOS7VBox 1234567891011121314wget http://dev.mysql.com/get/mysql57-community-release-el7-7.noarch.rpmyum localinstall -y mysql57-community-release-el7-7.noarch.rpmyum install -y mysql-community-serversystemctl start mysqld.service# 密码：grep &apos;password&apos; /var/log/mysqld.log | awk &apos;&#123;print $NF&#125;&apos;mysql -u root -p`grep &apos;password&apos; /var/log/mysqld.log | awk &apos;&#123;print $NF&#125;&apos;`# 重设密码set global validate_password_policy=0;set global validate_password_length=4;set password for &apos;root&apos;@&apos;localhost&apos;=password(&apos;root&apos;);flush privileges;]]></content>
+      <categories>
+        <category>MySQL</category>
+      </categories>
+      <tags>
+        <tag>MySQL</tag>
       </tags>
   </entry>
   <entry>

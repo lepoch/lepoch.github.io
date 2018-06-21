@@ -412,28 +412,6 @@
   </entry>
   
   <entry>
-    <title>win7安装vbox</title>
-    <link href="https://lepoch.github.io/win7%E5%AE%89%E8%A3%85vbox/"/>
-    <id>https://lepoch.github.io/win7安装vbox/</id>
-    <published>2017-03-31T13:14:00.000Z</published>
-    <updated>2017-05-19T17:05:37.000Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;win7下安装virtual box笔记&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="Linux" scheme="https://lepoch.github.io/categories/Linux/"/>
-    
-    
-      <category term="笔记" scheme="https://lepoch.github.io/tags/%E7%AC%94%E8%AE%B0/"/>
-    
-      <category term="vbox" scheme="https://lepoch.github.io/tags/vbox/"/>
-    
-  </entry>
-  
-  <entry>
     <title>supervisor小记</title>
     <link href="https://lepoch.github.io/supervisor%E5%B0%8F%E8%AE%B0/"/>
     <id>https://lepoch.github.io/supervisor小记/</id>
@@ -452,6 +430,28 @@
       <category term="笔记" scheme="https://lepoch.github.io/tags/%E7%AC%94%E8%AE%B0/"/>
     
       <category term="supervisor" scheme="https://lepoch.github.io/tags/supervisor/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>win7安装vbox</title>
+    <link href="https://lepoch.github.io/win7%E5%AE%89%E8%A3%85vbox/"/>
+    <id>https://lepoch.github.io/win7安装vbox/</id>
+    <published>2017-03-31T13:14:00.000Z</published>
+    <updated>2017-05-19T17:05:37.000Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;win7下安装virtual box笔记&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="Linux" scheme="https://lepoch.github.io/categories/Linux/"/>
+    
+    
+      <category term="笔记" scheme="https://lepoch.github.io/tags/%E7%AC%94%E8%AE%B0/"/>
+    
+      <category term="vbox" scheme="https://lepoch.github.io/tags/vbox/"/>
     
   </entry>
   
