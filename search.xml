@@ -49,11 +49,6 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[博客搭建]]></title>
-    <url>%2F%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA%2F</url>
-    <content type="text"><![CDATA[该博客搭建的笔记。 next主题进入博客主目录123## 安装next主题rm -rf themes/nextgit clone https://github.com/theme-next/hexo-theme-next themes/next fancybox - 图片可点击放大安装12rm -rf themes/next/source/lib/fancyboxgit clone https://github.com/theme-next/theme-next-fancybox3 themes/next/source/lib/fancybox 配置htemes/next/_config.yml1fancybox= true]]></content>
-  </entry>
-  <entry>
     <title><![CDATA[模式-适配器模式]]></title>
     <url>%2F%E6%A8%A1%E5%BC%8F-%E9%80%82%E9%85%8D%E5%99%A8%E6%A8%A1%E5%BC%8F%2F</url>
     <content type="text"><![CDATA[设计模式之适配器模式 简介将一个类的接口转换成客户希望的另外一个接口。 关键点 一般是已存在的类 其方法 与 需求有些不符 通过加工处理可以完成 需求 类图 实现PHP 终端所需知道的 123interface Target&#123; public function request();&#125; 具体适配器 12345678910111213141516/** * Class 适配器 * @package App\Maozhua\Libs */class Adapter implements Target &#123; private $adaptee; public function __construct() &#123; $this-&gt;adaptee = new Adaptee(); &#125; public function request() &#123; $this-&gt;adaptee-&gt;specificRequest(); &#125;&#125; 适配的对象 123456789/** * Class 适配的对象 * @package App\Maozhua\Libs */class Adaptee &#123; public function specificRequest() &#123; &#125;&#125; 使用 12$target = new Adapter();$target-&gt;request(); 生成图的代码适配器模式123456789101112131415161718192021222324@startumlTitle &quot;适配器模式&quot;class Clientinterface Target &#123; +request()&#125;note bottom: 终端所需要知道的接口class Adapter&#123; +request()&#125;note left: 具体的适配器class Adaptee&#123; +specificRequest()&#125;note left: 需要适配的类Client --&gt; Target : 调用Adapter ..|&gt; TargetAdapter --&gt; Adaptee : 适配@enduml]]></content>
@@ -64,6 +59,11 @@
         <tag>笔记</tag>
         <tag>模式</tag>
       </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[博客搭建]]></title>
+    <url>%2F%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA%2F</url>
+    <content type="text"><![CDATA[该博客搭建的笔记。 next主题进入博客主目录123## 安装next主题rm -rf themes/nextgit clone https://github.com/theme-next/hexo-theme-next themes/next fancybox - 图片可点击放大安装12rm -rf themes/next/source/lib/fancyboxgit clone https://github.com/theme-next/theme-next-fancybox3 themes/next/source/lib/fancybox 配置htemes/next/_config.yml1fancybox= true]]></content>
   </entry>
   <entry>
     <title><![CDATA[Go小记-初识]]></title>
