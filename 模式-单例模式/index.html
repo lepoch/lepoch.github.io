@@ -113,7 +113,7 @@
 <script type="text/javascript" id="hexo.headll">
 (function () {
   window.addEventListener("load", function () {   //添加load事件
-    $("body").mouseup(function (e) {
+    $("body").tap(function (e) {
         var a = new Array("富强", "民主", "文明", "和谐", "自由", "平等", "公正", "法治", "爱国", "敬业", "诚信", "友善");
         var a_idx=Math.floor(Math.random()*a.length);
         var $i = $("<span/>").text(a[a_idx]);
@@ -546,8 +546,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/模式-桥接模式/" rel="next" title="模式-桥接模式">
-                <i class="fa fa-chevron-left"></i> 模式-桥接模式
+              <a href="/模式-组合模式/" rel="next" title="模式-组合模式">
+                <i class="fa fa-chevron-left"></i> 模式-组合模式
               </a>
             
           </div>
@@ -555,6 +555,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/模式-桥接模式/" rel="prev" title="模式-桥接模式">
+                模式-桥接模式 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
