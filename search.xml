@@ -83,19 +83,6 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[Go小记-初识]]></title>
-    <url>%2Fkubeadmin%E8%B6%B3%E8%BF%B9%2F</url>
-    <content type="text"><![CDATA[跟着官方文档，使用kubeadmin搭建kubernetes。 环境6台阿里云ecs，CPU： 2核 内存：4 GB ， centOS 7.4 64位， root用户 k8s1 192.168.0.248 k8s2 192.168.0.249 k8s3 192.168.0.250 k8s4 192.168.0.251 k8s5 192.168.0.252 k8s6 192.168.0.247 123456789101112131415161718192021222324252627282930313233yum install -y dockersystemctl enable docker &amp;&amp; systemctl start dockercat &lt;&lt;EOF &gt; /etc/yum.repos.d/kubernetes.repo[kubernetes]name=Kubernetesbaseurl=https://packages.cloud.google.com/yum/repos/kubernetes-el7-x86_64enabled=1gpgcheck=1repo_gpgcheck=1gpgkey=https://packages.cloud.google.com/yum/doc/yum-key.gpg https://packages.cloud.google.com/yum/doc/rpm-package-key.gpgEOFsetenforce 0yum install -y kubelet kubeadm kubectlsystemctl enable kubelet &amp;&amp; systemctl start kubeletcat &lt;&lt;EOF &gt; /etc/sysctl.d/k8s.confnet.bridge.bridge-nf-call-ip6tables = 1net.bridge.bridge-nf-call-iptables = 1EOFsysctl --systemsed -i &quot;s/cgroup-driver=systemd/cgroup-driver=systemd/g&quot; /etc/systemd/system/kubelet.service.d/10-kubeadm.confsystemctl daemon-reloadsystemctl restart kubeletecho &apos;export KUBECONFIG=/etc/kubernetes/admin.conf&apos; &gt;&gt; ~/.bash_profilesource ~/.bash_profile# kubeadm join --token 0c13a5.bf9bda1f47c070d3 192.168.0.131:6443 --discovery-token-ca-cert-hash sha256:4576241c6828d3b635bf3cab14cfce7eee7e5016502fd1cb69fbea1a7ea87ea2 123456789101112131415161718192021yum install -y dockersystemctl enable docker &amp;&amp; systemctl start dockercat &gt;&gt; /etc/yum.repos.d/kubernetes.repo &lt;&lt;EOF[kubernetes]name=Kubernetesbaseurl=https://mirrors.aliyun.com/kubernetes/yum/repos/kubernetes-el7-x86_64/enabled=1gpgcheck=0EOFsetenforce 0yum install -y kubelet kubeadm kubectlsystemctl enable kubelet &amp;&amp; systemctl start kubeletsed -i &quot;s/cgroup-driver=systemd/cgroup-driver=systemd/g&quot; /etc/systemd/system/kubelet.service.d/10-kubeadm.confsystemctl daemon-reloadsystemctl restart kubelet# kubeadm join --token 6b71c7.2816073a294e1f3d 192.168.0.131:6443 --discovery-token-ca-cert-hash sha256:f8db9e3bd9aa5e0c9b5954a54e0dbbec3d70e1133423c257ff474f479a87333a 安装安装docker12yum install -y dockersystemctl enable docker &amp;&amp; systemctl start docker 安装kubeadm，kubelet和kubectl kubeadm：引导群集的命令。 kubelet：在群集中的所有机器上运行的组件，并执行诸如启动荚和容器之类的组件。 kubectl：命令行util与您的群集通话。 天朝网络不可达，得另寻出路1234567891011cat &gt;&gt; /etc/yum.repos.d/kubernetes.repo &lt;&lt;EOF[kubernetes]name=Kubernetesbaseurl=https://mirrors.aliyun.com/kubernetes/yum/repos/kubernetes-el7-x86_64/enabled=1gpgcheck=0EOFsetenforce 0yum install -y kubelet kubeadm kubectlsystemctl enable kubelet &amp;&amp; systemctl start kubelet 在主节点上配置kubelet使用的cgroup驱动程序查看驱动：12docker info | grep -i cgroupcat /etc/systemd/system/kubelet.service.d/10-kubeadm.conf 修改cgroup-driver为docker使用的驱动1sed -i &quot;s/cgroup-driver=systemd/cgroup-driver=systemd/g&quot; /etc/systemd/system/kubelet.service.d/10-kubeadm.conf 重启kubelet12systemctl daemon-reloadsystemctl restart kubelet 创建集群初始化master指定版本，不然就得翻墙。。。1kubeadm init --kubernetes-version=1.9.0 --token-ttl 0 root用户：export KUBECONFIG=/etc/kubernetes/admin.conf]]></content>
-      <categories>
-        <category>运维</category>
-      </categories>
-      <tags>
-        <tag>kubernetes</tag>
-        <tag>k8s</tag>
-        <tag>kubeadmin</tag>
-      </tags>
-  </entry>
-  <entry>
     <title><![CDATA[PHP性能分析工具]]></title>
     <url>%2FPHP%E6%80%A7%E8%83%BD%E5%88%86%E6%9E%90%E5%B7%A5%E5%85%B7%2F</url>
     <content type="text"><![CDATA[PHP性能分析工具tideways：xhgui：用于显示xhprof数据的图形界面。环境：腾讯云CentOS 7 x64php 7.1 安装mongodbvi /etc/yum.repos.d/mongodb-org-3.2.repo123456[mongodb-org-3.2]name=MongoDB Repositorybaseurl=https://repo.mongodb.org/yum/redhat/$releasever/mongodb-org/3.2/x86_64/gpgcheck=1enabled=1gpgkey=https://www.mongodb.org/static/pgp/server-3.2.asc 安装1yum -y install mongodb-org 启动12mkdir -p /data/mongodb/dbmongod --dbpath=/data/mongodb/db --fork --logpath=/data/mongodb/mongodb.log xhgui前置：mongodb扩展12345678910111213# ubuntu# yum install libssl openssl-devel -y# ln -s /usr/lib/x86_64-linux-gnu/libssl.so /usr/lib# pecl install mongodbgit clone https://github.com/mongodb/mongo-php-driver.gitcd mongo-php-drivergit submodule sync &amp;&amp; git submodule update --initphpize./configuremake all -j 5make install 在 fpm/php.ini和cli/php.ini里打开扩展，如12echo &quot;extension=mongodb.so&quot; &gt;&gt; /usr/local/serv/php/etc/php.iniecho &quot;extension=mongodb.so&quot; &gt;&gt; /usr/local/serv/php/lib/php.ini php install.phpphp7.1没有mcrypt扩展，php install.php执行时会可能会出现问题，其引用的require修改成“&gt;”版本即可 Problem 1 Installation request for slim/slim 2.3.1 -&gt; satisfiable by slim/slim[2.3.1]. slim/slim 2.3.1 requires ext-mcrypt * -&gt; the requested PHP extension mcrypt is missing from your system. 安装12git clone https://github.com/maxincai/xhgui.git profiler.maozhuar.comcd profiler.maozhuar.com 索引1mongo 123456use xhprofdb.results.ensureIndex( &#123; &apos;meta.SERVER.REQUEST_TIME&apos; : -1 &#125; )db.results.ensureIndex( &#123; &apos;profile.main().wt&apos; : -1 &#125; )db.results.ensureIndex( &#123; &apos;profile.main().mu&apos; : -1 &#125; )db.results.ensureIndex( &#123; &apos;profile.main().cpu&apos; : -1 &#125; )db.results.ensureIndex( &#123; &apos;meta.url&apos; : 1 &#125; ) nginx配置123456789server &#123; server_name profiler.maozhuar.com; root /data/www/htdocs/profiler.maozhuar.com/webroot; location ~ \.php &#123; fastcgi_pass localhost:9002; &#125; try_files $uri $uri/ /index.php?$query_string;&#125; tideways 见该安装地址，选择系统安装方式https://tideways.io/profiler/docs/setup/installation 配置123echo &quot;extension=tideways.so&quot; &gt;&gt; /usr/local/serv/php/etc/php.iniecho &quot;tideways.sample_rate=25&quot; &gt;&gt; /usr/local/serv/php/etc/php.iniecho &quot;auto_prepend_file=/data/www/htdocs/xhgui/external/header.php&quot; &gt;&gt; /usr/local/serv/php/etc/php.ini 参考 PHP性能被动分析工具之xhgui加tideways的安装实践 CentOS 7 yum方式快速安装MongoDB]]></content>
@@ -105,55 +92,6 @@
       <tags>
         <tag>PHP</tag>
         <tag>工具</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[Hive小记]]></title>
-    <url>%2FHive%E5%B0%8F%E8%AE%B0%2F</url>
-    <content type="text"><![CDATA[Hive小记环境：腾讯云CentOS 7 x64目标：安装、使用Hadoop Hive 安装安装 OpenJDK 8Hadoop小记 安装 Hive下载网址：[http://mirror.bit.edu.cn/apache/hive/]1234567891011121314wget http://10.210.0.8/apache-hive-2.1.1-bin.tar.gztar -xzf apache-hive-2.1.1-bin.tar.gzmv apache-hive-2.1.1-bin /usr/local/( cat &lt;&lt;EOFexport HIVE_HOME=/usr/local/apache-hive-2.1.1-binexport PATH=$HIVE_HOME/bin:$PATHEOF) &gt;&gt; /etc/profilesource /etc/profile 设置 metastoreconf/hive-site.xml12345678910111213141516171819202122&lt;configuration&gt; &lt;property&gt; &lt;name&gt;javax.jdo.option.ConnectionURL&lt;/name&gt; &lt;value&gt;jdbc:mysql://localhost/metastore?createDatabaseIfNotExist=true&lt;/value&gt; &lt;description&gt;metadata is stored in a MySQL server&lt;/description&gt; &lt;/property&gt; &lt;property&gt; &lt;name&gt;javax.jdo.option.ConnectionDriverName&lt;/name&gt; &lt;value&gt;com.mysql.jdbc.Driver&lt;/value&gt; &lt;description&gt;MySQL JDBC driver class&lt;/description&gt; &lt;/property&gt; &lt;property&gt; &lt;name&gt;javax.jdo.option.ConnectionUserName&lt;/name&gt; &lt;value&gt;hive&lt;/value&gt; &lt;description&gt;user name for connecting to mysql server&lt;/description&gt; &lt;/property&gt; &lt;property&gt; &lt;name&gt;javax.jdo.option.ConnectionPassword&lt;/name&gt; &lt;value&gt;hivepassword&lt;/value&gt; &lt;description&gt;password for connecting to mysql server&lt;/description&gt; &lt;/property&gt;&lt;/configuration&gt; jdbc123wget https://dev.mysql.com/get/Downloads/Connector-J/mysql-connector-java-5.1.42.zipunzip -o mysql-connector-java-5.1.42.zipmv mysql-connector-java-5.1.42/mysql-connector-java-5.1.42-bin.jar $HIVE_HOME/lib/ 启动问题：1Unable to instantiate org.apache.hadoop.hive.ql.metadata.SessionHiveMet 解决：12# 初始化bin/schematool -dbType mysql -initSchema 使用12345678CREATE EXTERNAL TABLE IF NOT EXISTS maozhua_weight_production (type TINYINT, mark STRING, act TINYINT, uid INT, time int) ROW FORMAT SERDE &apos;org.apache.hive.hcatalog.data.JsonSerDe&apos; LOCATION &apos;/maozhua/production/weight&apos;;CREATE EXTERNAL TABLE IF NOT EXISTS maozhua_weight_testing (type TINYINT, mark STRING, act TINYINT, uid INT, time int) ROW FORMAT SERDE &apos;org.apache.hive.hcatalog.data.JsonSerDe&apos; LOCATION &apos;/maozhua/testing/weight/&apos;; 问题：递归12set hive.mapred.supports.subdirectories=true;set mapreduce.input.fileinputformat.input.dir.recursive=true; 问题：format Json FAILED: Execution Error, return code 1 from org.apache.hadoop.hive.ql.exec.DDLTask. Cannot validate serde: org.apache.hive.hcatalog.data.JsonSerDe HCatalog12export CLASSPATH=$HIVE_HOME/hcatalog/share/hcatalog:$CLASSPATHADD JAR /usr/local/apache-hive-2.1.1-bin/hcatalog/share/hcatalog/hive-hcatalog-core-2.1.1.jar; 参考 官方文档 Hadoop 伪分布式下更换默认hadoop.tmp.dir路径 关于Hive Metastore模式杂谈 搭建Hive所遇过的坑]]></content>
-      <categories>
-        <category>Hadoop</category>
-        <category>小记</category>
-      </categories>
-      <tags>
-        <tag>Hive</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[Flume小记]]></title>
-    <url>%2FFlume%E5%B0%8F%E8%AE%B0%2F</url>
-    <content type="text"><![CDATA[Flume小记 环境：腾讯云CentOS 7 x64目标：安装Flume 1.7 安装java 1.8Hadoop小记 Flume 1.7123456# wget http://apache.fayea.com/flume/1.7.0/apache-flume-1.7.0-bin.tar.gzwget http://10.210.0.8/apache-flume-1.7.0-bin.tar.gztar -xzf apache-flume-1.7.0-bin.tar.gzmv apache-flume-1.7.0-bin /usr/local/cd /usr/local/apache-flume-1.7.0-bin 配置client使用exec sourcevim conf/client.conf1234567891011121314151617181920212223242526272829# Name the components on this agentclient.sinks = k1client.sources = r1client.channels = c1# Use a channel which buffers events in memoryclient.channels.c1.type = memoryclient.channels.c1.capacity = 1000client.channels.c1.transactionCapacity = 100client.sources.r1.type = TAILDIRclient.sources.r1.channels = c1client.sources.r1.positionFile = /data/www/flume/taildir_position.jsonclient.sources.r1.filegroups = f1client.sources.r1.filegroups.f1 = /data/www/htdocs/v3.maozhuar.com/storage/maozhua/production/weight/log-.*client.sources.r1.headers.f1.headerKey1 = value1client.sources.r1.fileHeader = true# Describe the sinkclient.sinks.k1.type = avroclient.sinks.k1.channel = c1client.sinks.k1.hostname = hadoop.maozhuar.comclient.sinks.k1.port = 4100 运行1nohup /usr/local/apache-flume-1.7.0-bin/bin/flume-ng agent --conf conf --conf-file /usr/local/apache-flume-1.7.0-bin/conf/client.conf --name client &gt; 2 &gt;&amp;1 &amp; 接收端使用使用hdfs，得先把hadoop中得jar包复制到flume/lib/中hadoop/share/hadoop/common/.jarhadoop/share/hadoop/common/lib/.jarhadoop/share/hadoop/hdfs/hadoop-hdfs-*.jar 123456789101112131415161718192021222324252627# Name the components on this agenta1.sinks = k1a1.sources = r1a1.channels = c1a1.sources.r1.type = avroa1.sources.r1.channels = c1a1.sources.r1.bind = 0.0.0.0a1.sources.r1.port = 4141a1.sinks.k1.type = hdfsa1.sinks.k1.channel = c1a1.sinks.k1.hdfs.path = hdfs://hadoop.maozhuar.com:9000/flume/events/%y-%m-%d/a1.sinks.k1.hdfs.useLocalTimeStamp = truea1.sinks.k1.hdfs.filePrefix=maozhuaa1.sinks.k1.hdfs.minBlockReplicas=1a1.sinks.k1.hdfs.fileType=DataStreama1.sinks.k1.hdfs.writeFormat=Texta1.sinks.k1.hdfs.rollInterval=600a1.sinks.k1.hdfs.rollSize=0a1.sinks.k1.hdfs.rollCount=0a1.sinks.k1.hdfs.idleTimeout=0a1.channels.c1.type = memorya1.channels.c1.capacity = 1000a1.channels.c1.transactionCapacity = 100 运行1bin/flume-ng agent --conf conf --conf-file conf/.conf --name a1 -Dflume.root.logger=INFO,console 问题：hdfs文件乱码解决：1a1.sinks.k1.hdfs.fileType=DataStream 问题：Expected timestamp in the Flume event headers, but it was null解决1，每行开头有时间戳解决21a1.sinks.k1.hdfs.useLocalTimeStamp = true 问题：没秒钟产生一个hdfs文件解决12345678910111213a1.sinks.k1.type = hdfsa1.sinks.k1.channel = c1a1.sinks.k1.hdfs.path = hdfs://hadoop.maozhuar.com:9000/flume/events/%y-%m-%d/a1.sinks.k1.hdfs.useLocalTimeStamp = truea1.sinks.k1.hdfs.filePrefix=maozhuaa1.sinks.k1.hdfs.minBlockReplicas=1a1.sinks.k1.hdfs.fileType=DataStreama1.sinks.k1.hdfs.writeFormat=Texta1.sinks.k1.hdfs.rollInterval=600a1.sinks.k1.hdfs.rollSize=0a1.sinks.k1.hdfs.rollCount=0a1.sinks.k1.hdfs.idleTimeout=0 参考【Flume】【源码分析】flume中sink到hdfs，文件系统频繁产生文件，文件滚动配置不起作用？]]></content>
-      <categories>
-        <category>Hadoop</category>
-        <category>小记</category>
-      </categories>
-      <tags>
-        <tag>Hadoop</tag>
-        <tag>Flume</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[Haddop小记]]></title>
-    <url>%2FHadoop%E5%B0%8F%E8%AE%B0%2F</url>
-    <content type="text"><![CDATA[Haddop小记环境：腾讯云CentOS 7 x64目标：安装Hadoop 2.8.0 安装安装 OpenJDK 8下载地址：[http://www.oracle.com/technetwork/java/javase/downloads/index.html]修改 vim /etc/profile 12345678910111213141516171819sudo sucd ~wget http://58.87.87.210/server-jre-8u131-linux-x64.tartar -xf server-jre-8u131-linux-x64.tarcp -r jdk1.8.0_131 /usr/local/#修改/etc/profile( cat &lt;&lt;EOFexport JAVA_HOME=/usr/local/jdk1.8.0_131export JRE_HOME=\$JAVA_HOME/jreexport CLASSPATH=.:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar:$JRE_HOME/lib:$CLASSPATHexport PATH=\$JAVA_HOME/bin:\$PATHEOF) &gt;&gt; /etc/profilesource /etc/profile 依赖1yum install -y ssh rsync 安装hadoop 2.8.012345678wget https://mirrors.tuna.tsinghua.edu.cn/apache/hadoop/common/hadoop-2.8.0/hadoop-2.8.0.tar.gztar -zxf hadoop-2.8.0.tar.gzmv hadoop-2.8.0 /usr/local/mkdir inputcp etc/hadoop/*.xml inputbin/hadoop jar share/hadoop/mapreduce/hadoop-mapreduce-examples-2.8.0.jar grep input output &apos;dfs[a-z.]+&apos;cat output/* 使用伪分布式的hdfs目录修改 etc/hadoop/core-site.xml，加入12345&lt;property&gt; &lt;name&gt;hadoop.tmp.dir&lt;/name&gt; &lt;value&gt;/data/hadoop/data&lt;/value&gt; &lt;description&gt;A base for other temporary directories.&lt;/description&gt; &lt;/property&gt; 其他见官方文档 参考 [http://blog.csdn.net/telnetor/article/details/6993336]]]></content>
-      <categories>
-        <category>Hadoop</category>
-        <category>小记</category>
-      </categories>
-      <tags>
-        <tag>Hadoop</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[laravel]]></title>
-    <url>%2Flaravel%2F</url>
-    <content type="text"><![CDATA[laravel 笔记 homestead这是个vagrant使用的盒子，其中包含开发使用的各种环境。 添加 yar 扩展登陆到虚拟机后1234567891011121314151617181920212223242526sudo suapt-get updateapt-get install -y libcurl3-devwget http://pecl.php.net/get/yar-2.0.2.tgztar -zxf yar-2.0.2.tgzcd yar-2.0.2phpize./configuremake &amp;&amp; make installecho &quot;extension=yar.so&quot; &gt;&gt; /etc/php/7.1/fpm/php.ini/etc/init.d/php7.1-fpm reloadyum install autoconf -ycd /usr/local/serv/srcwget http://pecl.php.net/get/redis-3.1.2.tgztar -zxf redis-3.1.2.tgzcd redis-3.1.2phpize./configuremake &amp;&amp; make installecho &quot;extension=redis.so&quot; &gt;&gt; /etc/php/7.1/fpm/php.ini/etc/init.d/php7.1-fpm reload]]></content>
-      <categories>
-        <category>PHP</category>
-        <category>laravel</category>
-      </categories>
-      <tags>
-        <tag>PHP</tag>
       </tags>
   </entry>
   <entry>
@@ -188,17 +126,6 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[Git托管]]></title>
-    <url>%2FGit%E6%89%98%E7%AE%A1%2F</url>
-    <content type="text"><![CDATA[一些使用过的Git托管平台 GitHub 国外 最著名的 每个帐号都对外的page，可以当博客使用。 私有项目收费 Bitbucket 国外 免费私有项目 国内速度可能有些慢 Coding 国内 速度很快 管理界面舒服，功能强大 pull项目有大小限制，根据帐号等级不同限制 团队功能目前免费 私有项目免费]]></content>
-      <categories>
-        <category>Git</category>
-      </categories>
-      <tags>
-        <tag>Git</tag>
-      </tags>
-  </entry>
-  <entry>
     <title><![CDATA[docker小记]]></title>
     <url>%2Fdocker%E5%B0%8F%E8%AE%B0%2F</url>
     <content type="text"><![CDATA[docker笔记 容器运行后就退出，如何才能一直运行？比如centos:7镜像1docker run -itd centos:7 bash 创建镜像本地镜像1docker commit -m &quot;xxx&quot; -a &quot;lepoch&quot; a4170f6b81b3 lepoch/worker:0.1 -m 注释-a 作者0b2616b0e5a8 容器IDouruser/sinatra:v2 镜像id:tag Dockerfile源码见 worker-dockerfile 1docker build -t lepoch/worker:0.01 . 删除所有非运行的容器， rm -f 为强制删除1docker rm `docker ps -aq` 挂载宿主机目录，并授权1docker run -d -p 8001:80 -v /worker/www/:/usr/local/nginx/html --privileged=true lepoch/worker:php5.3 启动MySQL，并link12docker run --name mysql -v /worker/mysql/datadir:/var/lib/mysql --privileged=true -e MYSQL_ROOT_PASSWORD=root mysqldocker run -d --link=mysql -p 8002:80 -v /worker/www/:/usr/local/nginx/html --privileged=true lepoch/worker:php5.3 -p 会直接打开宿主机的端口 使用 docker overlay networkdocker network create 网络名称docker run –net=网络名称 mysqldocker run –net=网络名称 tomcat docker network disconnect 网络名称 tomcatdocker network connect 网络名称 tomcat]]></content>
@@ -211,51 +138,14 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[supervisor小记]]></title>
-    <url>%2Fsupervisor%E5%B0%8F%E8%AE%B0%2F</url>
-    <content type="text"><![CDATA[supervisor小记 配置期待的退出状态]]></content>
+    <title><![CDATA[yum安装MySQL]]></title>
+    <url>%2Fyum%E5%AE%89%E8%A3%85MySQL%2F</url>
+    <content type="text"><![CDATA[yum 安装 MySQL 环境：CentOS7VBox 1234567891011121314wget http://dev.mysql.com/get/mysql57-community-release-el7-7.noarch.rpmyum localinstall -y mysql57-community-release-el7-7.noarch.rpmyum install -y mysql-community-serversystemctl start mysqld.service# 密码：grep &apos;password&apos; /var/log/mysqld.log | awk &apos;&#123;print $NF&#125;&apos;mysql -u root -p`grep &apos;password&apos; /var/log/mysqld.log | awk &apos;&#123;print $NF&#125;&apos;`# 重设密码set global validate_password_policy=0;set global validate_password_length=4;set password for &apos;root&apos;@&apos;localhost&apos;=password(&apos;root&apos;);flush privileges;]]></content>
       <categories>
-        <category>Linux</category>
+        <category>MySQL</category>
       </categories>
       <tags>
-        <tag>笔记</tag>
-        <tag>supervisor</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[win7安装vbox]]></title>
-    <url>%2Fwin7%E5%AE%89%E8%A3%85vbox%2F</url>
-    <content type="text"><![CDATA[win7下安装virtual box笔记 virtual box创建CentOS虚拟机win7下使用SSH登录虚拟机使用NAT方式使用端口转发，把宿主机的端口，转到虚拟机上去， 如下图 win7 与虚拟机的共享文件夹安装增强功能12345yum install -y gcc gcc-devel gcc-c++ gcc-c++-devel make kernel kernel-devel bzip2mkdir /mnt/cdrommount /dev/cdrom /mnt/cdromcd /mnt/cdrom./VBoxLinuxAdditions.run 然后就各种yes，回车了。 配置共享文件夹在虚拟机设置，共享文件夹，新增得到共享文件夹名称。1sudo mount -t vboxsf 共享文件夹名称（在设置页面设置的） 挂载的目录]]></content>
-      <categories>
-        <category>Linux</category>
-      </categories>
-      <tags>
-        <tag>笔记</tag>
-        <tag>vbox</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[升级python]]></title>
-    <url>%2F%E5%8D%87%E7%BA%A7python%2F</url>
-    <content type="text"><![CDATA[升级CentOS 自带的 python 2.7.5 到 2.7.11 环境LINUX 虚拟机CentOS 7 升级 python12345678910111213141516171819# 先装 zlibyum install -y zlib1g-dev zlib zlib-devel openssl-develwget https://www.python.org/ftp/python/2.7.11/Python-2.7.11.tgztar -zxf Python-2.7.11.tgzcd Python-2.7.11# 安装mkdir /usr/local/python-2.7.11./configure --prefix=/usr/local/python-2.7.11# moudle @TODOsed -i &apos;/#zlib zlibmodule.c/s/.//&apos; Modules/Setupsed -i &apos;/#_ssl _ssl.c/,+2&#123;s/#//&#125;&apos; Modules/Setupmake &amp;&amp; make install 扩展_sqliteyum install sqlite-devel -y重新编译安装 替换默认的 python 命令 慎重因新装的python module会导致yum等系统命令问题。12345mv /bin/python /bin/python_old mv /usr/bin/python /usr/bin/python_old ln -s /usr/local/python-2.7.11/bin/python2.7 /bin/pythonln -s /usr/local/python-2.7.11/bin/python2.7 /usr/bin/python 重装pip，已知所需module：zlib, ssl12wget https://bootstrap.pypa.io/get-pip.pypython get-pip.py yum 修复第一种，指向yum到原来的python， 这种简单些12sed -i &apos;1s/$/&amp;_old/&apos; /usr/bin/yumsed -i &apos;1s/$/&amp;_old/&apos; /usr/libexec/urlgrabber-ext-down 第二种，重装yum]]></content>
-      <categories>
-        <category>Linux</category>
-      </categories>
-      <tags>
-        <tag>Linux</tag>
-        <tag>CentOS</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[Vue小记-初识]]></title>
-    <url>%2FVue%E5%B0%8F%E8%AE%B0-%E5%88%9D%E8%AF%86%2F</url>
-    <content type="text"><![CDATA[Vue的初识笔记，语法什么的见[https://cn.vuejs.org/v2/guide/syntax.html] 什么是Vue 渐进式框架 受 MVVM模型启发 操作 [虚拟DOM] (https://github.com/livoras/blog/issues/13) 什么是虚拟DOM单个元素就已经很大，DOM很慢。如果要修改某处，直接操作整个DOM可行，但会造成很多无用的性能消耗。DOM可以用JavaScript对象表示出来。 虚拟DOM 就是用户只操作 js 数据，由框架来实现最终的DOM 精准 渲染。]]></content>
-      <categories>
-        <category>Vue</category>
-      </categories>
-      <tags>
-        <tag>笔记</tag>
-        <tag>Vue</tag>
+        <tag>MySQL</tag>
       </tags>
   </entry>
   <entry>
@@ -268,17 +158,6 @@
       <tags>
         <tag>笔记</tag>
         <tag>Linux</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[yum安装MySQL]]></title>
-    <url>%2Fyum%E5%AE%89%E8%A3%85MySQL%2F</url>
-    <content type="text"><![CDATA[yum 安装 MySQL 环境：CentOS7VBox 1234567891011121314wget http://dev.mysql.com/get/mysql57-community-release-el7-7.noarch.rpmyum localinstall -y mysql57-community-release-el7-7.noarch.rpmyum install -y mysql-community-serversystemctl start mysqld.service# 密码：grep &apos;password&apos; /var/log/mysqld.log | awk &apos;&#123;print $NF&#125;&apos;mysql -u root -p`grep &apos;password&apos; /var/log/mysqld.log | awk &apos;&#123;print $NF&#125;&apos;`# 重设密码set global validate_password_policy=0;set global validate_password_length=4;set password for &apos;root&apos;@&apos;localhost&apos;=password(&apos;root&apos;);flush privileges;]]></content>
-      <categories>
-        <category>MySQL</category>
-      </categories>
-      <tags>
-        <tag>MySQL</tag>
       </tags>
   </entry>
   <entry>
