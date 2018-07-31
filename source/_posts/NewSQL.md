@@ -2,10 +2,8 @@
 title: NewSQL
 date: 2017-05-22T16:55:00.000Z
 tags:
-  - mysql
-  - sql
-  - nosql
-  - 分布式数据库
+  - MySQL
+  - 数据库
 ---
 
 
