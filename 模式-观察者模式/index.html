@@ -142,25 +142,27 @@
 
 
 
-  <meta name="description" content="sed 使用笔记">
-<meta name="keywords" content="笔记,Linux">
+  <meta name="description" content="设计模式之观察者模式">
+<meta name="keywords" content="笔记,模式">
 <meta property="og:type" content="article">
-<meta property="og:title" content="sed">
-<meta property="og:url" content="https://lepoch.github.io/sed/index.html">
+<meta property="og:title" content="模式-观察者模式">
+<meta property="og:url" content="https://lepoch.github.io/模式-观察者模式/index.html">
 <meta property="og:site_name" content="战吧">
-<meta property="og:description" content="sed 使用笔记">
+<meta property="og:description" content="设计模式之观察者模式">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2017-07-03T06:22:02.000Z">
+<meta property="og:image" content="http://www.plantuml.com/plantuml/png/SoWkIImgAStDuIh9BCb9LL1wiRpfwVhvBnfQdwrO-7HFln8NLsPUIMfHMc9oge9_Kd5gKLbgaK8rbuA2Tcb1Ic99gaPnQL9MQdA9GZ24rkIgHT824uNeA4fDpom6oi3CqSY7Ck0cQqAKvUQNfH9Gb9TVafbM2HCgrW3P2mJ9EOd5nGhE-Nd9HQabgNIp7IIegwiBaYfEBGa6XOicZ5C2uTMYEuxeq8GhjAdHqyFGpWLLYYeB5UJYmh1DDoSrhKHNrmvT9K91KMPw1b25bW9CoY4rBmMOH000">
+<meta property="og:updated_time" content="2018-08-09T09:41:00.331Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="sed">
-<meta name="twitter:description" content="sed 使用笔记">
+<meta name="twitter:title" content="模式-观察者模式">
+<meta name="twitter:description" content="设计模式之观察者模式">
+<meta name="twitter:image" content="http://www.plantuml.com/plantuml/png/SoWkIImgAStDuIh9BCb9LL1wiRpfwVhvBnfQdwrO-7HFln8NLsPUIMfHMc9oge9_Kd5gKLbgaK8rbuA2Tcb1Ic99gaPnQL9MQdA9GZ24rkIgHT824uNeA4fDpom6oi3CqSY7Ck0cQqAKvUQNfH9Gb9TVafbM2HCgrW3P2mJ9EOd5nGhE-Nd9HQabgNIp7IIegwiBaYfEBGa6XOicZ5C2uTMYEuxeq8GhjAdHqyFGpWLLYYeB5UJYmh1DDoSrhKHNrmvT9K91KMPw1b25bW9CoY4rBmMOH000">
 
 
 
 
 
 
-  <link rel="canonical" href="https://lepoch.github.io/sed/"/>
+  <link rel="canonical" href="https://lepoch.github.io/模式-观察者模式/"/>
 
 
 
@@ -170,7 +172,7 @@
   };
 </script>
 
-  <title>sed | 战吧</title>
+  <title>模式-观察者模式 | 战吧</title>
   
 
 
@@ -380,7 +382,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://lepoch.github.io/sed/">
+    <link itemprop="mainEntityOfPage" href="https://lepoch.github.io/模式-观察者模式/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="战吧">
@@ -397,7 +399,7 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">sed
+          <h2 class="post-title" itemprop="name headline">模式-观察者模式
               
             
           </h2>
@@ -422,24 +424,12 @@
                 
               
 
-              <time title="创建时间：2017-03-24 00:00:00" itemprop="dateCreated datePublished" datetime="2017-03-24T00:00:00+08:00">2017-03-24</time>
+              <time title="创建时间：2018-08-09 16:35:00 / 修改时间：17:41:00" itemprop="dateCreated datePublished" datetime="2018-08-09T16:35:00+08:00">2018-08-09</time>
             
 
             
               
 
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2017-07-03 14:22:02" itemprop="dateModified" datetime="2017-07-03T14:22:02+08:00">2017-07-03</time>
               
             
           </span>
@@ -456,7 +446,14 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/模式/" itemprop="url" rel="index"><span itemprop="name">模式</span></a></span>
+
+                
+                
+                  ，
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/模式/行为型模式/" itemprop="url" rel="index"><span itemprop="name">行为型模式</span></a></span>
 
                 
                 
@@ -490,19 +487,20 @@
       
 
       
-        <p>sed 使用笔记</p>
+        <p>设计模式之观察者模式</p>
 <a id="more"></a>
-<h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><p>一个文本处理工具。</p>
-<h1 id="常用选项"><a href="#常用选项" class="headerlink" title="常用选项"></a>常用选项</h1><blockquote>
-<p> -n∶使用安静(silent)模式。在一般 sed 的用法中，所有来自 STDIN的资料一般都会被列出到萤幕上。但如果加上 -n 参数后，则只有经过sed 特殊处理的那一行(或者动作)才会被列出来。<br> -e∶直接在指令列模式上进行 sed 的动作编辑；<br> -f∶直接将 sed 的动作写在一个档案内， -f filename 则可以执行 filename 内的sed 动作；<br> -r∶sed 的动作支援的是延伸型正规表示法的语法。(预设是基础正规表示法语法)<br> -i∶直接修改读取的档案内容。  </p>
+<h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><blockquote>
+<p>观察者模式定义了对象之间的一对多依赖，这样一来，当一个对象改变状态时，它的所有依赖者都会收到通知并自动更新。</p>
 </blockquote>
-<h1 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h1><blockquote>
-<p>a 在当前行下面插入文本。<br> i 在当前行上面插入文本。<br> c 把选定的行改为新的文本。<br> d 删除，删除选择的行。<br> D 删除模板块的第一行。<br> s 替换指定字符<br> h 拷贝模板块的内容到内存中的缓冲区。<br> H 追加模板块的内容到内存中的缓冲区。<br> g 获得内存缓冲区的内容，并替代当前模板块中的文本。<br> G 获得内存缓冲区的内容，并追加到当前模板块文本的后面。<br> l 列表不能打印字符的清单。<br> n 读取下一个输入行，用下一个命令处理新的行而不是用第一个命令。<br> N 追加下一个输入行到模板块后面并在二者间嵌入一个新行，改变当前行号码。<br> p 打印模板块的行。<br> P(大写) 打印模板块的第一行。<br> q 退出Sed。<br> b lable 分支到脚本中带有标记的地方，如果分支不存在则分支到脚本的末尾。<br> r file 从file中读行。<br> t label if分支，从最后一行开始，条件一旦满足或者T，t命令，将导致分支到带有标号的命令处，或者到脚本的末尾。<br> T label 错误分支，从最后一行开始，一旦发生错误或者T，t命令，将导致分支到带有标号的命令处，或者到脚本的末尾。<br> w file 写并追加模板块到file末尾。<br> W file 写并追加模板块的第一行到file末尾。<br> ! 表示后面的命令对所有没有被选定的行发生作用。<br> = 打印当前行号码。<br> # 把注释扩展到下一个换行符以前。  </p>
-</blockquote>
-<h1 id="栗子"><a href="#栗子" class="headerlink" title="栗子"></a>栗子</h1><h2 id="首行尾添加字符，直接修改文件"><a href="#首行尾添加字符，直接修改文件" class="headerlink" title="首行尾添加字符，直接修改文件"></a>首行尾添加字符，直接修改文件</h2><p>使用 -i 选项， s命令<br><code>sed -i &#39;1s/$/&amp;123&#39; file</code></p>
-<h2 id="去除指定字符串””-zlib-zlibmodule-c”-的首个字符"><a href="#去除指定字符串””-zlib-zlibmodule-c”-的首个字符" class="headerlink" title="去除指定字符串””#zlib zlibmodule.c” 的首个字符"></a>去除指定字符串””#zlib zlibmodule.c” 的首个字符</h2><p>使用s命令，sed ‘/匹配字符串/s/替换源字符串/替换目标字符串/g’<br><code>sed &#39;/#zlib zlibmodule.c/s/.//&#39; file</code></p>
-<h2 id="去除指定字符串-“-ssl-ssl-c”-所在行与之后的2行的特定字符-“-”"><a href="#去除指定字符串-“-ssl-ssl-c”-所在行与之后的2行的特定字符-“-”" class="headerlink" title="去除指定字符串 “#_ssl _ssl.c” 所在行与之后的2行的特定字符 “#”"></a>去除指定字符串 “#_ssl _ssl.c” 所在行与之后的2行的特定字符 “#”</h2><p>使用 /匹配字符串/,+2， 表示取得匹配字符串和之后的两行<br>{代码块}<br><code>sed &#39;/#_ssl _ssl.c/,+2{s/#//}&#39; file</code></p>
-<h2 id="game-app-sql"><a href="#game-app-sql" class="headerlink" title="game_app.sql"></a>game_app.sql</h2><p>sed -i ‘/character_set_client/s/.*//‘ game_app.sql<br>sed -i ‘/DEFAULT CHARSET=utf8/s/DEFAULT CHARSET=utf8 /DEFAULT CHARSET=utf8mb4 /‘ game_app.sql<br>sed -i ‘/DEFAULT CHARSET=utf8/s/DEFAULT CHARSET=utf8;/DEFAULT CHARSET=utf8mb4;/‘ game_app.sql</p>
+<h2 id="关键点"><a href="#关键点" class="headerlink" title="关键点"></a>关键点</h2><ul>
+<li>一对多依赖</li>
+<li>通知</li>
+</ul>
+<h2 id="类图"><a href="#类图" class="headerlink" title="类图"></a>类图</h2><p><img src="http://www.plantuml.com/plantuml/png/SoWkIImgAStDuIh9BCb9LL1wiRpfwVhvBnfQdwrO-7HFln8NLsPUIMfHMc9oge9_Kd5gKLbgaK8rbuA2Tcb1Ic99gaPnQL9MQdA9GZ24rkIgHT824uNeA4fDpom6oi3CqSY7Ck0cQqAKvUQNfH9Gb9TVafbM2HCgrW3P2mJ9EOd5nGhE-Nd9HQabgNIp7IIegwiBaYfEBGa6XOicZ5C2uTMYEuxeq8GhjAdHqyFGpWLLYYeB5UJYmh1DDoSrhKHNrmvT9K91KMPw1b25bW9CoY4rBmMOH000" alt=""></p>
+<h2 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h2><h3 id="GO"><a href="#GO" class="headerlink" title="GO"></a>GO</h3><h4 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h4><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">	<span class="string">"container/list"</span></span><br><span class="line">	<span class="string">"fmt"</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> Subject <span class="keyword">interface</span> &#123;</span><br><span class="line">	RegisterObserver(observer Observer)</span><br><span class="line">	RemoveObserver(observer Observer)</span><br><span class="line">	NotifyObservers()</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> ConcreteSubject <span class="keyword">struct</span> &#123;</span><br><span class="line">	observers *list.List</span><br><span class="line">	state     <span class="keyword">int</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">NewConcreteSubject</span><span class="params">()</span> *<span class="title">ConcreteSubject</span></span> &#123;</span><br><span class="line">	s := &amp;ConcreteSubject&#123;&#125;</span><br><span class="line">	s.observers = list.New()</span><br><span class="line">	<span class="keyword">return</span> s</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(s *ConcreteSubject)</span> <span class="title">RegisterObserver</span><span class="params">(observer Observer)</span></span> &#123;</span><br><span class="line">	s.observers.PushBack(observer)</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(s *ConcreteSubject)</span> <span class="title">RemoveObserver</span><span class="params">(observer Observer)</span></span> &#123;</span><br><span class="line">	<span class="keyword">for</span> ob := s.observers.Front(); ob != <span class="literal">nil</span>; ob = ob.Next() &#123;</span><br><span class="line">		<span class="keyword">if</span> ob.Value.(Observer) == observer &#123;</span><br><span class="line">			s.observers.Remove(ob)</span><br><span class="line">			<span class="keyword">break</span></span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(s *ConcreteSubject)</span> <span class="title">NotifyObservers</span><span class="params">()</span></span> &#123;</span><br><span class="line">	<span class="keyword">for</span> ob := s.observers.Front(); ob != <span class="literal">nil</span>; ob = ob.Next() &#123;</span><br><span class="line">		ob.Value.(Observer).Update(s)</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(s *ConcreteSubject)</span> <span class="title">SetState</span><span class="params">(state <span class="keyword">int</span>)</span></span> &#123;</span><br><span class="line">	s.state = state</span><br><span class="line">	s.NotifyObservers()</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(s *ConcreteSubject)</span> <span class="title">GetState</span><span class="params">()</span> <span class="title">int</span></span> &#123;</span><br><span class="line">	<span class="keyword">return</span> s.state</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> Observer <span class="keyword">interface</span> &#123;</span><br><span class="line">	Update(subject Subject)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> ConcreteObserver <span class="keyword">struct</span> &#123;</span><br><span class="line">	Val <span class="keyword">string</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(o *ConcreteObserver)</span> <span class="title">Update</span><span class="params">(subject Subject)</span></span> &#123;</span><br><span class="line">	fmt.Println(<span class="string">"ConcreteObserver "</span>, o.Val, <span class="string">":"</span>, subject.(*ConcreteSubject).GetState())</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> ConcreteObserver2 <span class="keyword">struct</span> &#123;</span><br><span class="line">	Val <span class="keyword">string</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="params">(o *ConcreteObserver2)</span> <span class="title">Update</span><span class="params">(subject Subject)</span></span> &#123;</span><br><span class="line">	fmt.Println(<span class="string">"ConcreteObserver2 "</span>, o.Val, <span class="string">":"</span>, subject.(*ConcreteSubject).GetState())</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h4><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">	<span class="string">"fmt"</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">  subject := NewConcreteSubject()</span><br><span class="line">	observer := ConcreteObserver&#123;<span class="string">"1"</span>&#125;</span><br><span class="line">	observer21 := ConcreteObserver2&#123;<span class="string">"21"</span>&#125;</span><br><span class="line">	observer22 := ConcreteObserver2&#123;<span class="string">"22"</span>&#125;</span><br><span class="line"></span><br><span class="line">	subject.RegisterObserver(&amp;observer)</span><br><span class="line"></span><br><span class="line">	subject.SetState(<span class="number">1</span>)</span><br><span class="line">	fmt.Println()</span><br><span class="line"></span><br><span class="line">	subject.RegisterObserver(&amp;observer21)</span><br><span class="line">	subject.RegisterObserver(&amp;observer22)</span><br><span class="line"></span><br><span class="line">	subject.SetState(<span class="number">2</span>)</span><br><span class="line">	fmt.Println()</span><br><span class="line"></span><br><span class="line">	subject.RemoveObserver(&amp;observer22)</span><br><span class="line">	subject.SetState(<span class="number">3</span>)</span><br><span class="line">	fmt.Println()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">	subject.RemoveObserver(&amp;observer)</span><br><span class="line">	subject.RemoveObserver(&amp;observer21)</span><br><span class="line">	subject.RemoveObserver(&amp;observer22)</span><br><span class="line">	subject.RemoveObserver(&amp;observer22)</span><br><span class="line">	subject.SetState(<span class="number">3</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="结果"><a href="#结果" class="headerlink" title="结果"></a>结果</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">ConcreteObserver  1 : 1</span><br><span class="line"></span><br><span class="line">ConcreteObserver  1 : 2</span><br><span class="line">ConcreteObserver2  21 : 2</span><br><span class="line">ConcreteObserver2  22 : 2</span><br><span class="line"></span><br><span class="line">ConcreteObserver  1 : 3</span><br><span class="line">ConcreteObserver2  21 : 3</span><br></pre></td></tr></table></figure>
+<h2 id="生成图的代码"><a href="#生成图的代码" class="headerlink" title="生成图的代码"></a>生成图的代码</h2><h3 id="观察者模式"><a href="#观察者模式" class="headerlink" title="观察者模式"></a>观察者模式</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">@startuml</span><br><span class="line">title &quot;观察者模式&quot;</span><br><span class="line"></span><br><span class="line">interface Subject &#123;</span><br><span class="line">  +registerObserver(observer Observer)</span><br><span class="line">  +removeObserver(observer Observer)</span><br><span class="line">  +notifyObservers()</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">interface Observer &#123;</span><br><span class="line">  +update(subject Subject)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class ConcreteSubject &#123;</span><br><span class="line">  +registerObserver(observer Observer)</span><br><span class="line">  +removeObserver(observer Observer)</span><br><span class="line">  +notifyObservers()</span><br><span class="line">  ---</span><br><span class="line">  +setSate()</span><br><span class="line">  +setState()</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class ConcreteObserver &#123;</span><br><span class="line">  +update(subject Subject)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">Observer &lt;|.. ConcreteObserver</span><br><span class="line">Subject &lt;|.. ConcreteSubject</span><br><span class="line"></span><br><span class="line">ConcreteObserver -left--&gt;ConcreteSubject</span><br><span class="line">Observer -right--* Subject</span><br><span class="line"></span><br><span class="line">@enduml</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -525,7 +523,7 @@
           
             <a href="/tags/笔记/" rel="tag"># 笔记</a>
           
-            <a href="/tags/Linux/" rel="tag"># Linux</a>
+            <a href="/tags/模式/" rel="tag"># 模式</a>
           
         </div>
       
@@ -538,8 +536,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/Linux代理/" rel="next" title="Linux代理">
-                <i class="fa fa-chevron-left"></i> Linux代理
+              <a href="/模式-策略模式/" rel="next" title="模式-策略模式">
+                <i class="fa fa-chevron-left"></i> 模式-策略模式
               </a>
             
           </div>
@@ -547,10 +545,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/yum安装MySQL/" rel="prev" title="yum安装MySQL">
-                yum安装MySQL <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -726,7 +720,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#简介"><span class="nav-number">1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#常用选项"><span class="nav-number">2.</span> <span class="nav-text">常用选项</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#常用命令"><span class="nav-number">3.</span> <span class="nav-text">常用命令</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#栗子"><span class="nav-number">4.</span> <span class="nav-text">栗子</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#首行尾添加字符，直接修改文件"><span class="nav-number">4.1.</span> <span class="nav-text">首行尾添加字符，直接修改文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#去除指定字符串””-zlib-zlibmodule-c”-的首个字符"><span class="nav-number">4.2.</span> <span class="nav-text">去除指定字符串””#zlib zlibmodule.c” 的首个字符</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#去除指定字符串-“-ssl-ssl-c”-所在行与之后的2行的特定字符-“-”"><span class="nav-number">4.3.</span> <span class="nav-text">去除指定字符串 “#_ssl _ssl.c” 所在行与之后的2行的特定字符 “#”</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#game-app-sql"><span class="nav-number">4.4.</span> <span class="nav-text">game_app.sql</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#简介"><span class="nav-number">1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#关键点"><span class="nav-number">2.</span> <span class="nav-text">关键点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#类图"><span class="nav-number">3.</span> <span class="nav-text">类图</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实现"><span class="nav-number">4.</span> <span class="nav-text">实现</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#GO"><span class="nav-number">4.1.</span> <span class="nav-text">GO</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#定义"><span class="nav-number">4.1.1.</span> <span class="nav-text">定义</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#使用"><span class="nav-number">4.1.2.</span> <span class="nav-text">使用</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#结果"><span class="nav-number">4.1.3.</span> <span class="nav-text">结果</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#生成图的代码"><span class="nav-number">5.</span> <span class="nav-text">生成图的代码</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#观察者模式"><span class="nav-number">5.1.</span> <span class="nav-text">观察者模式</span></a></li></ol></li></ol></div>
             
 
           </div>
