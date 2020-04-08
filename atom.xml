@@ -1,0 +1,419 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>战吧</title>
+  
+  
+  <link href="/atom.xml" rel="self"/>
+  
+  <link href="https://lepoch.github.io/"/>
+  <updated>2018-08-09T09:41:00.331Z</updated>
+  <id>https://lepoch.github.io/</id>
+  
+  <author>
+    <name>战吧</name>
+    
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>模式-观察者模式</title>
+    <link href="https://lepoch.github.io/%E6%A8%A1%E5%BC%8F-%E8%A7%82%E5%AF%9F%E8%80%85%E6%A8%A1%E5%BC%8F/"/>
+    <id>https://lepoch.github.io/模式-观察者模式/</id>
+    <published>2018-08-09T08:35:00.000Z</published>
+    <updated>2018-08-09T09:41:00.331Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;设计模式之观察者模式&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="模式" scheme="https://lepoch.github.io/categories/%E6%A8%A1%E5%BC%8F/"/>
+    
+      <category term="行为型模式" scheme="https://lepoch.github.io/categories/%E6%A8%A1%E5%BC%8F/%E8%A1%8C%E4%B8%BA%E5%9E%8B%E6%A8%A1%E5%BC%8F/"/>
+    
+    
+      <category term="笔记" scheme="https://lepoch.github.io/tags/%E7%AC%94%E8%AE%B0/"/>
+    
+      <category term="模式" scheme="https://lepoch.github.io/tags/%E6%A8%A1%E5%BC%8F/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>模式-策略模式</title>
+    <link href="https://lepoch.github.io/%E6%A8%A1%E5%BC%8F-%E7%AD%96%E7%95%A5%E6%A8%A1%E5%BC%8F/"/>
+    <id>https://lepoch.github.io/模式-策略模式/</id>
+    <published>2018-07-31T08:35:00.000Z</published>
+    <updated>2018-08-01T02:33:35.992Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;设计模式之策略模式&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="模式" scheme="https://lepoch.github.io/categories/%E6%A8%A1%E5%BC%8F/"/>
+    
+      <category term="行为型模式" scheme="https://lepoch.github.io/categories/%E6%A8%A1%E5%BC%8F/%E8%A1%8C%E4%B8%BA%E5%9E%8B%E6%A8%A1%E5%BC%8F/"/>
+    
+    
+      <category term="笔记" scheme="https://lepoch.github.io/tags/%E7%AC%94%E8%AE%B0/"/>
+    
+      <category term="模式" scheme="https://lepoch.github.io/tags/%E6%A8%A1%E5%BC%8F/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>模式-桥接模式</title>
+    <link href="https://lepoch.github.io/%E6%A8%A1%E5%BC%8F-%E6%A1%A5%E6%8E%A5%E6%A8%A1%E5%BC%8F/"/>
+    <id>https://lepoch.github.io/模式-桥接模式/</id>
+    <published>2018-06-15T08:35:00.000Z</published>
+    <updated>2018-06-22T09:06:58.565Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;设计模式之桥接模式&lt;br&gt;
+    
+    </summary>
+    
+      <category term="模式" scheme="https://lepoch.github.io/categories/%E6%A8%A1%E5%BC%8F/"/>
+    
+      <category term="结构型模式" scheme="https://lepoch.github.io/categories/%E6%A8%A1%E5%BC%8F/%E7%BB%93%E6%9E%84%E5%9E%8B%E6%A8%A1%E5%BC%8F/"/>
+    
+    
+      <category term="笔记" scheme="https://lepoch.github.io/tags/%E7%AC%94%E8%AE%B0/"/>
+    
+      <category term="模式" scheme="https://lepoch.github.io/tags/%E6%A8%A1%E5%BC%8F/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>模式-单例模式</title>
+    <link href="https://lepoch.github.io/%E6%A8%A1%E5%BC%8F-%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F/"/>
+    <id>https://lepoch.github.io/模式-单例模式/</id>
+    <published>2018-06-15T08:35:00.000Z</published>
+    <updated>2018-06-22T09:03:11.605Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;设计模式之单例模式&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="模式" scheme="https://lepoch.github.io/categories/%E6%A8%A1%E5%BC%8F/"/>
+    
+      <category term="创建型模式" scheme="https://lepoch.github.io/categories/%E6%A8%A1%E5%BC%8F/%E5%88%9B%E5%BB%BA%E5%9E%8B%E6%A8%A1%E5%BC%8F/"/>
+    
+    
+      <category term="笔记" scheme="https://lepoch.github.io/tags/%E7%AC%94%E8%AE%B0/"/>
+    
+      <category term="模式" scheme="https://lepoch.github.io/tags/%E6%A8%A1%E5%BC%8F/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>模式-组合模式</title>
+    <link href="https://lepoch.github.io/%E6%A8%A1%E5%BC%8F-%E7%BB%84%E5%90%88%E6%A8%A1%E5%BC%8F/"/>
+    <id>https://lepoch.github.io/模式-组合模式/</id>
+    <published>2018-06-14T08:35:00.000Z</published>
+    <updated>2018-06-22T09:07:14.258Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;设计模式之组合模式&lt;br&gt;
+    
+    </summary>
+    
+      <category term="模式" scheme="https://lepoch.github.io/categories/%E6%A8%A1%E5%BC%8F/"/>
+    
+      <category term="结构型模式" scheme="https://lepoch.github.io/categories/%E6%A8%A1%E5%BC%8F/%E7%BB%93%E6%9E%84%E5%9E%8B%E6%A8%A1%E5%BC%8F/"/>
+    
+    
+      <category term="笔记" scheme="https://lepoch.github.io/tags/%E7%AC%94%E8%AE%B0/"/>
+    
+      <category term="模式" scheme="https://lepoch.github.io/tags/%E6%A8%A1%E5%BC%8F/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>模式-备忘录模式</title>
+    <link href="https://lepoch.github.io/%E6%A8%A1%E5%BC%8F-%E5%A4%87%E5%BF%98%E5%BD%95%E6%A8%A1%E5%BC%8F/"/>
+    <id>https://lepoch.github.io/模式-备忘录模式/</id>
+    <published>2018-06-13T08:35:00.000Z</published>
+    <updated>2018-06-22T09:04:47.586Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;设计模式之备忘录模式&lt;br&gt;
+    
+    </summary>
+    
+      <category term="模式" scheme="https://lepoch.github.io/categories/%E6%A8%A1%E5%BC%8F/"/>
+    
+      <category term="行为型模式" scheme="https://lepoch.github.io/categories/%E6%A8%A1%E5%BC%8F/%E8%A1%8C%E4%B8%BA%E5%9E%8B%E6%A8%A1%E5%BC%8F/"/>
+    
+    
+      <category term="笔记" scheme="https://lepoch.github.io/tags/%E7%AC%94%E8%AE%B0/"/>
+    
+      <category term="模式" scheme="https://lepoch.github.io/tags/%E6%A8%A1%E5%BC%8F/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>博客搭建</title>
+    <link href="https://lepoch.github.io/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/"/>
+    <id>https://lepoch.github.io/博客搭建/</id>
+    <published>2018-06-12T08:35:00.000Z</published>
+    <updated>2018-06-20T13:16:47.672Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;该博客搭建的笔记。&lt;br&gt;
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>模式-适配器模式</title>
+    <link href="https://lepoch.github.io/%E6%A8%A1%E5%BC%8F-%E9%80%82%E9%85%8D%E5%99%A8%E6%A8%A1%E5%BC%8F/"/>
+    <id>https://lepoch.github.io/模式-适配器模式/</id>
+    <published>2018-06-12T08:35:00.000Z</published>
+    <updated>2018-06-22T09:07:18.225Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;设计模式之适配器模式&lt;br&gt;
+    
+    </summary>
+    
+      <category term="模式" scheme="https://lepoch.github.io/categories/%E6%A8%A1%E5%BC%8F/"/>
+    
+      <category term="结构型模式" scheme="https://lepoch.github.io/categories/%E6%A8%A1%E5%BC%8F/%E7%BB%93%E6%9E%84%E5%9E%8B%E6%A8%A1%E5%BC%8F/"/>
+    
+    
+      <category term="笔记" scheme="https://lepoch.github.io/tags/%E7%AC%94%E8%AE%B0/"/>
+    
+      <category term="模式" scheme="https://lepoch.github.io/tags/%E6%A8%A1%E5%BC%8F/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Go小记-初识</title>
+    <link href="https://lepoch.github.io/Go%E5%B0%8F%E8%AE%B0/"/>
+    <id>https://lepoch.github.io/Go小记/</id>
+    <published>2018-04-04T09:00:00.000Z</published>
+    <updated>2018-04-04T17:16:04.384Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;整理的一些小记&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="Go" scheme="https://lepoch.github.io/categories/Go/"/>
+    
+    
+      <category term="笔记" scheme="https://lepoch.github.io/tags/%E7%AC%94%E8%AE%B0/"/>
+    
+      <category term="Go" scheme="https://lepoch.github.io/tags/Go/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>MySQL调优笔记201807</title>
+    <link href="https://lepoch.github.io/MySQL%E8%B0%83%E4%BC%98%E7%AC%94%E8%AE%B0201807/"/>
+    <id>https://lepoch.github.io/MySQL调优笔记201807/</id>
+    <published>2017-07-22T08:55:00.000Z</published>
+    <updated>2018-08-01T03:14:12.071Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;MySQL 一次排查 CPU、内存问题的笔记&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="笔记" scheme="https://lepoch.github.io/tags/%E7%AC%94%E8%AE%B0/"/>
+    
+      <category term="MySQL" scheme="https://lepoch.github.io/tags/MySQL/"/>
+    
+      <category term="数据库" scheme="https://lepoch.github.io/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>PHP性能分析工具</title>
+    <link href="https://lepoch.github.io/PHP%E6%80%A7%E8%83%BD%E5%88%86%E6%9E%90%E5%B7%A5%E5%85%B7/"/>
+    <id>https://lepoch.github.io/PHP性能分析工具/</id>
+    <published>2017-06-28T09:26:00.000Z</published>
+    <updated>2017-12-25T14:43:00.930Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;PHP性能分析工具&lt;br&gt;tideways：&lt;br&gt;xhgui：用于显示xhprof数据的图形界面。&lt;br&gt;
+    
+    </summary>
+    
+      <category term="PHP" scheme="https://lepoch.github.io/categories/PHP/"/>
+    
+    
+      <category term="PHP" scheme="https://lepoch.github.io/tags/PHP/"/>
+    
+      <category term="工具" scheme="https://lepoch.github.io/tags/%E5%B7%A5%E5%85%B7/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Git</title>
+    <link href="https://lepoch.github.io/Git/"/>
+    <id>https://lepoch.github.io/Git/</id>
+    <published>2017-05-22T08:55:00.000Z</published>
+    <updated>2017-07-07T09:41:03.000Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;Git&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="Git" scheme="https://lepoch.github.io/tags/Git/"/>
+    
+      <category term="笔记" scheme="https://lepoch.github.io/tags/%E7%AC%94%E8%AE%B0/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>NewSQL</title>
+    <link href="https://lepoch.github.io/NewSQL/"/>
+    <id>https://lepoch.github.io/NewSQL/</id>
+    <published>2017-05-22T08:55:00.000Z</published>
+    <updated>2018-07-30T03:34:25.805Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
+&lt;h2 id=&quot;参考&quot;&gt;&lt;a href=&quot;#参考&quot; class=&quot;headerlink&quot; title=&quot;参考&quot;&gt;&lt;/a&gt;参考&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;http://www.raincent.com/content-85-73
+      
+    
+    </summary>
+    
+    
+      <category term="MySQL" scheme="https://lepoch.github.io/tags/MySQL/"/>
+    
+      <category term="数据库" scheme="https://lepoch.github.io/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Mac使用</title>
+    <link href="https://lepoch.github.io/Mac%E4%BD%BF%E7%94%A8/"/>
+    <id>https://lepoch.github.io/Mac使用/</id>
+    <published>2017-05-11T13:14:00.000Z</published>
+    <updated>2017-05-19T17:05:37.000Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;Mac使用&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="Mac" scheme="https://lepoch.github.io/categories/Mac/"/>
+    
+    
+      <category term="Mac" scheme="https://lepoch.github.io/tags/Mac/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>docker小记</title>
+    <link href="https://lepoch.github.io/docker%E5%B0%8F%E8%AE%B0/"/>
+    <id>https://lepoch.github.io/docker小记/</id>
+    <published>2017-04-04T20:05:00.000Z</published>
+    <updated>2017-05-19T17:05:37.000Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;docker笔记&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="Linux" scheme="https://lepoch.github.io/categories/Linux/"/>
+    
+    
+      <category term="笔记" scheme="https://lepoch.github.io/tags/%E7%AC%94%E8%AE%B0/"/>
+    
+      <category term="docker" scheme="https://lepoch.github.io/tags/docker/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>yum安装MySQL</title>
+    <link href="https://lepoch.github.io/yum%E5%AE%89%E8%A3%85MySQL/"/>
+    <id>https://lepoch.github.io/yum安装MySQL/</id>
+    <published>2017-03-23T16:00:00.000Z</published>
+    <updated>2017-05-19T17:05:37.000Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;yum 安装 MySQL&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="MySQL" scheme="https://lepoch.github.io/categories/MySQL/"/>
+    
+    
+      <category term="MySQL" scheme="https://lepoch.github.io/tags/MySQL/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>sed</title>
+    <link href="https://lepoch.github.io/sed/"/>
+    <id>https://lepoch.github.io/sed/</id>
+    <published>2017-03-23T16:00:00.000Z</published>
+    <updated>2017-07-03T06:22:02.000Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;sed 使用笔记&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="Linux" scheme="https://lepoch.github.io/categories/Linux/"/>
+    
+    
+      <category term="笔记" scheme="https://lepoch.github.io/tags/%E7%AC%94%E8%AE%B0/"/>
+    
+      <category term="Linux" scheme="https://lepoch.github.io/tags/Linux/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Linux代理</title>
+    <link href="https://lepoch.github.io/Linux%E4%BB%A3%E7%90%86/"/>
+    <id>https://lepoch.github.io/Linux代理/</id>
+    <published>2017-03-20T09:00:00.000Z</published>
+    <updated>2018-04-03T06:47:42.064Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;在搭建Rietveld时，碰到需要科学上网的情况。&lt;/p&gt;
+&lt;p&gt;这里使用 shadowsocks + privoxy&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="Linux" scheme="https://lepoch.github.io/categories/Linux/"/>
+    
+    
+      <category term="Linux" scheme="https://lepoch.github.io/tags/Linux/"/>
+    
+  </entry>
+  
+</feed>
